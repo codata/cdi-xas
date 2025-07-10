@@ -1,0 +1,91 @@
+{
+  "@context": {
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "label": "https://ddi-cdi.org/label/"
+  },
+  "@graph": [
+    {
+      "@id": "label:Facility.name",
+      "skos:prefLabel": "Facility.name",
+      "skos:definition": "The name of synchrotron or other X-ray facility. This is recommended for use in all XDI files.",
+      "units": "none",
+      "format": "string"
+    },
+    {
+      "@id": "label:Facility.energy",
+      "skos:prefLabel": "Facility.energy",
+      "skos:definition": "The energy of the stored current in the storage ring.",
+      "units": [
+        "GeV",
+        "MeV"
+      ],
+      "format": "float + units"
+    },
+    {
+      "@id": "label:Facility.current",
+      "skos:prefLabel": "Facility.current",
+      "skos:definition": "The amount of stored current in the storage ring at the beginning of the scan.",
+      "units": [
+        "mA",
+        "A"
+      ],
+      "format": "float + units"
+    },
+    {
+      "@id": "label:Facility.xray_source",
+      "skos:prefLabel": "Facility.xray_source",
+      "skos:definition": "A string identifying the source of the X-rays, such as 'bend magnet', 'undulator', or 'rotating copper anode'.",
+      "units": "none",
+      "format": "string"
+    },
+    {
+      "@id": "label:Beamline.name",
+      "skos:prefLabel": "Beamline.name",
+      "skos:definition": "The name by which the beamline is known. For a beamline with a facility designation and a common name, the designation is preferred.",
+      "units": "none",
+      "format": "free-format string"
+    },
+    {
+      "@id": "label:Mono.d_spacing",
+      "skos:prefLabel": "Mono.d_spacing",
+      "skos:definition": "The known d-spacing of the monochromator under operating conditions.",
+      "units": "\u00c5",
+      "format": "float"
+    },
+    {
+      "@id": "label:Element.symbol",
+      "skos:prefLabel": "Element.symbol",
+      "skos:definition": "The measured absorption edge. One of the 118 standard atomic symbols.",
+      "units": "none",
+      "format": "atomic symbol (string)"
+    },
+    {
+      "@id": "label:Element.edge",
+      "skos:prefLabel": "Element.edge",
+      "skos:definition": "The measured absorption edge. One of the standard edge labels (e.g., K, L3, M5).",
+      "units": "none",
+      "format": "edge label (string)"
+    },
+    {
+      "@id": "label:Scan.start_time",
+      "skos:prefLabel": "Scan.start_time",
+      "skos:definition": "The beginning time of the scan.",
+      "units": "time",
+      "format": "ISO 8601 date-time"
+    },
+    {
+      "@id": "label:Column.1",
+      "skos:prefLabel": "Column.1",
+      "skos:definition": "A description of the abscissa array for the measured data.",
+      "units": [
+        "eV",
+        "keV",
+        "pixel",
+        "angle in degrees",
+        "angle in radians",
+        "steps"
+      ],
+      "format": "word + units"
+    }
+  ]
+}
