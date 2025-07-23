@@ -5,6 +5,7 @@ import uvicorn
 from datalearning import DataLearning
 from config import datadir, datafile
 from datapoints import CDI_DDI
+from cdi import CDI_DDI
 import json
 app = FastAPI()
 data = DataLearning(datadir, datafile, format="json-ld")
@@ -14,6 +15,14 @@ data.get_data()
 @app.get("/")
 def read_root():
     return {"message": "DDI-CDI Service v.0.1"}
+
+@app.get("/cdi-intermidiate")
+def read_cdi(url: str, format: str = "turtle"):
+    cdi = CDI_DDI(url, "cdi.jsonld", format, type='xas')
+    if format == "turtle":
+        return Response(content=cdi.parse_cdi().serialize(format=format), media_type="text/turtle")
+    else:
+        return Response(content=cdi.parse_cdi().serialize(format=format), media_type="application/json")
 
 @app.get("/data")
 def read_data():

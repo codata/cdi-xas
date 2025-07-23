@@ -7,7 +7,7 @@ import os
 import argparse
 
 class CDI_DDI:
-    def __init__(self, url=None, export_file=None, export_format=None, resources_dir="../resources", type=None):
+    def __init__(self, url=None, export_file=None, export_format=None, resources_dir="/app/resources", type=None):
         self.url = url
         self.g = rdflib.Graph()
         self.resources = {}
@@ -175,4 +175,4 @@ class CDI_DDI:
 
         print(f"Graph exported to {self.export_file} in {self.export_format} format")
         print(self.datasets)
-        return self.data
+        return self.g
