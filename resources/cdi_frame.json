@@ -1,0 +1,11 @@
+{
+  "@context": {
+                "cdi": "http://ddialliance.org/Specification/DDI-CDI/1.0/RDF/",
+                "skos": "http://www.w3.org/2004/02/skos/core#"
+            },
+  "@type": ["cdi:KeyValueDataStore", "cdi:Descriptor", "skos:ConceptScheme"],
+  "contains": {"@type": "ControlledVocabularyEntry"},
+  "InstanceValue_hasValueFrom_ValueDomain": {"@embed" : "@never"},
+  "ReferenceValue_correspondsTo_VariableValueComponent": {"@embed" : "@never"}
+}
+

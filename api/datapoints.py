@@ -21,7 +21,13 @@ class CDI_DDI:
         self.datasets = {}
         self.navigator = None
         self.lastvariable = None
-        self.response = requests.get(url)
+        # self.response = requests.get(url)
+        self.xdi = self.load_xdi_resource()
+
+    def load_xdi_resource(self):
+        with open(self.resources_dir + "/xdi_example_ss.xdi", "r") as f:
+            data = f.readlines()
+        return data
 
     def get_full_variable_name(self, variable_name):
         return self.name +  self.instance + '-' + variable_name
@@ -58,8 +64,9 @@ class CDI_DDI:
         else:
             return None, value
 
-    def parse_cdi(self):
-        for line in self.response.text.split("\n"):
+    def parse_xdi(self):
+        #for line in self.response.text.split("\n"):
+        for line in self.xdi:
             # Variables path
             #print(line)
             if self.check_variable_name(line):
@@ -112,6 +119,39 @@ class CDI_DDI:
                         for row in line.strip().split(' '):
                             self.g.add((self.navigator, rdflib.URIRef(self.rdf.List), rdflib.Literal(row)))
         return self.g
+    
+
+    def get_related_triples(self, predicate="skos:broader"):
+        query = f"""
+            PREFIX xdi: <http://www.w3.org/ns/xdi/core#>
+            PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+            PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+            SELECT ?subject ?object WHERE {{
+                ?subject {predicate} ?object .
+            }}
+        """
+        result = []
+        for s in self.g.query(query):
+            result.append(s)
+        return result
+    
+
+    def lookup_definition(self, subject, broader):
+        subject = f"<{subject}>"
+        broader = f"<{broader}>"
+        query = f"""
+            PREFIX xdi: <http://www.w3.org/ns/xdi/core#>
+            PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+            SELECT ?definition WHERE {{
+                {subject} {broader} ?blank .
+                ?blank skos:definition ?definition
+            }}
+        """
+        result = []
+        for s in self.g.query(query):
+            value = rdflib.Literal(s[0]).toPython()
+            result.append(value)
+        return result
 
 #url = "https://raw.githubusercontent.com/XraySpectroscopy/XAS-Data-Interchange/refs/heads/master/data/nonxafs_2d.xdi"
 #cdi = CDI_DDI(url, "cdi.jsonld", "turtle", type='xas')
