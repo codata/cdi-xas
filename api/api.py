@@ -8,6 +8,16 @@ from datapoints import CDI_DDI
 from cdi import CDI_DDI
 import json
 app = FastAPI()
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
+
 data = DataLearning(datadir, datafile, format="json-ld")
 data.load_data()
 data.get_data()
