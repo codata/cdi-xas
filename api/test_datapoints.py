@@ -8,7 +8,7 @@ from pyld import jsonld
 cdi = CDI_DDI()
 cdi.load_xdi_resource()
 cdi.parse_xdi()
-print(cdi.g.serialize(format="turtle"))
+#print(cdi.g.serialize(format="turtle"))
 
 # ************************************************************************************************
 # Key Value Generation
@@ -28,7 +28,7 @@ for triple in cdi.get_related_triples():
     )
     value = cdi.lookup_definition(triple[0],triple[1])[0]
 
-    print(label, value)
+    print("label: ", label, "value: ", value)
     key_values.append((label,value))
 
 # First create structures for KeyValueDataStore
