@@ -61,7 +61,7 @@ def run_ollama(term: str):
     base_url = "http://10.147.18.82:8093"
     url = base_url + f"/api/generate"
     headers = {"accept": "application/json", "content-type": "application/json"}
-    prompt = f"create description of variable (definition, units of measurements, properties, attributes) based on {term}"
+    prompt = f"create description of variable (definition, units of measurements, properties, attributes) and provide result in json: {term}"
     payload = {
         "model": "gpt-oss:latest",
         "prompt": prompt,
