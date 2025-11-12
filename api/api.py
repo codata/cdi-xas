@@ -51,7 +51,10 @@ def fetch_skosmos(term: str, context: str):
             skosmos = resp.text
     except requests.RequestException as e:
         skosmos = {"error": str(e)}
-    return {"name": term, "skosmos": skosmos}
+    result = []
+    if 'results' in skosmos:
+        result = skosmos['results']
+    return {"name": term, "skosmos": result}
 
 # Add CORS middleware
 app.add_middleware(
