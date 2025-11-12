@@ -3,6 +3,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import Optional
 import uvicorn
 from fastapi.responses import JSONResponse, PlainTextResponse
+import asyncio
+from functools import partial
+from concurrent.futures import ThreadPoolExecutor
 import requests
 from datalearning import DataLearning
 from config import datadir, datafile
@@ -10,6 +13,26 @@ from datapoints import CDI_DDI
 from cdi import CDI_DDI
 import json
 app = FastAPI()
+
+# Helper: blocking fetch to be executed in thread pool
+def fetch_wikilink(term: str, context: str):
+    base_url = "https://sparqlmuse.now.museum/wikilink/"
+    headers = {"accept": "application/json"}
+    params = {
+        "term": term,
+        "context": context,
+        "language": "en",
+        "format": "json",
+    }
+    try:
+        resp = requests.get(base_url, params=params, headers=headers, timeout=15)
+        try:
+            wikilink = resp.json()
+        except ValueError:
+            wikilink = resp.text
+    except requests.RequestException as e:
+        wikilink = {"error": str(e)}
+    return {"name": term, "wikilink": wikilink}
 
 # Add CORS middleware
 app.add_middleware(
@@ -153,29 +176,16 @@ async def receive_dvn(request: Request, file: Optional[UploadFile] = File(None))
                                 context.append(variable.get("name"))
             output = { "variables": variables, "context": context }
             fullcontext = " ".join(context)
-            results = []
-            base_url = "https://sparqlmuse.now.museum/wikilink/"
-            headers = {"accept": "application/json"}
-            for variable in variables:
-                term = variable.get("name")
-                if not term:
-                    continue
-                params = {
-                    "term": term,
-                    "context": fullcontext,
-                    "language": "en",
-                    "format": "txt",
-                }
-                try:
-                    resp = requests.get(base_url, params=params, headers=headers, timeout=15)
-                    try:
-                        wikilink = resp.json()
-                    except ValueError:
-                        wikilink = resp.text
-                except requests.RequestException as e:
-                    wikilink = {"error": str(e)}
-                results.append({"name": term, "wikilink": wikilink})
-            output["results"] = results
+            loop = asyncio.get_running_loop()
+            with ThreadPoolExecutor(max_workers=min(10, len(variables) or 1)) as executor:
+                tasks = []
+                for variable in variables:
+                    term = variable.get("name")
+                    if not term:
+                        continue
+                    tasks.append(loop.run_in_executor(executor, partial(fetch_wikilink, term, fullcontext)))
+                results = await asyncio.gather(*tasks)
+            output["results"] = list(results)
             return Response(content=json.dumps(output, indent=2, ensure_ascii=False), media_type="application/json")
         else:
             print(json.dumps(variables, indent=2, ensure_ascii=False))
