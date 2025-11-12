@@ -239,10 +239,9 @@ async def receive_dvn(request: Request, file: Optional[UploadFile] = File(None))
         print(text)
         return PlainTextResponse(content=text)
 
-@app.post("/ollama")
-async def receive_ollama(request: Request):
-    data = await request.json()
-    return run_ollama(data)
+@app.get("/ollama")
+async def receive_ollama(term: str):
+    return run_ollama(term)
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8012) 
