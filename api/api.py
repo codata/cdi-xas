@@ -34,6 +34,24 @@ def fetch_wikilink(term: str, context: str):
         wikilink = {"error": str(e)}
     return {"name": term, "wikilink": wikilink}
 
+def fetch_skosmos(term: str, context: str):
+    base_url = "https://thesauri.cessda.eu"
+    url = base_url + "/rest/v1/search?query=adult*&vocab=elsst-6"
+    headers = {"accept": "application/json"}
+    params = {
+        "query": term,
+        "vocab": context,
+    }
+    try:
+        resp = requests.get(url, params=params, headers=headers, timeout=15)
+        try:
+            skosmos = resp.json()
+        except ValueError:
+            skosmos = resp.text
+    except requests.RequestException as e:
+        skosmos = {"error": str(e)}
+    return {"name": term, "skosmos": skosmos}
+
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
@@ -183,7 +201,8 @@ async def receive_dvn(request: Request, file: Optional[UploadFile] = File(None))
                     term = variable.get("name")
                     if not term:
                         continue
-                    tasks.append(loop.run_in_executor(executor, partial(fetch_wikilink, term, fullcontext)))
+#                    tasks.append(loop.run_in_executor(executor, partial(fetch_wikilink, term, fullcontext)))
+                    tasks.append(loop.run_in_executor(executor, partial(fetch_skosmos, term, fullcontext)))
                 results = await asyncio.gather(*tasks)
             output["results"] = list(results)
             return Response(content=json.dumps(output, indent=2, ensure_ascii=False), media_type="application/json")
