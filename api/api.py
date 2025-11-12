@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import Optional
 import uvicorn
 from fastapi.responses import JSONResponse, PlainTextResponse
+import requests
 from datalearning import DataLearning
 from config import datadir, datafile
 from datapoints import CDI_DDI
@@ -151,6 +152,30 @@ async def receive_dvn(request: Request, file: Optional[UploadFile] = File(None))
                                 variables.append(variable)
                                 context.append(variable.get("name"))
             output = { "variables": variables, "context": context }
+            fullcontext = " ".join(context)
+            results = []
+            base_url = "https://sparqlmuse.now.museum/wikilink/"
+            headers = {"accept": "application/json"}
+            for variable in variables:
+                term = variable.get("name")
+                if not term:
+                    continue
+                params = {
+                    "term": term,
+                    "context": fullcontext,
+                    "language": "en",
+                    "format": "txt",
+                }
+                try:
+                    resp = requests.get(base_url, params=params, headers=headers, timeout=15)
+                    try:
+                        wikilink = resp.json()
+                    except ValueError:
+                        wikilink = resp.text
+                except requests.RequestException as e:
+                    wikilink = {"error": str(e)}
+                results.append({"name": term, "wikilink": wikilink})
+            output["results"] = results
             return Response(content=json.dumps(output, indent=2, ensure_ascii=False), media_type="application/json")
         else:
             print(json.dumps(variables, indent=2, ensure_ascii=False))
