@@ -36,7 +36,7 @@ def fetch_wikilink(term: str, context: str):
 
 def fetch_skosmos(term: str, context: str):
     base_url = "https://thesauri.cessda.eu"
-    url = base_url + "/rest/v1/search?query=adult*&vocab=elsst-6"
+    url = base_url + f"/rest/v1/search?query={term}&vocab={context}"
     headers = {"accept": "application/json"}
     params = {
         "query": term,
