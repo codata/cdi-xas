@@ -138,7 +138,7 @@ async def receive_dvn(request: Request, file: Optional[UploadFile] = File(None))
         variables = []
         if 'datasetFileDetails' in data:
             variables = data.get("datasetFileDetails")
-            for variable in variables:
+            for variable in variables['dataTables']['dataVariables']:
                 print(variable)
                 print(variable.get("name"))
                 variables.append(variable.get("name"))
