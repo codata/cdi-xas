@@ -147,7 +147,7 @@ async def receive_dvn(request: Request, file: Optional[UploadFile] = File(None))
                             if name is not None:
                                 print(variable)
                                 print(name)
-                                variables.append(name)
+                                variables.append(variable)
             return Response(content=json.dumps(variables, indent=2, ensure_ascii=False), media_type="application/json")
         else:
             print(json.dumps(variables, indent=2, ensure_ascii=False))
