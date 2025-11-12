@@ -60,7 +60,7 @@ def run_ollama(term: str):
     base_url = "http://10.147.18.82:8093"
     url = base_url + f"/chat"
     headers = {"accept": "application/json"}
-    prompt = f"create description of variable (definition, units of measurements, properties, attributes) based on json - {task}. \n\n{question}"
+    prompt = f"create description of variable (definition, units of measurements, properties, attributes) based on {term}"
     params = {
         "prompt": prompt,
         "model": "gpt-oss:20b",
