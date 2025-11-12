@@ -57,6 +57,20 @@ def fetch_skosmos(term: str, context: str):
         result = skosmos['results']
     return {"name": term, "skosmos": result}
 
+def fetch_remote_ollama(term: str):
+    base_url = "https://cdif-4-xas.dev.codata.org/ollama"
+    headers = {"accept": "application/json"}
+    params = {"term": term}
+    try:
+        resp = requests.get(base_url, params=params, headers=headers, timeout=20)
+        try:
+            data = resp.json()
+        except ValueError:
+            data = resp.text
+    except requests.RequestException as e:
+        data = {"error": str(e)}
+    return {"name": term, "ollama_remote": data}
+
 def run_ollama(term: str):
     base_url = "http://10.147.18.82:8093"
     url = base_url + f"/api/generate"
@@ -257,6 +271,7 @@ async def receive_dvn(request: Request, file: Optional[UploadFile] = File(None))
                         continue
 #                    tasks.append(loop.run_in_executor(executor, partial(fetch_wikilink, term, fullcontext)))
                     tasks.append(loop.run_in_executor(executor, partial(fetch_skosmos, term, fullcontext)))
+                    tasks.append(loop.run_in_executor(executor, partial(fetch_remote_ollama, term)))
                 results = await asyncio.gather(*tasks)
             output["results"] = list(results)
             return Response(content=json.dumps(output, indent=2, ensure_ascii=False), media_type="application/json")
