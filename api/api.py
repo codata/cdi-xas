@@ -56,6 +56,25 @@ def fetch_skosmos(term: str, context: str):
         result = skosmos['results']
     return {"name": term, "skosmos": result}
 
+def run_ollama(term: str):
+    base_url = "http://10.147.18.82:8093"
+    url = base_url + f"/chat"
+    headers = {"accept": "application/json"}
+    prompt = f"create description of variable (definition, units of measurements, properties, attributes) based on json - {task}. \n\n{question}"
+    params = {
+        "prompt": prompt,
+        "model": "gpt-oss:20b",
+    }
+    try:
+        resp = requests.post(url, params=params, headers=headers, timeout=15)
+        try:
+            ollama = resp.json()
+        except ValueError:
+            ollama = resp.text
+    except requests.RequestException as e:
+        ollama = {"error": str(e)}
+    return {"name": term, "ollama": ollama}
+
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
@@ -219,6 +238,11 @@ async def receive_dvn(request: Request, file: Optional[UploadFile] = File(None))
         text = body.decode("utf-8", errors="replace")
         print(text)
         return PlainTextResponse(content=text)
+
+@app.post("/ollama")
+async def receive_ollama(request: Request):
+    data = await request.json()
+    return run_ollama(data)
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8012) 
