@@ -63,7 +63,7 @@ def fetch_remote_ollama(term: str):
     headers = {"accept": "application/json"}
     params = {"term": term}
     try:
-        resp = requests.get(base_url, params=params, headers=headers, timeout=os.environ.get("TIMEOUT", 20))
+        resp = requests.get(base_url, params=params, headers=headers, timeout=int(os.environ.get("TIMEOUT", 20)))
         try:
             data = resp.json()
         except ValueError:
