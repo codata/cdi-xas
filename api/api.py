@@ -7,6 +7,7 @@ import asyncio
 from functools import partial
 from concurrent.futures import ThreadPoolExecutor
 import requests
+import re
 from datalearning import DataLearning
 from config import datadir, datafile
 from datapoints import CDI_DDI
@@ -70,11 +71,30 @@ def run_ollama(term: str):
         resp = requests.post(url, json=payload, headers=headers, timeout=30)
         try:
             data = resp.json()
-            ollama = data.get("response", data)
+            raw = data.get("response", data)
         except ValueError:
-            ollama = resp.text
+            raw = resp.text
     except requests.RequestException as e:
-        ollama = {"error": str(e)}
+        return {"name": term, "ollama": {"error": str(e)}}
+    # Parse fenced JSON from response if present
+    if isinstance(raw, str):
+        text = raw.strip()
+        match = re.search(r"```(?:json)?\\s*(\\{[\\s\\S]*?\\})\\s*```", text, re.IGNORECASE)
+        parsed = None
+        if match:
+            candidate = match.group(1)
+            try:
+                parsed = json.loads(candidate)
+            except Exception:
+                parsed = None
+        if parsed is None:
+            try:
+                parsed = json.loads(text)
+            except Exception:
+                parsed = None
+        ollama = parsed if parsed is not None else raw
+    else:
+        ollama = raw
     return {"name": term, "ollama": ollama}
 
 # Add CORS middleware
