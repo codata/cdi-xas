@@ -1,7 +1,8 @@
-from fastapi import FastAPI, Response
+from fastapi import FastAPI, Response, Request, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from typing import Optional
 import uvicorn
+from fastapi.responses import JSONResponse, PlainTextResponse
 from datalearning import DataLearning
 from config import datadir, datafile
 from datapoints import CDI_DDI
@@ -116,6 +117,32 @@ def read_data_lookup_object(object: str):
 @app.get("/data/lookup/subject")
 def read_data_lookup_subject(subject: str):
     return data.lookup_subject(subject)
+
+@app.post("/dvn")
+async def receive_dvn(request: Request, file: Optional[UploadFile] = File(None)):
+    # If a file is uploaded via multipart/form-data
+    if file is not None:
+        content_bytes = await file.read()
+        text = content_bytes.decode("utf-8", errors="replace")
+        try:
+            data = json.loads(text)
+            print(json.dumps(data, indent=2, ensure_ascii=False))
+            return JSONResponse(content=data)
+        except json.JSONDecodeError:
+            print(text)
+            return PlainTextResponse(content=text)
+
+    # Otherwise, try to read JSON from the request body
+    try:
+        data = await request.json()
+        print(json.dumps(data, indent=2, ensure_ascii=False))
+        return JSONResponse(content=data)
+    except json.JSONDecodeError:
+        # Fallback: treat body as plain text
+        body = await request.body()
+        text = body.decode("utf-8", errors="replace")
+        print(text)
+        return PlainTextResponse(content=text)
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8012) 
