@@ -63,7 +63,7 @@ def fetch_remote_ollama(term: str):
     headers = {"accept": "application/json"}
     params = {"term": term}
     try:
-        resp = requests.get(base_url, params=params, headers=headers, timeout=20)
+        resp = requests.get(base_url, params=params, headers=headers, timeout=os.environ.get("TIMEOUT", 20))
         try:
             data = resp.json()
         except ValueError:
@@ -73,7 +73,7 @@ def fetch_remote_ollama(term: str):
     return {"name": term, "ollama_remote": data}
 
 def run_ollama(term: str):
-    base_url = "http://10.147.18.82:8093"
+    base_url = os.environ.get("OLLAMASERVICE", "http://10.147.18.82:8093")
     url = base_url + f"/api/generate"
     headers = {"accept": "application/json", "content-type": "application/json"}
     prompt = f"create description of variable (definition, units of measurements, properties, attributes) and provide result in json: {term}"

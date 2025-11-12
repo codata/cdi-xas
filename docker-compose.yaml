@@ -4,8 +4,9 @@ services:
     build: .
     container_name: ${CONTAINER}
     environment:
-      - CDIFSERVICE=${CDIFSERVICE}
+      - CDIFSERVICE=${CDIFSERVICE}/ollama
       - OLLAMASERVICE=${OLLAMASERVICE}
+      - TIMEOUT=${TIMEOUT}
     ports:
       - "${PORT}:80"
     volumes:
