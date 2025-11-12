@@ -75,11 +75,11 @@ def run_ollama(term: str):
         except ValueError:
             raw = resp.text
     except requests.RequestException as e:
-        return {"name1": term, "ollama": {"error": str(e)}}
+        return {"name": term, "ollama": {"error": str(e)}}
     # Parse fenced JSON from response if present
     if isinstance(raw, str):
         text = raw.strip()
-        match = re.search(r"```(?:json)?\\s*(\\{[\\s\\S]*?\\})\\s*```", text, re.IGNORECASE)
+        match = re.search(r"```(?:json)?\s*(\{[\s\S]*?\})\s*```", text, re.IGNORECASE)
         parsed = None
         if match:
             candidate = match.group(1)
@@ -92,10 +92,19 @@ def run_ollama(term: str):
                 parsed = json.loads(text)
             except Exception:
                 parsed = None
+        if parsed is None:
+            # Fallback: try to find a JSON object anywhere in the text
+            m2 = re.search(r"(\{[\s\S]*\})", text)
+            if m2:
+                candidate2 = m2.group(1)
+                try:
+                    parsed = json.loads(candidate2)
+                except Exception:
+                    parsed = None
         ollama = parsed if parsed is not None else raw
     else:
         ollama = raw
-    return {"name2": term, "ollama": ollama}
+    return {"name": term, "ollama": ollama}
 
 # Add CORS middleware
 app.add_middleware(
