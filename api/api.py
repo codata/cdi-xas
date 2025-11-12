@@ -59,16 +59,18 @@ def fetch_skosmos(term: str, context: str):
 def run_ollama(term: str):
     base_url = "http://10.147.18.82:8093"
     url = base_url + f"/api/generate"
-    headers = {"accept": "application/json"}
+    headers = {"accept": "application/json", "content-type": "application/json"}
     prompt = f"create description of variable (definition, units of measurements, properties, attributes) based on {term}"
-    params = {
-        "prompt": prompt,
+    payload = {
         "model": "gpt-oss:20b",
+        "prompt": prompt,
+        "stream": False,
     }
     try:
-        resp = requests.post(url, params=params, headers=headers, timeout=15)
+        resp = requests.post(url, json=payload, headers=headers, timeout=30)
         try:
-            ollama = resp.json()
+            data = resp.json()
+            ollama = data.get("response", data)
         except ValueError:
             ollama = resp.text
     except requests.RequestException as e:
