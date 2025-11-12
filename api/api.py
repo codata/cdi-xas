@@ -58,7 +58,7 @@ def fetch_skosmos(term: str, context: str):
 
 def run_ollama(term: str):
     base_url = "http://10.147.18.82:8093"
-    url = base_url + f"/chat"
+    url = base_url + f"/api/generate"
     headers = {"accept": "application/json"}
     prompt = f"create description of variable (definition, units of measurements, properties, attributes) based on {term}"
     params = {
