@@ -12,6 +12,7 @@ from datalearning import DataLearning
 from config import datadir, datafile
 from datapoints import CDI_DDI
 from cdi import CDI_DDI
+import os
 import json
 app = FastAPI()
 
@@ -58,7 +59,7 @@ def fetch_skosmos(term: str, context: str):
     return {"name": term, "skosmos": result}
 
 def fetch_remote_ollama(term: str):
-    base_url = "https://cdif-4-xas.dev.codata.org/ollama"
+    base_url = os.environ.get("CDIFSERVICE", "https://cdif-4-xas.dev.codata.org/ollama")
     headers = {"accept": "application/json"}
     params = {"term": term}
     try:
