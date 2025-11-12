@@ -75,7 +75,7 @@ def run_ollama(term: str):
         except ValueError:
             raw = resp.text
     except requests.RequestException as e:
-        return {"name": term, "ollama": {"error": str(e)}}
+        return {"name1": term, "ollama": {"error": str(e)}}
     # Parse fenced JSON from response if present
     if isinstance(raw, str):
         text = raw.strip()
@@ -95,7 +95,7 @@ def run_ollama(term: str):
         ollama = parsed if parsed is not None else raw
     else:
         ollama = raw
-    return {"name": term, "ollama": ollama}
+    return {"name2": term, "ollama": ollama}
 
 # Add CORS middleware
 app.add_middleware(
