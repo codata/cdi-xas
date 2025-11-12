@@ -136,12 +136,18 @@ async def receive_dvn(request: Request, file: Optional[UploadFile] = File(None))
     try:
         data = await request.json()
         variables = []
-        if 'datasetFileDetails' in data:
-            variables = data.get("datasetFileDetails")
-            for variable in variables['dataTables']['dataVariables']:
-                print(variable)
-                print(variable.get("name"))
-                variables.append(variable.get("name"))
+        file_details = data.get("datasetFileDetails")
+        if isinstance(file_details, list):
+            for file_detail in file_details:
+                data_tables = file_detail.get("dataTables", [])
+                if isinstance(data_tables, list):
+                    for table in data_tables:
+                        for variable in table.get("dataVariables", []):
+                            name = variable.get("name")
+                            if name is not None:
+                                print(variable)
+                                print(name)
+                                variables.append(name)
             return Response(content=json.dumps(variables, indent=2, ensure_ascii=False), media_type="application/json")
         else:
             print(json.dumps(variables, indent=2, ensure_ascii=False))
