@@ -136,6 +136,7 @@ async def receive_dvn(request: Request, file: Optional[UploadFile] = File(None))
     try:
         data = await request.json()
         variables = []
+        context = []
         file_details = data.get("datasetFileDetails")
         if isinstance(file_details, list):
             for file_detail in file_details:
@@ -148,7 +149,9 @@ async def receive_dvn(request: Request, file: Optional[UploadFile] = File(None))
                                 print(variable)
                                 print(name)
                                 variables.append(variable)
-            return Response(content=json.dumps(variables, indent=2, ensure_ascii=False), media_type="application/json")
+                                context.append(variable.get("name"))
+            output = { "variables": variables, "context": context }
+            return Response(content=json.dumps(output, indent=2, ensure_ascii=False), media_type="application/json")
         else:
             print(json.dumps(variables, indent=2, ensure_ascii=False))
             return JSONResponse(content=variables)
