@@ -62,7 +62,7 @@ def run_ollama(term: str):
     headers = {"accept": "application/json", "content-type": "application/json"}
     prompt = f"create description of variable (definition, units of measurements, properties, attributes) based on {term}"
     payload = {
-        "model": "gpt-oss:20b",
+        "model": "gpt-oss:latest",
         "prompt": prompt,
         "stream": False,
     }
