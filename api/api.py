@@ -135,8 +135,17 @@ async def receive_dvn(request: Request, file: Optional[UploadFile] = File(None))
     # Otherwise, try to read JSON from the request body
     try:
         data = await request.json()
-        print(json.dumps(data, indent=2, ensure_ascii=False))
-        return JSONResponse(content=data)
+        variables = []
+        if 'datasetFileDetails' in data:
+            variables = data.get("datasetFileDetails")
+            for variable in variables:
+                print(variable)
+                print(variable.get("name"))
+                variables.append(variable.get("name"))
+            return Response(content=json.dumps(variables, indent=2, ensure_ascii=False), media_type="application/json")
+        else:
+            print(json.dumps(variables, indent=2, ensure_ascii=False))
+            return JSONResponse(content=variables)
     except json.JSONDecodeError:
         # Fallback: treat body as plain text
         body = await request.body()
