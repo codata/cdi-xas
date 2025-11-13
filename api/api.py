@@ -18,7 +18,7 @@ app = FastAPI()
 
 # Helper: blocking fetch to be executed in thread pool
 def fetch_wikilink(term: str, context: str):
-    base_url = "https://sparqlmuse.now.museum/wikilink/"
+    base_url = os.environ.get("SPARQLMUSE", "https://sparqlmuse.now.museum") + "/wikilink/"
     headers = {"accept": "application/json"}
     params = {
         "term": term,
@@ -37,7 +37,7 @@ def fetch_wikilink(term: str, context: str):
     return {"name": term, "wikilink": wikilink}
 
 def fetch_skosmos(term: str, context: str):
-    base_url = "https://thesauri.cessda.eu"
+    base_url = os.environ.get("CESSDAURL", "https://thesauri.cessda.eu")
     context = "elsst-6"
     url = base_url + f"/rest/v1/search?query={term}&vocab={context}"
     headers = {"accept": "application/json"}

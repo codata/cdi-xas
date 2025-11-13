@@ -6,6 +6,8 @@ services:
     environment:
       - CDIFSERVICE=${CDIFSERVICE}/ollama
       - OLLAMASERVICE=${OLLAMASERVICE}
+      - SPARQLMUSE=${SPARQLMUSE}
+      - CESSDAURL=${CESSDAURL}
       - TIMEOUT=${TIMEOUT}
     ports:
       - "${PORT}:80"
