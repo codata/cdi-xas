@@ -287,7 +287,7 @@ async def receive_dvn(request: Request, file: Optional[UploadFile] = File(None))
         return PlainTextResponse(content=text)
 
 @app.get("/ollama")
-async def receive_ollama(term: str, model: Optional[str] = os.environ("DEFAULTMODEL", "gpt-oss:latest")):
+async def receive_ollama(term: str, model: Optional[str] = os.environ.get("DEFAULTMODEL", "gpt-oss:latest")):
     return run_ollama(term, model)
 
 if __name__ == "__main__":
