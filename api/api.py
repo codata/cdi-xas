@@ -72,13 +72,13 @@ def fetch_remote_ollama(term: str):
         data = {"error": str(e)}
     return {"name": term, "ollama_remote": data}
 
-def run_ollama(term: str):
+def run_ollama(term: str, model):
     base_url = os.environ.get("OLLAMASERVICE", "http://10.147.18.82:8093")
     url = base_url + f"/api/generate"
     headers = {"accept": "application/json", "content-type": "application/json"}
     prompt = f"create description of variable (definition, units of measurements, properties, attributes) and provide result in json: {term}"
     payload = {
-        "model": "gpt-oss:latest",
+        "model": model,
         "prompt": prompt,
         "stream": False,
     }
@@ -287,8 +287,8 @@ async def receive_dvn(request: Request, file: Optional[UploadFile] = File(None))
         return PlainTextResponse(content=text)
 
 @app.get("/ollama")
-async def receive_ollama(term: str):
-    return run_ollama(term)
+async def receive_ollama(term: str, model: Optional[str] = os.environ("DEFAULTMODEL", "gpt-oss:latest")):
+    return run_ollama(term, model)
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8012) 

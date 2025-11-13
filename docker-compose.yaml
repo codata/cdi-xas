@@ -9,6 +9,7 @@ services:
       - SPARQLMUSE=${SPARQLMUSE}
       - CESSDAURL=${CESSDAURL}
       - TIMEOUT=${TIMEOUT}
+      - DEFAULTMODEL={DEFAULTMODEL}
     ports:
       - "${PORT}:80"
     volumes:
