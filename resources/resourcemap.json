@@ -1,0 +1,1069 @@
+{
+  "variables": [
+    {
+      "variableFormatType": "CHARACTER",
+      "label": "country",
+      "variableMetadata": [],
+      "UNF": "UNF:6:F5FvT3utoDEMWHgCv+6wTQ==",
+      "variableIntervalType": "discrete",
+      "name": "country",
+      "isOrderedCategorical": false,
+      "fileOrder": 0,
+      "id": 72,
+      "weighted": false
+    },
+    {
+      "variableFormatType": "NUMERIC",
+      "label": "pageid",
+      "variableMetadata": [],
+      "UNF": "UNF:6:yOePRbgF7uakfYK3RCy1lg==",
+      "variableIntervalType": "discrete",
+      "summaryStatistics": {
+        "invd": "0.0",
+        "max": "1.1114596E7",
+        "mode": ".",
+        "medn": "4856190.0",
+        "min": "31149.0",
+        "vald": "1923.0",
+        "mean": "5109753.510140396",
+        "stdev": "2862199.490338434"
+      },
+      "name": "pageid",
+      "isOrderedCategorical": false,
+      "fileOrder": 1,
+      "id": 73,
+      "weighted": false
+    },
+    {
+      "variableFormatType": "CHARACTER",
+      "label": "wikidataid",
+      "variableMetadata": [],
+      "UNF": "UNF:6:QwJX7GbPMFVCgjewP0BIxA==",
+      "variableIntervalType": "discrete",
+      "name": "wikidataid",
+      "isOrderedCategorical": false,
+      "fileOrder": 2,
+      "id": 70,
+      "weighted": false
+    },
+    {
+      "variableFormatType": "CHARACTER",
+      "label": "wikititle",
+      "variableMetadata": [],
+      "UNF": "UNF:6:M1oQ9qyLnjl27W3jzDBdOA==",
+      "variableIntervalType": "discrete",
+      "name": "wikititle",
+      "isOrderedCategorical": false,
+      "fileOrder": 3,
+      "id": 77,
+      "weighted": false
+    },
+    {
+      "variableFormatType": "CHARACTER",
+      "label": "name",
+      "variableMetadata": [],
+      "UNF": "UNF:6:BaHBnzC756Ya+KvGAbAhyA==",
+      "variableIntervalType": "discrete",
+      "name": "name",
+      "isOrderedCategorical": false,
+      "fileOrder": 4,
+      "id": 78,
+      "weighted": false
+    },
+    {
+      "variableFormatType": "CHARACTER",
+      "label": "sex",
+      "variableMetadata": [],
+      "UNF": "UNF:6:W6TUkmlO67Lj9J6Xbz1R4Q==",
+      "variableIntervalType": "discrete",
+      "name": "sex",
+      "isOrderedCategorical": false,
+      "fileOrder": 5,
+      "id": 76,
+      "weighted": false
+    },
+    {
+      "variableFormatType": "CHARACTER",
+      "label": "ethnicity",
+      "variableMetadata": [],
+      "UNF": "UNF:6:3AchcMbZi9SjiFKsZncVlA==",
+      "variableIntervalType": "discrete",
+      "name": "ethnicity",
+      "isOrderedCategorical": false,
+      "fileOrder": 6,
+      "id": 79,
+      "weighted": false
+    },
+    {
+      "variableFormatType": "CHARACTER",
+      "label": "religion",
+      "variableMetadata": [],
+      "UNF": "UNF:6:7gmBtlqS7J5NvNY2dn71yg==",
+      "variableIntervalType": "discrete",
+      "name": "religion",
+      "isOrderedCategorical": false,
+      "fileOrder": 7,
+      "id": 75,
+      "weighted": false
+    },
+    {
+      "variableFormatType": "CHARACTER",
+      "formatCategory": "date",
+      "format": "yyyy-MM-dd",
+      "label": "birth",
+      "variableMetadata": [],
+      "UNF": "UNF:6:CK3o4cL4h9ZA2nGeRFWRRA==",
+      "variableIntervalType": "discrete",
+      "name": "birth",
+      "isOrderedCategorical": false,
+      "fileOrder": 8,
+      "id": 69,
+      "weighted": false
+    },
+    {
+      "variableFormatType": "CHARACTER",
+      "label": "death",
+      "variableMetadata": [],
+      "UNF": "UNF:6:UkREiKBadg/pxXh80GtTuA==",
+      "variableIntervalType": "discrete",
+      "name": "death",
+      "isOrderedCategorical": false,
+      "fileOrder": 9,
+      "id": 74,
+      "weighted": false
+    },
+    {
+      "variableFormatType": "CHARACTER",
+      "label": "birthplace",
+      "variableMetadata": [],
+      "UNF": "UNF:6:xIpB/GJvvRXvojE5ACZ1fA==",
+      "variableIntervalType": "discrete",
+      "name": "birthplace",
+      "isOrderedCategorical": false,
+      "fileOrder": 10,
+      "id": 80,
+      "weighted": false
+    },
+    {
+      "variableFormatType": "CHARACTER",
+      "label": "deathplace",
+      "variableMetadata": [],
+      "UNF": "UNF:6:dB4qmuhGt7ZlbJ5CfukepA==",
+      "variableIntervalType": "discrete",
+      "name": "deathplace",
+      "isOrderedCategorical": false,
+      "fileOrder": 11,
+      "id": 71,
+      "weighted": false
+    }
+  ],
+  "context": [
+    "country",
+    "pageid",
+    "wikidataid",
+    "wikititle",
+    "name",
+    "sex",
+    "ethnicity",
+    "religion",
+    "birth",
+    "death",
+    "birthplace",
+    "deathplace"
+  ],
+  "results": [
+    {
+      "name": "country",
+      "skosmos": []
+    },
+    {
+      "name": "country",
+      "ollama_remote": {
+        "name": "country",
+        "ollama": {
+          "variable": "country",
+          "definition": "Represents the political entity or sovereign state that a record or observation belongs to. Typically expressed as the country name or an international standard code (ISO 3166).",
+          "units_of_measurement": "categorical (nominal)",
+          "properties": {
+            "data_type": "string",
+            "max_length": 50,
+            "encoding": "UTF-8",
+            "allow_null": false,
+            "default_value": null,
+            "description": "Humanâreadable or code representation of a country."
+          },
+          "attributes": {
+            "ISO2_code": {
+              "description": "Twoâletter country code (ISO 3166â1 alphaâ2).",
+              "format": "AA",
+              "examples": [
+                "US",
+                "GB",
+                "DE"
+              ]
+            },
+            "ISO3_code": {
+              "description": "Threeâletter country code (ISO 3166â1 alphaâ3).",
+              "format": "AAA",
+              "examples": [
+                "USA",
+                "GBR",
+                "DEU"
+              ]
+            },
+            "numeric_code": {
+              "description": "Threeâdigit numeric country code (ISO 3166â1 numeric).",
+              "format": "DDD",
+              "examples": [
+                "840",
+                "826",
+                "276"
+              ]
+            },
+            "continent": {
+              "description": "Continent or ocean where the country is located.",
+              "possible_values": [
+                "Africa",
+                "Asia",
+                "Europe",
+                "North America",
+                "Oceania",
+                "South America",
+                "Antarctica"
+              ]
+            },
+            "subregion": {
+              "description": "Subâregion within the continent (e.g., Eastern Asia, Middle East).",
+              "notes": "May be null for countries that are not divided into subregions."
+            },
+            "region": {
+              "description": "Macro region (e.g., European Union, ASEAN).",
+              "notes": "Optional and dependent on the data source."
+            },
+            "name_variants": {
+              "description": "Alternative names or official names used in the dataset.",
+              "format": "array of strings",
+              "examples": [
+                "United States of America",
+                "U.S.",
+                "USA"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "pageid",
+      "skosmos": []
+    },
+    {
+      "name": "pageid",
+      "ollama_remote": {
+        "name": "pageid",
+        "ollama": {
+          "variableName": "pageid",
+          "definition": "A unique integer identifier assigned to a Wikipedia page. It is used to reference the page in API calls, database queries, and as the primary key in the MediaWiki database.",
+          "units": "Integer (no physical units)",
+          "properties": {
+            "dataType": "integer",
+            "range": "1 to 2,147,483,647 (32âbit signed integer)",
+            "allowNull": false,
+            "unique": true,
+            "autoIncrement": true,
+            "readOnly": true,
+            "primaryKey": true
+          },
+          "attributes": {
+            "immutable": true,
+            "persisted": true,
+            "description": "Once assigned when a page is created, the pageid never changes, even if the page title or content is edited. It can be used as a stable reference across revisions.",
+            "usage": "Used in API parameters such as `pageids`, `redirects`, and in the MediaWiki database schema as the primary key of the `page` table.",
+            "relatedVariables": [
+              "ns",
+              "title",
+              "page_title",
+              "redirect",
+              "revisionid"
+            ],
+            "notes": "Pageids may be reclaimed after a page is deleted and the ID is reused in very rare cases. For most purposes, a pageid is considered unique over the lifetime of a page."
+          }
+        }
+      }
+    },
+    {
+      "name": "wikidataid",
+      "skosmos": []
+    },
+    {
+      "name": "wikidataid",
+      "ollama_remote": {
+        "name": "wikidataid",
+        "ollama": {
+          "variable": "mass",
+          "definition": "Mass is a measure of the amount of matter contained in an object, independent of its shape, size, or composition.",
+          "units_of_measurement": [
+            {
+              "unit": "kilogram",
+              "symbol": "kg",
+              "system": "SI"
+            },
+            {
+              "unit": "gram",
+              "symbol": "g",
+              "system": "SI"
+            },
+            {
+              "unit": "pound",
+              "symbol": "lb",
+              "system": "Imperial"
+            }
+          ],
+          "properties": [
+            "Scalar quantity",
+            "Inertial property",
+            "Additive over composite systems",
+            "Conserved in isolated systems (in classical mechanics)",
+            "Invariant under Galilean and Lorentz transformations"
+          ],
+          "attributes": [
+            "Dimension: [M]",
+            "Primary quantity in physics",
+            "Related to weight via gravitational force",
+            "Depends on reference frame only in relativistic contexts"
+          ],
+          "wikidataid": "Q1169"
+        }
+      }
+    },
+    {
+      "name": "wikititle",
+      "skosmos": []
+    },
+    {
+      "name": "wikititle",
+      "ollama_remote": {
+        "name": "wikititle",
+        "ollama": {
+          "wikititle": "Sea Surface Temperature",
+          "definition": "The temperature of the uppermost layer of the ocean, typically measured at the top 0.5â2 meters, and used as an indicator of oceanic thermal state.",
+          "units_of_measurement": [
+            "Â°C (Celsius)",
+            "K (Kelvin)",
+            "Â°F (Fahrenheit)"
+          ],
+          "properties": [
+            "scalar",
+            "continuous",
+            "measurable",
+            "spatially and temporally varying"
+          ],
+          "attributes": [
+            "affected by solar radiation",
+            "influenced by ocean currents",
+            "subject to seasonal changes",
+            "affected by wind stress and evaporation",
+            "depth-dependent within the mixed layer"
+          ]
+        }
+      }
+    },
+    {
+      "name": "name",
+      "skosmos": []
+    },
+    {
+      "name": "name",
+      "ollama_remote": {
+        "name": "name",
+        "ollama": {
+          "name": "temperature",
+          "definition": "The physical quantity that expresses the degree of hotness or coldness of an object or environment, indicating the average kinetic energy of its particles.",
+          "units_of_measurement": [
+            {
+              "unit": "Kelvin",
+              "symbol": "K",
+              "description": "Absolute temperature scale used in scientific contexts."
+            },
+            {
+              "unit": "Celsius",
+              "symbol": "Â°C",
+              "description": "Temperature scale where 0â¯Â°C is the freezing point of water and 100â¯Â°C is the boiling point at 1â¯atm."
+            },
+            {
+              "unit": "Fahrenheit",
+              "symbol": "Â°F",
+              "description": "Temperature scale where 32â¯Â°F is the freezing point of water and 212â¯Â°F is the boiling point at 1â¯atm."
+            }
+          ],
+          "properties": [
+            "scalar",
+            "continuous",
+            "measurable",
+            "dimensionally homogeneous (temperature dimension only)",
+            "commutative under addition and subtraction",
+            "additive property: ÎT = Tâ â Tâ"
+          ],
+          "attributes": [
+            "Measured: Temperature can be directly measured using thermometers or sensors.",
+            "Derived: Can be derived from other thermodynamic variables (e.g., using calorimetry).",
+            "Spatially variable: Temperature can vary across a field or within a system.",
+            "Time-dependent: Temperature can change over time in dynamic processes.",
+            "Calibration-dependent: Requires calibration of sensors for accuracy."
+          ]
+        }
+      }
+    },
+    {
+      "name": "sex",
+      "skosmos": [
+        {
+          "uri": "https://elsst.cessda.eu/id/6/d0983511-acac-4585-ae73-a5d3ae2b54c7",
+          "type": [
+            "skos:Concept"
+          ],
+          "localname": "d0983511-acac-4585-ae73-a5d3ae2b54c7",
+          "prefLabel": "SEX",
+          "lang": "en",
+          "vocab": "elsst-6"
+        },
+        {
+          "uri": "https://elsst.cessda.eu/id/6/d0983511-acac-4585-ae73-a5d3ae2b54c7",
+          "type": [
+            "skos:Concept"
+          ],
+          "localname": "d0983511-acac-4585-ae73-a5d3ae2b54c7",
+          "prefLabel": "SEX",
+          "lang": "ro",
+          "vocab": "elsst-6"
+        }
+      ]
+    },
+    {
+      "name": "sex",
+      "ollama_remote": {
+        "name": "sex",
+        "ollama": {
+          "variable": "sex",
+          "definition": "Biological sex of an individual, representing the physiological, anatomical, and reproductive characteristics that classify a person as male, female, intersex, or other. This variable is used primarily for demographic, epidemiological, and clinical research.",
+          "units": "none",
+          "properties": [
+            "categorical",
+            "nominal",
+            "discrete",
+            "nonânumeric"
+          ],
+          "attributes": {
+            "data_type": "string",
+            "storage_type": "varchar(10)",
+            "possible_values": [
+              {
+                "label": "Male",
+                "code": "M",
+                "description": "Individuals with typical male reproductive anatomy."
+              },
+              {
+                "label": "Female",
+                "code": "F",
+                "description": "Individuals with typical female reproductive anatomy."
+              },
+              {
+                "label": "Intersex",
+                "code": "I",
+                "description": "Individuals with reproductive or chromosomal traits that do not fit typical male or female categories."
+              },
+              {
+                "label": "Unknown",
+                "code": "U",
+                "description": "Sex information not available or not recorded."
+              },
+              {
+                "label": "Prefer not to say",
+                "code": "PNTS",
+                "description": "Respondent chose not to disclose sex."
+              }
+            ],
+            "coding_scheme": {
+              "M": "Male",
+              "F": "Female",
+              "I": "Intersex",
+              "U": "Unknown",
+              "PNTS": "Prefer not to say"
+            },
+            "usage_notes": "Should not be conflated with gender identity. Use separately if gender identity data is available.",
+            "data_quality_requirements": {
+              "missing_value_code": "U",
+              "valid_range_check": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "ethnicity",
+      "skosmos": [
+        {
+          "uri": "https://elsst.cessda.eu/id/6/9436dd25-565c-405e-869c-35195c170077",
+          "type": [
+            "skos:Concept"
+          ],
+          "localname": "9436dd25-565c-405e-869c-35195c170077",
+          "prefLabel": "ETHNIC GROUPS",
+          "lang": "en",
+          "altLabel": "ETHNICITY",
+          "vocab": "elsst-6"
+        }
+      ]
+    },
+    {
+      "name": "ethnicity",
+      "ollama_remote": {
+        "name": "ethnicity",
+        "ollama": {
+          "variable_name": "ethnicity",
+          "definition": "Selfâidentified or administratively assigned group classification that reflects a person's cultural, ancestral, or ethnic background.",
+          "unit": "Categorical (nominal)",
+          "type": "Nominal",
+          "format": "Text string or coded integer",
+          "possible_values": {
+            "0": "Not reported",
+            "1": "White",
+            "2": "Black or African American",
+            "3": "Asian",
+            "4": "Native American or Alaska Native",
+            "5": "Native Hawaiian or Other Pacific Islander",
+            "6": "Hispanic or Latino",
+            "7": "Middle Eastern or North African",
+            "8": "Mixed or multiple ethnicities",
+            "9": "Other (specify)"
+          },
+          "properties": {
+            "ordinal": false,
+            "mutually_exclusive": true,
+            "hierarchical": false,
+            "multiple_select_allowed": false,
+            "modifiable_by_user": true,
+            "privacy_concern": "Sensitive"
+          },
+          "attributes": {
+            "source": "Selfâreport questionnaire, administrative records, or survey",
+            "collection_method": "Direct response or recorded code",
+            "default_value": "0",
+            "validation_rules": [
+              "Must match one of the predefined codes",
+              "If code 9 is selected, an accompanying freeâtext field is required"
+            ],
+            "data_type_in_database": "VARCHAR(50) or INTEGER",
+            "display_name": "Ethnicity",
+            "description_for_end_users": "Indicates the ethnic group you identify with."
+          }
+        }
+      }
+    },
+    {
+      "name": "religion",
+      "skosmos": [
+        {
+          "uri": "https://elsst.cessda.eu/id/6/6cf5a38e-d0cc-4b06-9917-659c66adadf1",
+          "type": [
+            "skos:Concept"
+          ],
+          "localname": "6cf5a38e-d0cc-4b06-9917-659c66adadf1",
+          "prefLabel": "RELIGION",
+          "lang": "de",
+          "vocab": "elsst-6"
+        },
+        {
+          "uri": "https://elsst.cessda.eu/id/6/6cf5a38e-d0cc-4b06-9917-659c66adadf1",
+          "type": [
+            "skos:Concept"
+          ],
+          "localname": "6cf5a38e-d0cc-4b06-9917-659c66adadf1",
+          "prefLabel": "RELIGION",
+          "lang": "en",
+          "vocab": "elsst-6"
+        },
+        {
+          "uri": "https://elsst.cessda.eu/id/6/6cf5a38e-d0cc-4b06-9917-659c66adadf1",
+          "type": [
+            "skos:Concept"
+          ],
+          "localname": "6cf5a38e-d0cc-4b06-9917-659c66adadf1",
+          "prefLabel": "RELIGION",
+          "lang": "fr",
+          "vocab": "elsst-6"
+        },
+        {
+          "uri": "https://elsst.cessda.eu/id/6/6cf5a38e-d0cc-4b06-9917-659c66adadf1",
+          "type": [
+            "skos:Concept"
+          ],
+          "localname": "6cf5a38e-d0cc-4b06-9917-659c66adadf1",
+          "prefLabel": "RELIGION",
+          "lang": "no",
+          "vocab": "elsst-6"
+        },
+        {
+          "uri": "https://elsst.cessda.eu/id/6/6cf5a38e-d0cc-4b06-9917-659c66adadf1",
+          "type": [
+            "skos:Concept"
+          ],
+          "localname": "6cf5a38e-d0cc-4b06-9917-659c66adadf1",
+          "prefLabel": "RELIGION",
+          "lang": "sv",
+          "vocab": "elsst-6"
+        },
+        {
+          "uri": "https://elsst.cessda.eu/id/6/6cf5a38e-d0cc-4b06-9917-659c66adadf1",
+          "type": [
+            "skos:Concept"
+          ],
+          "localname": "6cf5a38e-d0cc-4b06-9917-659c66adadf1",
+          "prefLabel": "RELIGIÃN",
+          "lang": "es",
+          "vocab": "elsst-6"
+        }
+      ]
+    },
+    {
+      "name": "religion",
+      "ollama_remote": {
+        "name": "religion",
+        "ollama": {
+          "variable": "religion",
+          "definition": "Religion is a social system that encompasses a set of beliefs, practices, and moral codes that are typically associated with a particular faith tradition. It may also refer to an individual's personal identification or affiliation with a specific religious group.",
+          "units_of_measurement": {
+            "type": "categorical (nominal)",
+            "description": "Values represent discrete, unordered categories that denote a person's declared religious affiliation or lack thereof."
+          },
+          "properties": [
+            "Nominal scale â categories are labels with no inherent order.",
+            "Categorical â data are grouped into distinct categories.",
+            "Non-interval â differences between categories are not mathematically meaningful.",
+            "Ordinal subâpossible â in some contexts a hierarchy (e.g., âhighâ vs. âmoderateâ religiosity) may be defined, but the core variable remains nominal.",
+            "Missingâvalue friendly â allows for null/unknown entries."
+          ],
+          "attributes": {
+            "possible_values": [
+              "Christianity",
+              "Islam",
+              "Hinduism",
+              "Buddhism",
+              "Sikhism",
+              "Judaism",
+              "Other",
+              "None / Unaffiliated",
+              "Unknown / Missing"
+            ],
+            "encoding": {
+              "string": "humanâreadable text labels (e.g., 'Christianity')",
+              "numeric_codes": "optional integer codes for efficient storage (e.g., 1 = Christianity, 2 = Islam, ...)"
+            },
+            "missing_value": {
+              "symbol": "NA / null / ''",
+              "description": "Indicates that the respondent either declined to answer or the data point is unavailable."
+            },
+            "default_value": null,
+            "data_type": "string or integer (depending on encoding)",
+            "description_length_limit": 50,
+            "allowed_format": "caseâinsensitive, trimmed of leading/trailing whitespace"
+          },
+          "measurement_method": {
+            "source": [
+              "Selfâreported survey response",
+              "Administrative records (e.g., census data)",
+              "Secondary data extraction"
+            ],
+            "question_style": "Openâended or closedâended options",
+            "frequency": "Typically collected at a single time point but can be repeated in longitudinal studies"
+          },
+          "considerations": [
+            "Cultural sensitivity: use neutral language when collecting data.",
+            "Anonymity: ensure confidentiality when reporting or publishing data.",
+            "Legal compliance: comply with local regulations on religious data collection."
+          ]
+        }
+      }
+    },
+    {
+      "name": "birth",
+      "skosmos": [
+        {
+          "uri": "https://elsst.cessda.eu/id/6/7bb5a8be-a591-466b-858b-dec717199781",
+          "type": [
+            "skos:Concept"
+          ],
+          "localname": "7bb5a8be-a591-466b-858b-dec717199781",
+          "prefLabel": "CHILDBIRTH",
+          "lang": "en",
+          "altLabel": "BIRTH",
+          "vocab": "elsst-6"
+        }
+      ]
+    },
+    {
+      "name": "birth",
+      "ollama_remote": {
+        "name": "birth",
+        "ollama": {
+          "variable": "birth",
+          "definition": "Birth refers to the event at which a baby or organism is brought into existence, marking the transition from a gestational state to independent life.",
+          "units_of_measurement": [
+            {
+              "name": "date",
+              "unit": "calendar date (YYYY-MM-DD)",
+              "description": "Date of birth"
+            },
+            {
+              "name": "time",
+              "unit": "hh:mm:ss",
+              "description": "Time of birth"
+            },
+            {
+              "name": "birth_weight_kg",
+              "unit": "kilograms (kg)",
+              "description": "Weight of the newborn at birth"
+            },
+            {
+              "name": "birth_weight_g",
+              "unit": "grams (g)",
+              "description": "Weight of the newborn at birth (alternate unit)"
+            },
+            {
+              "name": "birth_height_cm",
+              "unit": "centimeters (cm)",
+              "description": "Length/height of the newborn at birth"
+            },
+            {
+              "name": "gestational_age_weeks",
+              "unit": "weeks",
+              "description": "Gestational age at birth"
+            },
+            {
+              "name": "birth_mode",
+              "unit": "categorical",
+              "description": "Mode of delivery (e.g., vaginal, cesarean, assisted)"
+            }
+          ],
+          "properties": {
+            "data_type": "mixed (temporal, numeric, categorical)",
+            "ordinal": true,
+            "continuous": true,
+            "discrete": true,
+            "nullable": true,
+            "default": null
+          },
+          "attributes": [
+            "date_of_birth",
+            "time_of_birth",
+            "birth_weight_kg",
+            "birth_weight_g",
+            "birth_height_cm",
+            "gestational_age_weeks",
+            "sex",
+            "birth_location",
+            "birth_mode",
+            "mother_id",
+            "father_id"
+          ]
+        }
+      }
+    },
+    {
+      "name": "death",
+      "skosmos": [
+        {
+          "uri": "https://elsst.cessda.eu/id/6/eb6086fe-4d1f-4787-8c26-b1ff0d36c028",
+          "type": [
+            "skos:Concept"
+          ],
+          "localname": "eb6086fe-4d1f-4787-8c26-b1ff0d36c028",
+          "prefLabel": "DEATH",
+          "lang": "en",
+          "vocab": "elsst-6"
+        }
+      ]
+    },
+    {
+      "name": "death",
+      "ollama_remote": {
+        "name": "death",
+        "ollama": {
+          "variable": "death",
+          "definition": "The event of an organism's biological cessation of life, including all functions that sustain consciousness, metabolism, and biological continuity.",
+          "units_of_measurement": [
+            {
+              "type": "count",
+              "description": "Number of death events occurring within a specified population or time period."
+            },
+            {
+              "type": "rate",
+              "description": "Deaths per 1,000 individuals per year (or per other appropriate population denominator)."
+            }
+          ],
+          "data_type": "integer or decimal",
+          "properties": [
+            "binary (1 = death occurred, 0 = alive)",
+            "discrete",
+            "time-dependent (timestamp of occurrence)",
+            "irreversible",
+            "event-based"
+          ],
+          "attributes": [
+            {
+              "name": "age_at_death",
+              "type": "integer",
+              "units": "years",
+              "description": "Age of the individual at the time of death."
+            },
+            {
+              "name": "cause_of_death",
+              "type": "string",
+              "description": "Primary medical or non-medical cause classified (e.g., ICD-10 code)."
+            },
+            {
+              "name": "sex",
+              "type": "string",
+              "description": "Biological sex of the individual at the time of death."
+            },
+            {
+              "name": "date_time_of_death",
+              "type": "datetime",
+              "description": "Exact date and time when death was confirmed."
+            },
+            {
+              "name": "location_of_death",
+              "type": "string",
+              "description": "Geographical location (e.g., country, state, city) where death occurred."
+            },
+            {
+              "name": "duration_of_life",
+              "type": "decimal",
+              "units": "years",
+              "description": "Total lifespan from birth to death."
+            }
+          ],
+          "examples": [
+            {
+              "count": 150,
+              "rate_per_1000": 0.85,
+              "period": "2023 calendar year",
+              "population": 176500
+            },
+            {
+              "death_record": {
+                "age_at_death": 72,
+                "cause_of_death": "I21.9",
+                "sex": "Male",
+                "date_time_of_death": "2024-02-14T08:32:00Z",
+                "location_of_death": "New York City, USA",
+                "duration_of_life": 72.0
+              }
+            }
+          ],
+          "metadata": {
+            "source": "WHO Mortality Database",
+            "last_updated": "2025-11-01",
+            "version": "1.0"
+          }
+        }
+      }
+    },
+    {
+      "name": "birthplace",
+      "skosmos": []
+    },
+    {
+      "name": "birthplace",
+      "ollama_remote": {
+        "name": "birthplace",
+        "ollama": {
+          "variable": "birthplace",
+          "definition": "The geographic location where an individual was born. It may be represented by the city, state/province, country, and optionally by standardized geographic identifiers such as postal codes, ISO country codes, or latitude/longitude coordinates.",
+          "units_of_measurement": {
+            "type": "categorical",
+            "format_options": [
+              {
+                "description": "Humanâreadable string",
+                "example": "New York City, New York, USA"
+              },
+              {
+                "description": "Standardized codes",
+                "example": "US-NY"
+              },
+              {
+                "description": "Geographic coordinates",
+                "example": {
+                  "latitude": 40.7128,
+                  "longitude": -74.006
+                }
+              },
+              {
+                "description": "Postal code",
+                "example": "10001"
+              }
+            ]
+          },
+          "properties": {
+            "data_type": "string or object",
+            "scale": "nominal",
+            "is_required": false,
+            "null_allowed": true,
+            "default_value": null,
+            "precision": "n/a",
+            "validity_constraints": [
+              "If coordinates are provided, they must be valid latitude (-90 to 90) and longitude (-180 to 180) values.",
+              "If using ISO codes, they must follow the ISO 3166-1 alpha-2/alpha-3 format."
+            ],
+            "privacy_note": "Birthplace is potentially sensitive personal information; compliance with privacy regulations (e.g., GDPR, HIPAA) may be required."
+          },
+          "attributes": {
+            "city": {
+              "description": "Name of the city or town",
+              "type": "string",
+              "example": "Los Angeles"
+            },
+            "state_province_region": {
+              "description": "State, province, or region within the country",
+              "type": "string",
+              "example": "California"
+            },
+            "country": {
+              "description": "Country of birth",
+              "type": "string",
+              "example": "United States"
+            },
+            "postal_code": {
+              "description": "Postal or ZIP code",
+              "type": "string",
+              "example": "90001"
+            },
+            "iso_country_code": {
+              "description": "ISO 3166â1 alphaâ2 country code",
+              "type": "string",
+              "example": "US"
+            },
+            "latitude": {
+              "description": "Geographic latitude of birthplace",
+              "type": "float",
+              "example": 34.0522
+            },
+            "longitude": {
+              "description": "Geographic longitude of birthplace",
+              "type": "float",
+              "example": -118.2437
+            }
+          },
+          "example_record": {
+            "city": "Paris",
+            "state_province_region": "Ile-de-France",
+            "country": "France",
+            "postal_code": "75001",
+            "iso_country_code": "FR",
+            "latitude": 48.8566,
+            "longitude": 2.3522
+          }
+        }
+      }
+    },
+    {
+      "name": "deathplace",
+      "skosmos": []
+    },
+    {
+      "name": "deathplace",
+      "ollama_remote": {
+        "name": "deathplace",
+        "ollama": {
+          "variable": "deathplace",
+          "definition": "The location where an individual died, including the type of location (e.g., hospital, home, nursing facility) and the specific address or geographical coordinates. It is typically extracted from a death certificate or medical record.",
+          "units": {
+            "format": "string or coordinate pair",
+            "description": "Either a humanâreadable address string (street, city, state, country) or a pair of latitude/longitude values when geocoded."
+          },
+          "properties": {
+            "data_type": "string",
+            "max_length": 255,
+            "nullable": true,
+            "required": false,
+            "source": "Death certificate, hospital record, or national vital statistics database",
+            "description_field": "A single field that may contain a concatenated address or a structured set of subfields.",
+            "missing_value_codes": [
+              "",
+              "N/A",
+              "Unknown"
+            ]
+          },
+          "attributes": [
+            {
+              "name": "type",
+              "description": "Coded category indicating the type of place of death.",
+              "data_type": "string",
+              "allowed_values": [
+                "Hospital",
+                "Home",
+                "Nursing Home",
+                "Public Place",
+                "Other",
+                "Unknown"
+              ]
+            },
+            {
+              "name": "address",
+              "description": "Street address, including building number and street name.",
+              "data_type": "string",
+              "max_length": 100
+            },
+            {
+              "name": "city",
+              "description": "City or town name.",
+              "data_type": "string",
+              "max_length": 50
+            },
+            {
+              "name": "state_province",
+              "description": "State, province, or region.",
+              "data_type": "string",
+              "max_length": 50
+            },
+            {
+              "name": "country",
+              "description": "Country name.",
+              "data_type": "string",
+              "max_length": 50
+            },
+            {
+              "name": "postal_code",
+              "description": "ZIP or postal code.",
+              "data_type": "string",
+              "max_length": 20
+            },
+            {
+              "name": "latitude",
+              "description": "Geographic latitude in decimal degrees.",
+              "data_type": "float",
+              "range": [
+                -90.0,
+                90.0
+              ]
+            },
+            {
+              "name": "longitude",
+              "description": "Geographic longitude in decimal degrees.",
+              "data_type": "float",
+              "range": [
+                -180.0,
+                180.0
+              ]
+            }
+          ],
+          "notes": [
+            "If the death place is a medical facility, the 'type' field should be set to 'Hospital' or 'Nursing Home' as appropriate.",
+            "When geocoding is not available, the latitude and longitude attributes may be left null.",
+            "The variable can be represented in both tabular (CSV, database) and spatial (GIS) formats."
+          ]
+        }
+      }
+    }
+  ]
+}
