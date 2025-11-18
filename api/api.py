@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Response, Request, UploadFile, File
+from fastapi import FastAPI, Response, Request, UploadFile, File, Query, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from typing import Optional
 import uvicorn
@@ -214,15 +214,15 @@ def read_datapoints(url: str, format: str = "turtle"):
 
 @app.get("/cdi")
 def cdi_generate(
-    url: Optional[str] = None,
+    url: Optional[str] = Query(None),
     format: str = "json-ld",
     resources: Optional[str] = None,
     type: str = "xas",
-    fileid: Optional[str] = None,
-    siteUrl: Optional[str] = None,
-    datasetid: Optional[str] = None,
-    datasetversion: Optional[str] = None,
-    locale: Optional[str] = None,
+    fileid: Optional[str] = Query(None),
+    siteUrl: Optional[str] = Query(None),
+    datasetid: Optional[str] = Query(None),
+    datasetversion: Optional[str] = Query(None),
+    locale: Optional[str] = Query(None),
 ):
     # If fileid and siteUrl are provided, construct Dataverse access URL:
     #   <siteUrl>/api/access/datafile/<fileid>
@@ -231,6 +231,8 @@ def cdi_generate(
         source_url = base + "/api/access/datafile/" + str(fileid)
     else:
         source_url = url
+    if not source_url:
+        raise HTTPException(status_code=400, detail="Provide either 'url' or both 'fileid' and 'siteUrl'.")
     graph = generate_cdi(source_url, None, format, resources, type)
     serialized = graph.serialize(format=format)
     if format == "turtle":
