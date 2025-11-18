@@ -228,6 +228,20 @@ def read_data_serialize():
 def read_data_type(subject: str):
     return data.get_type(subject, data.fullgraph)
 
+@app.get("/routes")
+def list_routes():
+    routes = []
+    for r in app.router.routes:
+        try:
+            routes.append({
+                "path": r.path,
+                "methods": sorted(list(getattr(r, "methods", set()))),
+                "name": getattr(r, "name", None),
+            })
+        except Exception:
+            pass
+    return routes
+
 @app.get("/data/properties")
 def read_data_properties(subject: str):
     return data.get_related_triples(data.fullgraph, subject)
