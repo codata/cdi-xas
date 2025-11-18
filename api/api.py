@@ -234,10 +234,20 @@ def cdi_generate(
     if not source_url:
         raise HTTPException(status_code=400, detail="Provide either 'url' or both 'fileid' and 'siteUrl'.")
     graph = generate_cdi(source_url, None, format, resources, type)
-    serialized = graph.serialize(format=format)
-    if format == "turtle":
-        return Response(content=serialized, media_type="text/turtle")
-    return Response(content=serialized, media_type="application/json")
+    cdi_jsonld = graph.serialize(format="json-ld")
+    datajson = cdi_jsonld
+    dataexport = json.dumps({
+        "@context": [
+            "https://docs.ddialliance.org/DDI-CDI/1.0/model/encoding/json-ld/ddi-cdi.jsonld",
+            {
+                "skos": "http://www.w3.org/2004/02/skos/core#",
+                "xdi": "http://www.w3.org/2004/02/skos/core#",
+                "cdi": "https://docs.ddialliance.org/DDI-CDI/1.0/model/encoding/json-ld/ddi-cdi.jsonld"
+            }
+        ],
+        "DDICDIModels": json.loads(datajson)
+    })
+    return Response(content=dataexport, media_type="application/json")
 
 @app.get("/data/serialize")
 def read_data_serialize():
