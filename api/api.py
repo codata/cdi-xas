@@ -212,6 +212,14 @@ def read_datapoints(url: str, format: str = "turtle"):
     else:
         return Response(content=cdi.parse_cdi().serialize(format=format), media_type="application/json")
 
+@app.get("/cdi")
+def cdi_generate(url: str, format: str = "json-ld", resources: Optional[str] = None, type: str = "xas"):
+    graph = generate_cdi(url, None, format, resources, type)
+    serialized = graph.serialize(format=format)
+    if format == "turtle":
+        return Response(content=serialized, media_type="text/turtle")
+    return Response(content=serialized, media_type="application/json")
+
 @app.get("/data/serialize")
 def read_data_serialize():
     return Response(content=data.serialize_data(format="json-ld"), media_type="application/json")
