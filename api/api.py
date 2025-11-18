@@ -213,8 +213,25 @@ def read_datapoints(url: str, format: str = "turtle"):
         return Response(content=cdi.parse_cdi().serialize(format=format), media_type="application/json")
 
 @app.get("/cdi")
-def cdi_generate(url: str, format: str = "json-ld", resources: Optional[str] = None, type: str = "xas"):
-    graph = generate_cdi(url, None, format, resources, type)
+def cdi_generate(
+    url: Optional[str] = None,
+    format: str = "json-ld",
+    resources: Optional[str] = None,
+    type: str = "xas",
+    fileid: Optional[str] = None,
+    siteUrl: Optional[str] = None,
+    datasetid: Optional[str] = None,
+    datasetversion: Optional[str] = None,
+    locale: Optional[str] = None,
+):
+    # If fileid and siteUrl are provided, construct Dataverse access URL:
+    #   <siteUrl>/api/access/datafile/<fileid>
+    if fileid and siteUrl:
+        base = siteUrl.rstrip("/")
+        source_url = base + "/api/access/datafile/" + str(fileid)
+    else:
+        source_url = url
+    graph = generate_cdi(source_url, None, format, resources, type)
     serialized = graph.serialize(format=format)
     if format == "turtle":
         return Response(content=serialized, media_type="text/turtle")
