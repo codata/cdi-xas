@@ -12,9 +12,17 @@ from datalearning import DataLearning
 from config import datadir, datafile
 from datapoints import CDI_DDI
 from cdi import CDI_DDI
+import sys
+import os
 import os
 import json
 app = FastAPI()
+
+# Ensure repo root is importable to access top-level cdi_generator.py
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if REPO_ROOT not in sys.path:
+    sys.path.insert(0, REPO_ROOT)
+from cdi_generator import generate_cdi
 
 # Helper: blocking fetch to be executed in thread pool
 def fetch_wikilink(term: str, context: str):
@@ -183,9 +191,9 @@ def read_data_dataset(url: str):
     data.add_permanent_schema('dataset')
     #return Response(content=data.serialize_data(format="json-ld"), media_type="application/json")
     datajson = data.export(format="json-ld")
-    # Generate CDI graph from the same URL
-    cdi = CDI_DDI(url, None, "json-ld", type='xas')
-    cdi_jsonld = cdi.parse_cdi().serialize(format="json-ld")
+    # Generate CDI graph using shared generator
+    cdi_graph = generate_cdi(url, None, "json-ld", None, 'xas')
+    cdi_jsonld = cdi_graph.serialize(format="json-ld")
     dataexport = json.dumps({
         "@context": [
             "https://docs.ddialliance.org/DDI-CDI/1.0/model/encoding/json-ld/ddi-cdi.jsonld",

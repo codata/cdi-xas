@@ -13,6 +13,7 @@ def resolve_api_path() -> None:
 
 
 def generate_cdi(source_url: str, export_path: str, export_format: str, resources_dir: Optional[str], dataset_type: Optional[str]) -> None:
+    resolve_api_path()
     from cdi import CDI_DDI
 
     resources_dir_final = resources_dir or os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources")
@@ -27,6 +28,7 @@ def generate_cdi(source_url: str, export_path: str, export_format: str, resource
     if export_path and export_format:
         graph.serialize(destination=export_path, format=export_format)
         print("Exported CDI graph to %s (%s)" % (export_path, export_format))
+    return graph
 
 
 def main(argv: Optional[list] = None) -> int:
