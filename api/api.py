@@ -176,16 +176,23 @@ def read_data_example(configurationfile: Optional[str] = None):
     return Response(content=dataexport, media_type="application/json")
 
 @app.get("/data/dataset")
-def read_data_dataset():
+def read_data_dataset(url: str):
+    data = DataLearning(datadir, url, format="json-ld")
+    data.load_data()
+    data.get_data()
     data.add_permanent_schema('dataset')
     #return Response(content=data.serialize_data(format="json-ld"), media_type="application/json")
     datajson = data.export(format="json-ld")
+    # Generate CDI graph from the same URL
+    cdi = CDI_DDI(url, None, "json-ld", type='xas')
+    cdi_jsonld = cdi.parse_cdi().serialize(format="json-ld")
     dataexport = json.dumps({
         "@context": [
             "https://docs.ddialliance.org/DDI-CDI/1.0/model/encoding/json-ld/ddi-cdi.jsonld",
             {"skos": "http://www.w3.org/2004/02/skos/core#"}
         ],      
-        "DDICDIModels": [json.loads(datajson)]
+        "DDICDIModels": [json.loads(datajson)],
+        "CDIGenerated": json.loads(cdi_jsonld)
     })
     return Response(content=dataexport, media_type="application/json")
 
