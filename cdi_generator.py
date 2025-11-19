@@ -27,6 +27,12 @@ def generate_cdi(source_url: str, export_path: str, export_format: str, resource
         type=dataset_type,
     )
     cdi_graph = generator.parse_cdi()
+    # Quick sanity/compatibility check of the CDI graph
+    try:
+        _ = cdi_graph.serialize(format="json-ld")
+    except Exception:
+        print("Warning: CDI graph serialization failed; using empty graph as fallback.")
+        cdi_graph = rdflib.Graph()
     # Also enrich the graph with schema.org JSON-LD from Dataverse
     schema_url = None
     if datasetid:
