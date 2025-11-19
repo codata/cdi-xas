@@ -237,6 +237,7 @@ def cdi_generate(
     cdi_jsonld = graph.serialize(format="json-ld")
     datajson = cdi_jsonld
     # Try to embed distribution nodes instead of blank-node references using JSON-LD framing
+    print("DEBUG: " + str(datajson))
     try:
         from pyld import jsonld as jsonldlib
         doc = json.loads(datajson)
