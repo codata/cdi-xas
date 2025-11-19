@@ -233,7 +233,7 @@ def cdi_generate(
         source_url = url
     if not source_url:
         raise HTTPException(status_code=400, detail="Provide either 'url' or both 'fileid' and 'siteUrl'.")
-    graph = generate_cdi(source_url, None, format, resources, type)
+    graph = generate_cdi(source_url, None, format, resources, type, datasetid, datasetversion)
     cdi_jsonld = graph.serialize(format="json-ld")
     datajson = cdi_jsonld
     dataexport = json.dumps({

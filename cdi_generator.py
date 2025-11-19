@@ -2,6 +2,7 @@
 import argparse
 import os
 import sys
+import json
 from typing import Optional
 
 
@@ -12,7 +13,7 @@ def resolve_api_path() -> None:
         sys.path.insert(0, api_path)
 
 
-def generate_cdi(source_url: str, export_path: str, export_format: str, resources_dir: Optional[str], dataset_type: Optional[str]) -> None:
+def generate_cdi(source_url: str, export_path: str, export_format: str, resources_dir: Optional[str], dataset_type: Optional[str], datasetid: Optional[str], datasetversion: Optional[str]) -> None:
     resolve_api_path()
     from cdi import CDI_DDI
 
@@ -26,14 +27,37 @@ def generate_cdi(source_url: str, export_path: str, export_format: str, resource
     )
     graph = generator.parse_cdi()
     # Also enrich the graph with schema.org JSON-LD from Dataverse
-    schema_url = "https://dataverse.dev.codata.org/api/datasets/export?exporter=schema.org&persistentId=doi%3A10.5072/FK2/4ZSKVU"
+    schema_url = f"{source_url}/api/datasets/export?exporter=schema.org&persistentId={datasetid}"
     try:
         graph.parse(schema_url, format="json-ld")
     except Exception:
         # Ignore enrichment errors to not block core generation
         pass
     if export_path and export_format:
-        graph.serialize(destination=export_path, format=export_format)
+        if export_format == "json-ld":
+            raw_jsonld = graph.serialize(format="json-ld")
+            try:
+                parsed = json.loads(raw_jsonld)
+            except Exception:
+                parsed = {"@graph": []}
+            graph_nodes = parsed.get("@graph", parsed if isinstance(parsed, list) else [parsed])
+            wrapped = {
+                "@context": [
+                    "https://docs.ddialliance.org/DDI-CDI/1.0/model/encoding/json-ld/ddi-cdi.jsonld",
+                    {
+                        "schema": "http://schema.org/",
+                        "dcterms": "http://purl.org/dc/terms/",
+                        "cdi": "http://ddialliance.org/Specification/DDI-CDI/1.0/RDF/",
+                        "skos": "http://www.w3.org/2004/02/skos/core#",
+                        "xas": "http://cdi4exas.org/"
+                    }
+                ],
+                "@graph": graph_nodes
+            }
+            with open(export_path, "w") as f:
+                f.write(json.dumps(wrapped, indent=2, ensure_ascii=False))
+        else:
+            graph.serialize(destination=export_path, format=export_format)
         print("Exported CDI graph to %s (%s)" % (export_path, export_format))
     return graph
 
