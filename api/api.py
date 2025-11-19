@@ -248,7 +248,14 @@ def cdi_generate(
         framed = jsonldlib.frame(doc, frame)
         # Compact with empty context to avoid injecting any @context here
         compacted = jsonldlib.compact(framed, {})
-        framed_nodes = compacted.get("@graph", [compacted])
+        # Further normalize structure using flatten so nodes are explicit
+        flattened = jsonldlib.flatten(compacted)
+        if isinstance(flattened, dict) and "@graph" in flattened:
+            framed_nodes = flattened.get("@graph", [])
+        elif isinstance(flattened, list):
+            framed_nodes = flattened
+        else:
+            framed_nodes = [flattened]
         # Merge back any non-dataset nodes from the original document that may be missing after framing
         if isinstance(doc, dict) and "@graph" in doc:
             original_nodes = doc.get("@graph", [])
