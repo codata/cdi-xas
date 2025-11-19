@@ -236,16 +236,41 @@ def cdi_generate(
     graph = generate_cdi(source_url, None, format, resources, type, datasetid, datasetversion)
     cdi_jsonld = graph.serialize(format="json-ld")
     datajson = cdi_jsonld
-    dataexport = json.dumps({
-        "@context": [
+    # Try to embed distribution nodes instead of blank-node references using JSON-LD framing
+    try:
+        from pyld import jsonld as jsonldlib
+        doc = json.loads(datajson)
+        context = [
+            "https://docs.ddialliance.org/DDI-CDI/1.0/model/encoding/json-ld/ddi-cdi.jsonld",
+            {
+                "schema": "http://schema.org/",
+                "dcterms": "http://purl.org/dc/terms/",
+                "cdi": "http://ddialliance.org/Specification/DDI-CDI/1.0/RDF/",
+                "skos": "http://www.w3.org/2004/02/skos/core#",
+                "xas": "http://cdi4exas.org/"
+            }
+        ]
+        frame = {
+            "@context": context,
+            "@type": "schema:Dataset",
+            "schema:distribution": {"@embed": "@always"}
+        }
+        framed = jsonldlib.frame(doc, frame)
+        compacted = jsonldlib.compact(framed, context)
+        ddicdi_models = compacted.get("@graph", [compacted])
+    except Exception:
+        ddicdi_models = json.loads(datajson)
+        context = [
             "https://docs.ddialliance.org/DDI-CDI/1.0/model/encoding/json-ld/ddi-cdi.jsonld",
             {
                 "skos": "http://www.w3.org/2004/02/skos/core#",
                 "xdi": "http://www.w3.org/2004/02/skos/core#",
                 "cdi": "https://docs.ddialliance.org/DDI-CDI/1.0/model/encoding/json-ld/ddi-cdi.jsonld"
             }
-        ],
-        "DDICDIModels": json.loads(datajson)
+        ]
+    dataexport = json.dumps({
+        "@context": context,
+        "DDICDIModels": ddicdi_models
     })
     return Response(content=dataexport, media_type="application/json")
 
