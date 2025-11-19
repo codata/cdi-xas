@@ -28,6 +28,7 @@ def generate_cdi(source_url: str, export_path: str, export_format: str, resource
     graph = generator.parse_cdi()
     # Also enrich the graph with schema.org JSON-LD from Dataverse
     schema_url = f"{source_url}/api/datasets/export?exporter=schema.org&persistentId={datasetid}"
+    schema_url = "https://dataverse.dev.codata.org/api/datasets/export?exporter=schema.org&persistentId=doi%3A10.5072/FK2/8MODGT"
     try:
         graph.parse(schema_url, format="json-ld")
     except Exception:
