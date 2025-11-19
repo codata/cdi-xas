@@ -1,5 +1,7 @@
 fastapi
+ollama
 requests
 rdflib
 uvicorn
 pandas
+pyld
