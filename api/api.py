@@ -280,18 +280,7 @@ def cdi_generate(
         ddicdi_models = merged
     except Exception:
         ddicdi_models = json.loads(datajson)
-        context = [
-            "https://docs.ddialliance.org/DDI-CDI/1.0/model/encoding/json-ld/ddi-cdi.jsonld",
-            {
-                "skos": "http://www.w3.org/2004/02/skos/core#",
-                "xdi": "http://www.w3.org/2004/02/skos/core#",
-                "cdi": "https://docs.ddialliance.org/DDI-CDI/1.0/model/encoding/json-ld/ddi-cdi.jsonld"
-            }
-        ]
-    dataexport = json.dumps({
-        "@context": context,
-        "DDICDIModels": ddicdi_models
-    })
+    dataexport = json.dumps(ddicdi_models)
     return Response(content=dataexport, media_type="application/json")
 
 @app.get("/data/serialize")
