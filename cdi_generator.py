@@ -4,6 +4,7 @@ import os
 import sys
 import json
 from typing import Optional
+import rdflib
 
 
 def resolve_api_path() -> None:
@@ -13,7 +14,7 @@ def resolve_api_path() -> None:
         sys.path.insert(0, api_path)
 
 
-def generate_cdi(source_url: str, export_path: str, export_format: str, resources_dir: Optional[str], dataset_type: Optional[str], datasetid: Optional[str], datasetversion: Optional[str]) -> None:
+def generate_cdi(source_url: str, export_path: str, export_format: str, resources_dir: Optional[str], dataset_type: Optional[str], datasetid: Optional[str] = None, datasetversion: Optional[str] = None) -> None:
     resolve_api_path()
     from cdi import CDI_DDI
 
@@ -25,18 +26,36 @@ def generate_cdi(source_url: str, export_path: str, export_format: str, resource
         resources_dir=resources_dir_final,
         type=dataset_type,
     )
-    graph = generator.parse_cdi()
+    cdi_graph = generator.parse_cdi()
     # Also enrich the graph with schema.org JSON-LD from Dataverse
-    schema_url = f"{source_url}/api/datasets/export?exporter=schema.org&persistentId={datasetid}"
-    schema_url = "https://dataverse.dev.codata.org/api/datasets/export?exporter=schema.org&persistentId=doi%3A10.5072/FK2/8MODGT"
+    schema_url = None
+    if datasetid:
+        # Try to infer base site from source_url; fallback to dev codata
+        try:
+            from urlparse import urlparse  # Python2 compat if needed
+        except Exception:
+            from urllib.parse import urlparse
+        try:
+            parsed = urlparse(source_url)
+            base = parsed.scheme + "://" + parsed.netloc if parsed.scheme and parsed.netloc else "https://dataverse.dev.codata.org"
+        except Exception:
+            base = "https://dataverse.dev.codata.org"
+        schema_url = base.rstrip("/") + "/api/datasets/export?exporter=schema.org&persistentId=" + datasetid
+    else:
+        # Default example fallback if no datasetid provided
+        schema_url = "https://dataverse.dev.codata.org/api/datasets/export?exporter=schema.org&persistentId=doi%3A10.5072/FK2/8MODGT"
     try:
-        graph.parse(schema_url, format="json-ld")
+        schema_graph = rdflib.Graph()
+        schema_graph.parse(schema_url, format="json-ld")
+        # Merge schema_graph into cdi_graph
+        for triple in schema_graph:
+            cdi_graph.add(triple)
     except Exception:
         # Ignore enrichment errors to not block core generation
         pass
     if export_path and export_format:
         if export_format == "json-ld":
-            raw_jsonld = graph.serialize(format="json-ld")
+            raw_jsonld = cdi_graph.serialize(format="json-ld")
             try:
                 parsed = json.loads(raw_jsonld)
             except Exception:
@@ -58,9 +77,9 @@ def generate_cdi(source_url: str, export_path: str, export_format: str, resource
             with open(export_path, "w") as f:
                 f.write(json.dumps(wrapped, indent=2, ensure_ascii=False))
         else:
-            graph.serialize(destination=export_path, format=export_format)
+            cdi_graph.serialize(destination=export_path, format=export_format)
         print("Exported CDI graph to %s (%s)" % (export_path, export_format))
-    return graph
+    return cdi_graph
 
 
 def main(argv: Optional[list] = None) -> int:
