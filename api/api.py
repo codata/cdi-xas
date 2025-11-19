@@ -288,10 +288,7 @@ def cdi_generate(
                 "cdi": "https://docs.ddialliance.org/DDI-CDI/1.0/model/encoding/json-ld/ddi-cdi.jsonld"
             }
         ]
-    dataexport = json.dumps({
-        ddicdi_models
-    })
-    return Response(content=dataexport, media_type="application/json")
+    return Response(content=datajson, media_type="application/json")
 
 @app.get("/data/serialize")
 def read_data_serialize():
