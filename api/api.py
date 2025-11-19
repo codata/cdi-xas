@@ -277,7 +277,8 @@ def cdi_generate(
                 if n["@id"] in id_to_node:
                     continue
             merged.append(n)
-        ddicdi_models = merged
+        # Return as an object with @graph instead of a bare list
+        ddicdi_models = {"@graph": merged}
     except Exception:
         ddicdi_models = json.loads(datajson)
     dataexport = json.dumps(ddicdi_models)
