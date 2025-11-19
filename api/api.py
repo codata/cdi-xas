@@ -281,7 +281,30 @@ def cdi_generate(
         ddicdi_models = {"@graph": merged}
     except Exception:
         ddicdi_models = json.loads(datajson)
-    dataexport = json.dumps(ddicdi_models)
+    # Wrap output with requested top-level @context and @graph
+    if isinstance(ddicdi_models, dict) and "@graph" in ddicdi_models:
+        graph_nodes = ddicdi_models.get("@graph", [])
+    elif isinstance(ddicdi_models, list):
+        graph_nodes = ddicdi_models
+    else:
+        graph_nodes = [ddicdi_models]
+    top_context = {
+        "@vocab": "http://ddialliance.org/Specification/DDI-CDI/1.0/RDF/",
+        "schema": "https://schema.org/",
+        "dcterms": "http://purl.org/dc/terms/",
+        "geosparql": "http://www.opengis.net/ont/geosparql#",
+        "spdx": "http://spdx.org/rdf/terms#",
+        "cdi": "http://ddialliance.org/Specification/DDI-CDI/1.0/RDF/",
+        "time": "http://www.w3.org/2006/time#",
+        "skos": "http://www.w3.org/2004/02/skos/core#",
+        "nx": "https://xas.org/dictionary/",
+        "cdifq": "https://cdif.codata.org/concept/",
+        "prov": "http://www.w3.org/ns/prov#"
+    }
+    dataexport = json.dumps({
+        "@context": top_context,
+        "@graph": graph_nodes
+    })
     return Response(content=dataexport, media_type="application/json")
 
 @app.get("/data/serialize")
