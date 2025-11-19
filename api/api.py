@@ -241,23 +241,13 @@ def cdi_generate(
     try:
         from pyld import jsonld as jsonldlib
         doc = json.loads(datajson)
-        context = [
-            "https://docs.ddialliance.org/DDI-CDI/1.0/model/encoding/json-ld/ddi-cdi.jsonld",
-            {
-                "schema": "http://schema.org/",
-                "dcterms": "http://purl.org/dc/terms/",
-                "cdi": "http://ddialliance.org/Specification/DDI-CDI/1.0/RDF/",
-                "skos": "http://www.w3.org/2004/02/skos/core#",
-                "xas": "http://cdi4exas.org/"
-            }
-        ]
         frame = {
-            "@context": context,
             "@type": "schema:Dataset",
             "schema:distribution": {"@embed": "@always"}
         }
         framed = jsonldlib.frame(doc, frame)
-        compacted = jsonldlib.compact(framed, context)
+        # Compact with empty context to avoid injecting any @context here
+        compacted = jsonldlib.compact(framed, {})
         framed_nodes = compacted.get("@graph", [compacted])
         # Merge back any non-dataset nodes from the original document that may be missing after framing
         if isinstance(doc, dict) and "@graph" in doc:
