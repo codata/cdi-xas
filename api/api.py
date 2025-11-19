@@ -289,8 +289,7 @@ def cdi_generate(
             }
         ]
     dataexport = json.dumps({
-        "@context": context,
-        "DDICDIModels": ddicdi_models
+        ddicdi_models
     })
     return Response(content=dataexport, media_type="application/json")
 
