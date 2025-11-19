@@ -236,7 +236,6 @@ def cdi_generate(
     graph = generate_cdi(source_url, None, format, resources, type, datasetid, datasetversion)
     cdi_jsonld = graph.serialize(format="json-ld")
     datajson = cdi_jsonld
-    return Response(content=datajson, media_type="application/json")
     # Try to embed distribution nodes instead of blank-node references using JSON-LD framing
     #print("DEBUG: " + str(datajson))
     try:
@@ -259,7 +258,26 @@ def cdi_generate(
         }
         framed = jsonldlib.frame(doc, frame)
         compacted = jsonldlib.compact(framed, context)
-        ddicdi_models = compacted.get("@graph", [compacted])
+        framed_nodes = compacted.get("@graph", [compacted])
+        # Merge back any non-dataset nodes from the original document that may be missing after framing
+        if isinstance(doc, dict) and "@graph" in doc:
+            original_nodes = doc.get("@graph", [])
+        elif isinstance(doc, list):
+            original_nodes = doc
+        else:
+            original_nodes = [doc]
+        id_to_node = {}
+        merged = []
+        for n in framed_nodes:
+            merged.append(n)
+            if isinstance(n, dict) and "@id" in n:
+                id_to_node[n["@id"]] = n
+        for n in original_nodes:
+            if isinstance(n, dict) and "@id" in n:
+                if n["@id"] in id_to_node:
+                    continue
+            merged.append(n)
+        ddicdi_models = merged
     except Exception:
         ddicdi_models = json.loads(datajson)
         context = [
