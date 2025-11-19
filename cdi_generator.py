@@ -68,16 +68,6 @@ def generate_cdi(source_url: str, export_path: str, export_format: str, resource
                 parsed = {"@graph": []}
             graph_nodes = parsed.get("@graph", parsed if isinstance(parsed, list) else [parsed])
             wrapped = {
-                "@context": [
-                    "https://docs.ddialliance.org/DDI-CDI/1.0/model/encoding/json-ld/ddi-cdi.jsonld",
-                    {
-                        "schema": "http://schema.org/",
-                        "dcterms": "http://purl.org/dc/terms/",
-                        "cdi": "http://ddialliance.org/Specification/DDI-CDI/1.0/RDF/",
-                        "skos": "http://www.w3.org/2004/02/skos/core#",
-                        "xas": "http://cdi4exas.org/"
-                    }
-                ],
                 "@graph": graph_nodes
             }
             with open(export_path, "w") as f:
