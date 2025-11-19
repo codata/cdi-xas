@@ -25,6 +25,13 @@ def generate_cdi(source_url: str, export_path: str, export_format: str, resource
         type=dataset_type,
     )
     graph = generator.parse_cdi()
+    # Also enrich the graph with schema.org JSON-LD from Dataverse
+    schema_url = "https://dataverse.dev.codata.org/api/datasets/export?exporter=schema.org&persistentId=doi%3A10.5072/FK2/4ZSKVU"
+    try:
+        graph.parse(schema_url, format="json-ld")
+    except Exception:
+        # Ignore enrichment errors to not block core generation
+        pass
     if export_path and export_format:
         graph.serialize(destination=export_path, format=export_format)
         print("Exported CDI graph to %s (%s)" % (export_path, export_format))
