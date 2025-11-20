@@ -66,7 +66,12 @@ def generate_cdi(source_url: str, export_path: str, export_format: str, resource
                 parsed = json.loads(raw_jsonld)
             except Exception:
                 parsed = {"@graph": []}
-            graph_nodes = parsed.get("@graph", parsed if isinstance(parsed, list) else [parsed])
+            if isinstance(parsed, dict) and "@graph" in parsed:
+                graph_nodes = parsed["@graph"]
+            elif isinstance(parsed, list):
+                graph_nodes = parsed
+            else:
+                graph_nodes = [parsed]
             wrapped = {
                 "@graph": graph_nodes
             }
