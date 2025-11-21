@@ -2,6 +2,7 @@ FROM tiangolo/uvicorn-gunicorn-fastapi:python3.10
 
 COPY ./api/* /app/
 COPY ./cdi_generator.py /app/
+COPY ./utils.py /app/
 COPY ./api/requirements.txt /app/
 COPY ./resources /app/resources
 

@@ -16,13 +16,15 @@ import sys
 import os
 import os
 import json
+import pandas as pd
 app = FastAPI()
 
-# Ensure repo root is importable to access top-level cdi_generator.py
+# Ensure repo root is importable to access top-level modules
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if REPO_ROOT not in sys.path:
     sys.path.insert(0, REPO_ROOT)
 from cdi_generator import generate_cdi
+from utils import xdi_cdif_mapping_to_jsonld
 
 # Helper: blocking fetch to be executed in thread pool
 def fetch_wikilink(term: str, context: str):
@@ -154,6 +156,23 @@ def read_cdi(url: str, format: str = "turtle"):
     else:
         return Response(content=cdi.parse_cdi().serialize(format=format), media_type="application/json")
 
+
+@app.get("/mapping/xdi-cdif")
+def xdi_cdif_mapping_from_url(spreadsheet_url: str = Query(..., description="URL or path to the XDI–CDIF mapping spreadsheet (Excel).")):
+    """
+    Load an XDI–CDIF mapping spreadsheet from a given URL or local path
+    and return a JSON-LD representation of the mappings.
+    """
+    try:
+        df = pd.read_excel(spreadsheet_url)
+    except Exception as e:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Failed to load spreadsheet from '{spreadsheet_url}': {e}",
+        )
+    jsonld = xdi_cdif_mapping_to_jsonld(df)
+    return JSONResponse(content=jsonld)
+
 @app.get("/data")
 def read_data():
     return data.get_data_as_pandas()
@@ -241,41 +260,64 @@ def cdi_generate(
     try:
         from pyld import jsonld as jsonldlib
         doc = json.loads(datajson)
+        # Use a rich context so keys compact to prefixes like schema:, spdx:, dcterms:, etc.
+        frame_context = {
+            "@vocab": "http://ddialliance.org/Specification/DDI-CDI/1.0/RDF/",
+            "schema": "https://schema.org/",
+            "dcterms": "http://purl.org/dc/terms/",
+            "geosparql": "http://www.opengis.net/ont/geosparql#",
+            "spdx": "http://spdx.org/rdf/terms#",
+            "cdi": "http://ddialliance.org/Specification/DDI-CDI/1.0/RDF/",
+            "time": "http://www.w3.org/2006/time#",
+            "skos": "http://www.w3.org/2004/02/skos/core#",
+            "nx": "https://xas.org/dictionary/",
+            "cdifq": "https://cdif.codata.org/concept/",
+            "prov": "http://www.w3.org/ns/prov#"
+        }
         frame = {
+            "@context": frame_context,
             "@type": "schema:Dataset",
-            "schema:distribution": {"@embed": "@always"}
+            "@embed": "@always",
+            "@explicit": False
         }
         framed = jsonldlib.frame(doc, frame)
-        # Compact with empty context to avoid injecting any @context here
-        compacted = jsonldlib.compact(framed, {})
-        # Further normalize structure using flatten so nodes are explicit
-        flattened = jsonldlib.flatten(compacted)
-        if isinstance(flattened, dict) and "@graph" in flattened:
-            framed_nodes = flattened.get("@graph", [])
-        elif isinstance(flattened, list):
-            framed_nodes = flattened
-        else:
-            framed_nodes = [flattened]
-        # Merge back any non-dataset nodes from the original document that may be missing after framing
-        if isinstance(doc, dict) and "@graph" in doc:
-            original_nodes = doc.get("@graph", [])
-        elif isinstance(doc, list):
-            original_nodes = doc
-        else:
-            original_nodes = [doc]
-        id_to_node = {}
-        merged = []
-        for n in framed_nodes:
-            merged.append(n)
-            if isinstance(n, dict) and "@id" in n:
-                id_to_node[n["@id"]] = n
-        for n in original_nodes:
-            if isinstance(n, dict) and "@id" in n:
-                if n["@id"] in id_to_node:
-                    continue
-            merged.append(n)
-        # Return as an object with @graph instead of a bare list
-        ddicdi_models = {"@graph": merged}
+        compacted = jsonldlib.compact(framed, frame_context)
+        # Post-process: inline blank-node references {"@id": "_:b..."} with their full node objects
+        def collect_nodes(obj, store):
+            if isinstance(obj, dict):
+                node_id = obj.get("@id")
+                if node_id and node_id.startswith("_:"):
+                    store[node_id] = obj
+                for v in obj.values():
+                    collect_nodes(v, store)
+            elif isinstance(obj, list):
+                for v in obj:
+                    collect_nodes(v, store)
+        def deep_clone(o):
+            try:
+                return json.loads(json.dumps(o))
+            except Exception:
+                return o
+        def inline_refs(obj, node_map, seen_ids):
+            if isinstance(obj, dict):
+                # If this is a bare reference to a blank node, inline it
+                if set(obj.keys()) == {"@id"} and isinstance(obj.get("@id"), str) and obj["@id"].startswith("_:"):
+                    ref_id = obj["@id"]
+                    target = node_map.get(ref_id)
+                    if target and ref_id not in seen_ids:
+                        seen_ids.add(ref_id)
+                        inlined = inline_refs(deep_clone(target), node_map, seen_ids)
+                        seen_ids.discard(ref_id)
+                        return inlined
+                    return obj
+                # Otherwise recursively inline children
+                return {k: inline_refs(v, node_map, seen_ids) for k, v in obj.items()}
+            if isinstance(obj, list):
+                return [inline_refs(v, node_map, seen_ids) for v in obj]
+            return obj
+        node_map = {}
+        collect_nodes(compacted, node_map)
+        ddicdi_models = inline_refs(compacted, node_map, set())
     except Exception:
         ddicdi_models = json.loads(datajson)
     # Wrap output with requested top-level @context and @graph
