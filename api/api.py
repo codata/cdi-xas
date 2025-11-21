@@ -24,7 +24,7 @@ REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if REPO_ROOT not in sys.path:
     sys.path.insert(0, REPO_ROOT)
 from cdi_generator import generate_cdi
-from utils import xdi_cdif_mapping_to_jsonld
+from utils import xdi_cdif_mapping_to_jsonld, load_xdi_cdif_mapping_jsonld
 
 # Helper: blocking fetch to be executed in thread pool
 def fetch_wikilink(term: str, context: str):
@@ -340,10 +340,22 @@ def cdi_generate(
         "cdifq": "https://cdif.codata.org/concept/",
         "prov": "http://www.w3.org/ns/prov#"
     }
-    dataexport = json.dumps({
+
+    # Also include the XDI–CDIF mapping JSON-LD generated from the
+    # spreadsheet resources, using the same logic as in the notebook.
+    try:
+        xdi_cdif_mapping = load_xdi_cdif_mapping_jsonld()
+    except Exception:
+        xdi_cdif_mapping = None
+
+    payload = {
         "@context": top_context,
-        "@graph": graph_nodes
-    })
+        "@graph": graph_nodes,
+    }
+    if xdi_cdif_mapping is not None:
+        payload["xdiCdifMapping"] = xdi_cdif_mapping
+
+    dataexport = json.dumps(payload)
     return Response(content=dataexport, media_type="application/json")
 
 @app.get("/data/serialize")
