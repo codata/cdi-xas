@@ -352,8 +352,19 @@ def cdi_generate(
         "@context": top_context,
         "@graph": graph_nodes,
     }
+
+    # Attach the XDI–CDIF mapping JSON-LD derived from the spreadsheet
     if xdi_cdif_mapping is not None:
         payload["xdiCdifMapping"] = xdi_cdif_mapping
+
+    # Also attach the original CDI JSON-LD graph (schema.org-rich) so
+    # clients can access the full generated CDI, just like in the
+    # `test_cdi_generate.ipynb` notebook.
+    try:
+        payload["CDIGenerated"] = json.loads(cdi_jsonld)
+    except Exception:
+        # Fallback: keep raw string if parsing fails for any reason
+        payload["CDIGenerated"] = cdi_jsonld
 
     dataexport = json.dumps(payload)
     return Response(content=dataexport, media_type="application/json")
