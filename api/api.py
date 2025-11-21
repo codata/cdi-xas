@@ -24,7 +24,12 @@ REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if REPO_ROOT not in sys.path:
     sys.path.insert(0, REPO_ROOT)
 from cdi_generator import generate_cdi
-from utils import xdi_cdif_mapping_to_jsonld, load_xdi_cdif_mapping_jsonld
+from utils import (
+    load_xdi_cdif_mapping,
+    xdi_cdif_mapping_to_jsonld,
+    load_xdi_cdif_mapping_jsonld,
+    xdi_cdif_mapping_to_rml,
+)
 
 # Helper: blocking fetch to be executed in thread pool
 def fetch_wikilink(term: str, context: str):
@@ -159,37 +164,62 @@ def read_cdi(url: str, format: str = "turtle"):
 
 @app.get("/mapping/xdi-cdif")
 def xdi_cdif_mapping_from_url(
-    spreadsheet_url: str = Query(
-        ...,
-        description="URL or path to the XDI–CDIF mapping spreadsheet (Excel).",
+    spreadsheet_url: Optional[str] = Query(
+        None,
+        description="Optional URL or path to the XDI–CDIF mapping spreadsheet (Excel).",
     ),
     export: str = Query(
         "json-ld",
         description="Export format: 'json-ld' (default) or 'rml' (RML Turtle).",
     ),
+    fileid: Optional[str] = Query(None),
+    siteUrl: Optional[str] = Query(None),
+    datasetid: Optional[str] = Query(None),
+    datasetversion: Optional[str] = Query(None),
+    locale: Optional[str] = Query(None),
 ):
     """
     Load an XDI–CDIF mapping spreadsheet from a given URL or local path
-    and return either a JSON-LD or RML (Turtle) representation
-    of the mappings.
+    and return either a JSON-LD or RML (Turtle) representation of the
+    mappings.
+
+    If ``spreadsheet_url`` is not provided but other parameters such as
+    ``fileid`` / ``siteUrl`` / ``datasetid`` / ``datasetversion`` are
+    present (for example when mirroring the `/cdi` API signature), the
+    endpoint falls back to the default mapping spreadsheet configured
+    in the backend (local `resources` / GitHub URL).
     """
-    try:
-        df = pd.read_excel(spreadsheet_url)
-    except Exception as e:
-        raise HTTPException(
-            status_code=400,
-            detail=f"Failed to load spreadsheet from '{spreadsheet_url}': {e}",
-        )
-
     export = (export or "json-ld").lower()
-    if export == "rml":
-        from utils import xdi_cdif_mapping_to_rml
 
+    # Derive spreadsheet URL if not explicitly provided, mirroring the /cdi logic:
+    #   <siteUrl>/api/access/datafile/<fileid>
+    effective_url = spreadsheet_url
+    if not effective_url and fileid and siteUrl:
+        base = siteUrl.rstrip("/")
+        effective_url = base + "/api/access/datafile/" + str(fileid)
+
+    # Case 1: we have an explicit or derived spreadsheet URL/path
+    if effective_url:
+        try:
+            df = pd.read_excel(effective_url)
+        except Exception as e:
+            raise HTTPException(
+                status_code=400,
+                detail=f"Failed to load spreadsheet from '{effective_url}': {e}",
+            )
+        if export == "rml":
+            rml_mapping = xdi_cdif_mapping_to_rml(df)
+            return Response(content=rml_mapping, media_type="text/turtle")
+        jsonld = xdi_cdif_mapping_to_jsonld(df)
+        return JSONResponse(content=jsonld)
+
+    # Case 2: no URL at all – use default mapping from utils
+    if export == "rml":
+        df = load_xdi_cdif_mapping()
         rml_mapping = xdi_cdif_mapping_to_rml(df)
         return Response(content=rml_mapping, media_type="text/turtle")
 
-    # Default: JSON-LD
-    jsonld = xdi_cdif_mapping_to_jsonld(df)
+    jsonld = load_xdi_cdif_mapping_jsonld()
     return JSONResponse(content=jsonld)
 
 @app.get("/data")
