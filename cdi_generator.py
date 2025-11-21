@@ -77,6 +77,18 @@ def generate_cdi(source_url: str, export_path: str, export_format: str, resource
             }
             with open(export_path, "w") as f:
                 f.write(json.dumps(wrapped, indent=2, ensure_ascii=False))
+        elif export_format == "flattened":
+            raw_jsonld = cdi_graph.serialize(format="json-ld")
+            try:
+                from pyld import jsonld as jsonldlib
+                doc = json.loads(raw_jsonld)
+                flattened = jsonldlib.flatten(doc)
+                with open(export_path, "w") as f:
+                    f.write(json.dumps(flattened, indent=2, ensure_ascii=False))
+            except Exception:
+                # Fallback to raw JSON-LD if pyld not available
+                with open(export_path, "w") as f:
+                    f.write(raw_jsonld)
         else:
             cdi_graph.serialize(destination=export_path, format=export_format)
         print("Exported CDI graph to %s (%s)" % (export_path, export_format))
