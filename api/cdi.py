@@ -170,8 +170,22 @@ class CDI_DDI:
                         for row in line.strip().split(' '):
                             self.g.add((self.navigator, rdflib.URIRef(self.rdf.List), rdflib.Literal(row)))
 
-        # Convert the graph to JSON-LD format
-        self.g.serialize(destination=self.export_file, format=self.export_format)
+        # Convert the graph to JSON-LD format (optionally flattened)
+        if self.export_file:
+            if self.export_format == "flattened":
+                jsonld_str = self.g.serialize(format="json-ld")
+                try:
+                    from pyld import jsonld as jsonldlib
+                    doc = json.loads(jsonld_str)
+                    flattened = jsonldlib.flatten(doc)
+                    with open(self.export_file, "w") as f:
+                        f.write(json.dumps(flattened, indent=2, ensure_ascii=False))
+                except Exception:
+                    # Fallback to raw JSON-LD if pyld not available or flatten fails
+                    with open(self.export_file, "w") as f:
+                        f.write(jsonld_str)
+            else:
+                self.g.serialize(destination=self.export_file, format=self.export_format)
 
         print(f"Graph exported to {self.export_file} in {self.export_format} format")
         print(self.datasets)
