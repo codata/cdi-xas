@@ -158,10 +158,20 @@ def read_cdi(url: str, format: str = "turtle"):
 
 
 @app.get("/mapping/xdi-cdif")
-def xdi_cdif_mapping_from_url(spreadsheet_url: str = Query(..., description="URL or path to the XDI–CDIF mapping spreadsheet (Excel).")):
+def xdi_cdif_mapping_from_url(
+    spreadsheet_url: str = Query(
+        ...,
+        description="URL or path to the XDI–CDIF mapping spreadsheet (Excel).",
+    ),
+    export: str = Query(
+        "json-ld",
+        description="Export format: 'json-ld' (default) or 'rml' (RML Turtle).",
+    ),
+):
     """
     Load an XDI–CDIF mapping spreadsheet from a given URL or local path
-    and return a JSON-LD representation of the mappings.
+    and return either a JSON-LD or RML (Turtle) representation
+    of the mappings.
     """
     try:
         df = pd.read_excel(spreadsheet_url)
@@ -170,6 +180,15 @@ def xdi_cdif_mapping_from_url(spreadsheet_url: str = Query(..., description="URL
             status_code=400,
             detail=f"Failed to load spreadsheet from '{spreadsheet_url}': {e}",
         )
+
+    export = (export or "json-ld").lower()
+    if export == "rml":
+        from utils import xdi_cdif_mapping_to_rml
+
+        rml_mapping = xdi_cdif_mapping_to_rml(df)
+        return Response(content=rml_mapping, media_type="text/turtle")
+
+    # Default: JSON-LD
     jsonld = xdi_cdif_mapping_to_jsonld(df)
     return JSONResponse(content=jsonld)
 

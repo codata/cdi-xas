@@ -241,12 +241,95 @@ def load_xdi_cdif_mapping_jsonld(
     return xdi_cdif_mapping_to_jsonld(df, base_uri=base_uri, context=context)
 
 
+def xdi_cdif_mapping_to_rml(
+    df: pd.DataFrame,
+    logical_source: str = "xdi_source",
+) -> str:
+    """
+    Convert the XDI–CDIF mapping table into a simple RML mapping in Turtle syntax.
+
+    Each row is represented as a separate rr:TriplesMap that links the
+    XDI dictionary key to the corresponding CDIF implementation snippet.
+
+    Parameters
+    ----------
+    df:
+        DataFrame as returned by :func:`load_xdi_cdif_mapping`.
+    logical_source:
+        Identifier for the logical source in the RML mapping (for example
+        a CSV or other tabular source). This is treated as a string label,
+        not a file path resolution.
+
+    Returns
+    -------
+    str
+        RML mapping in Turtle syntax.
+    """
+    lines: list[str] = [
+        "@prefix rr: <http://www.w3.org/ns/r2rml#> .",
+        "@prefix rml: <http://semweb.mmlab.be/ns/rml#> .",
+        "@prefix ql: <http://semweb.mmlab.be/ns/ql#> .",
+        "@prefix ex: <https://w3id.org/cdi-xas/rml/> .",
+        "@prefix nx: <https://xas.org/dictionary/> .",
+        "@prefix cdifq: <https://cdif.codata.org/concept/> .",
+        "",
+    ]
+
+    for idx, row in df.iterrows():
+        xdi_key = str(row.get("xdi dictionary", f"row_{idx}"))
+        impl_value = row.get("CDIF implementation")
+
+        # Make a reasonably safe subject IRI fragment from the key
+        safe_key = "".join(
+            ch if ch.isalnum() or ch in "-_" else "_"
+            for ch in xdi_key
+        )
+        tm_name = f"ex:Map_{idx}"
+
+        # Serialise the CDIF implementation as JSON if it's a structured value
+        if isinstance(impl_value, (dict, list)):
+            impl_str = json.dumps(impl_value, ensure_ascii=False)
+        else:
+            impl_str = str(impl_value) if impl_value is not None else ""
+
+        # Escape quotes and newlines for Turtle string literal
+        impl_str_escaped = (
+            impl_str.replace("\\", "\\\\")
+            .replace('"', '\\"')
+            .replace("\n", "\\n")
+        )
+
+        lines.extend(
+            [
+                f"{tm_name}",
+                "    a rr:TriplesMap ;",
+                "    rml:logicalSource [",
+                f'        rml:source "{logical_source}" ;',
+                "        rml:referenceFormulation ql:CSV",
+                "    ] ;",
+                "    rr:subjectMap [",
+                f'        rr:template "https://xas.org/resource/{safe_key}"',
+                "    ] ;",
+                "    rr:predicateObjectMap [",
+                "        rr:predicate cdifq:mapping ;",
+                "        rr:objectMap [",
+                f'            rr:constant "{impl_str_escaped}"',
+                "        ]",
+                "    ] .",
+                "",
+            ]
+        )
+
+    return "\n".join(lines)
+
+
 __all__ = [
     "get_repo_root",
     "get_resources_dir",
     "load_xdi_cdif_mapping",
     "xdi_cdif_mapping_to_jsonld",
     "load_xdi_cdif_mapping_jsonld",
+    "xdi_cdif_mapping_to_rml",
 ]
 
 
