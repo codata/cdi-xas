@@ -168,9 +168,10 @@ def xdi_cdif_mapping_from_url(
         None,
         description="Optional URL or path to the XDI–CDIF mapping spreadsheet (Excel).",
     ),
-    export: str = Query(
-        "json-ld",
-        description="Export format: 'json-ld' (default) or 'rml' (RML Turtle).",
+    export: Optional[str] = Query(
+        None,
+        description="Export format: 'json-ld' or 'rml' (RML Turtle). "
+        "If omitted and fileid is provided, defaults to 'rml', otherwise 'json-ld'.",
     ),
     fileid: Optional[str] = Query(None),
     siteUrl: Optional[str] = Query(None),
@@ -189,7 +190,11 @@ def xdi_cdif_mapping_from_url(
     endpoint falls back to the default mapping spreadsheet configured
     in the backend (local `resources` / GitHub URL).
     """
-    export = (export or "json-ld").lower()
+    # Determine export type: if not provided but fileid is set, default to RML,
+    # otherwise default to JSON-LD.
+    if not export:
+        export = "rml" if fileid else "json-ld"
+    export = export.lower()
 
     # Derive spreadsheet URL if not explicitly provided, mirroring the /cdi logic:
     #   <siteUrl>/api/access/datafile/<fileid>
