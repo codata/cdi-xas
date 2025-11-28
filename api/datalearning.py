@@ -1,7 +1,7 @@
 import re
 import pandas as pd
 import rdflib
-from rdflib import Literal
+from rdflib import Literal, URIRef, SKOS
 
 class DataLearning:
     def __init__(self, config_path, data_path, format="turtle"):
@@ -16,20 +16,36 @@ class DataLearning:
             self.permauri = self.get_local_path(data_path.replace(self.localpath, ""))
         self.cdiuri = "http://ddialliance.org/Specification/DDI-CDI/1.0/RDF/"
         self.localpath = self.path + data_path
-        self.full_graph_path = config_path + "/ddi-cdi-full-graph.ttl"
-        self.g.bind("DDICDIMODELS", self.path + "xdi_example_ss.jsonld")
+        #self.full_graph_path = config_path + "/ddi-cdi-full-graph.ttl"
+        self.g.bind("DDICDIMODELS", self.path + "prov_generated_by.jsonld")
         self.cdigraph = rdflib.Graph()
-        self.fullgraph = rdflib.Graph()
-        self.load_full_graph()
-        self.cdigraph.bind("DDICDIMODELS", self.path + "xdi_example_ss.jsonld")
+        #self.fullgraph = rdflib.Graph()
+        #self.load_full_graph()
+        self.cdi_path = config_path + "test_cdi.jsonld"
+        self.cdigraph.bind("DDICDIMODELS", self.path + "test_cdi.jsonld")
         self.cdigraph.context = {
-            "DDICDIMODELS": {
-                "@context": {
-                    "@vocab": "http://ddialliance.org/Specification/DDI-CDI/1.0/RDF/",
-                    "DDICDIMODELS": self.path + "xdi_example_wds.jsonld"
-                }
-            }
+            "@vocab": "http://ddialliance.org/Specification/DDI-CDI/1.0/RDF/"
         }
+        # self.cdigraph.context = {
+        #     "DDICDIMODELS": {
+        #         "@context": {
+        #             "@vocab": "http://ddialliance.org/Specification/DDI-CDI/1.0/RDF/",
+        #             "DDICDIMODELS": self.path + "xdi_example_wds.jsonld"
+        #         }
+        #     }
+        # }
+        self.schemagraph = rdflib.Graph()
+        self.schemagraph.context = [
+            "https://docs.ddialliance.org/DDI-CDI/1.0/model/encoding/json-ld/ddi-cdi.jsonld",
+            {
+                "schema": "http://schema.org/",
+                "dcterms": "http://purl.org/dc/terms/",
+                "cdi": "http://ddialliance.org/Specification/DDI-CDI/1.0/RDF/",
+                "skos": "http://www.w3.org/2004/02/skos/core#",
+                "xas": "http://cdi4exas.org/",
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ]
 
     def checkURI(self, uri):
         if uri.startswith("http://") or uri.startswith("https://"):
@@ -42,6 +58,9 @@ class DataLearning:
 
     def load_data(self, format="json-ld"):
         self.g.parse(self.data_path, format=format)
+
+    def load_cdi(self, format="json-ld"):
+        self.cdigraph.parse(self.cdi_path, format=format)
 
     def get_data(self):
         return self.g
@@ -91,43 +110,93 @@ class DataLearning:
         for s in self.g.query(query):
             print(s)
 
-    def get_related_triples(self, graph, subject, predicate="skos:narrower"):
-        subject = f"<{self.checkURI(subject)}>"
-        self.nodes = []
+    def merged(self, field: str) -> str:
+        """
+        Where field is of format [[<value>]] then this function
+         finds the related value from the intermediate CDI SKOS graph created 
+         from parsed XDI file
+        
+        :param self: DataLearning class
+        :param field: the triple object to check 
+        :type field: str
+        :return: field input or related value
+        :rtype: str
+        """
+        match = re.search(r"\[\[(.*?)::(value|units)\]\]", field)
+        if (match is not None):
+            xas_concept = match.group(1)
+            value_units = match.group(2)
+
+            # first determine format of this XAS concept
+            # for this, necessary to replace with generic N if xas_concept ends in digit e.g., I0,I1, 
+            generic_xas_concept = re.sub(r'\d$', 'N', xas_concept)
+            concept_format:str = [triple[2] for triple in self.cdigraph.triples((URIRef(f"http://ddialliance.org/Specification/XAS/{generic_xas_concept}"),URIRef("http://ddialliance.org/Specification/XAS/format"),None))][0]
+            plus_units = True if concept_format.endswith("+ units") else False
+
+            concepts = xas_concept.split('.')
+            xas_triples = [triple for triple in self.cdigraph.triples((URIRef(f"https://ddi-cdi.org/label/{concepts[0]}"),URIRef(f"https://ddi-cdi.org/label/{concepts[1]}"),None))]
+            if len(xas_triples) == 0:
+                xas_triples = [triple for triple in self.cdigraph.triples((URIRef(f"https://ddi-cdi.org/label/{concepts[0]}"),URIRef(f"https://ddi-cdi.org/label/{concepts[1].capitalize()}"),None))]
+
+            for triple in xas_triples:
+                for i_triple in self.cdigraph.triples((triple[2],SKOS.definition,None)):
+                    # confirm plus_units
+                    plus_units = True if (plus_units and len(i_triple[2].split(' ')) > 1) else False
+                    if value_units == "value":
+                        return i_triple[2].rsplit(' ', 1)[1] if plus_units else i_triple[2]
+                    elif value_units == "units" and plus_units:
+                        return i_triple[2].rsplit(' ', 1)[0]
+                    elif value_units == "units":
+                        # necessary to find units via XAS/units
+                        xas_units:str = [triple[2] for triple in self.cdigraph.triples((URIRef(f"http://ddialliance.org/Specification/XAS/{generic_xas_concept}"),URIRef("http://ddialliance.org/Specification/XAS/units"),None))][0]
+                        if xas_units is not None:
+                            return xas_units
+        return field
+
+    def get_related_triples(self, graph, _subject)-> tuple[str,str,str]:
+        if self.DEBUG:
+            print("Get related triples for: ", _subject)
+        subject = f"<{self.checkURI(_subject)}>"
+        #self.nodes = []
         query = f"""
             PREFIX xdi: <http://www.w3.org/ns/xdi/core#>
             PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
             PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-            SELECT ?object ?predicate WHERE {{
-                {subject} {predicate} ?object .
+            PREFIX schema: <http://schema.org/>
+            SELECT ?predicate ?object WHERE {{
+                {subject} ?predicate ?object .
             }}
         """
-        #print(query)
         result = []
         for s in graph.query(query):
-            result.append(str(s[0]))
-            self.nodes.append(str(s[0]))
-            print("[DEBUG] ", s[0])
+            result.append((_subject, s[0], s[1]))
+            self.schemagraph.add((_subject, s[0], Literal(self.merged(s[1]))))
+        self.nodes.append(_subject)
         return result
 
-    def configurate_triples(self, value, graph=None):
-        self.DEBUG = True
+    def configurate_triples(self, value, graph=None)-> tuple[str,str,str]:
+        self.DEBUG = False
         if self.DEBUG:
             print("Configurate triples for: ", value)
+        triples = []
         for triple in graph.triples((None, None, None)):
             s, p, o = triple
             if value.lower() == str(s).lower():
                 if self.DEBUG:
                     print("\nS: ", triple)
-                self.cdigraph.add(triple)
+                self.schemagraph.add((s,p,Literal(self.merged(o))))
+                triples.append((s,p,o))
             if value.lower() == str(p).lower():
                 if self.DEBUG:
                     print("\tP: ", triple)
-                self.cdigraph.add(triple)
+                self.schemagraph.add((s,p,Literal(self.merged(o))))
+                triples.append((s,p,o))
             if value.lower() == str(o).lower():
                 if self.DEBUG:
                     print("\tO: ", triple)
-                self.cdigraph.add(triple)
+                self.schemagraph.add((s,p,Literal(self.merged(o))))
+                triples.append((s,p,o))
+        return triples
 
     
     def lookup_predicate(self, predicate):

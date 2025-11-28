@@ -1,0 +1,5395 @@
+{
+  "@context": {
+    "@vocab": "http://ddialliance.org/Specification/DDI-CDI/1.0/RDF/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "geosparql": "http://www.opengis.net/ont/geosparql#",
+    "spdx": "http://spdx.org/rdf/terms#",
+    "cdi": "http://ddialliance.org/Specification/DDI-CDI/1.0/RDF/",
+    "time": "http://www.w3.org/2006/time#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "nx": "https://xas.org/dictionary/",
+    "cdifq": "https://cdif.codata.org/concept/",
+    "prov": "http://www.w3.org/ns/prov#"
+  },
+  "@graph": [
+    {
+      "@context": {
+        "@vocab": "http://ddialliance.org/Specification/DDI-CDI/1.0/RDF/",
+        "schema": "https://schema.org/",
+        "dcterms": "http://purl.org/dc/terms/",
+        "geosparql": "http://www.opengis.net/ont/geosparql#",
+        "spdx": "http://spdx.org/rdf/terms#",
+        "cdi": "http://ddialliance.org/Specification/DDI-CDI/1.0/RDF/",
+        "time": "http://www.w3.org/2006/time#",
+        "skos": "http://www.w3.org/2004/02/skos/core#",
+        "nx": "https://xas.org/dictionary/",
+        "cdifq": "https://cdif.codata.org/concept/",
+        "prov": "http://www.w3.org/ns/prov#"
+      }
+    }
+  ],
+  "CDIGenerated": [
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Beamline.focusing",
+      "http://ddialliance.org/Specification/XAS/format": [
+        {
+          "@value": "free-format string"
+        }
+      ],
+      "http://ddialliance.org/Specification/XAS/units": [
+        {
+          "@value": "none"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "A concise statement about how beam focusing is provided"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Beamline.focusing"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Mono.d_spacing",
+      "http://ddialliance.org/Specification/XAS/format": [
+        {
+          "@value": "float"
+        }
+      ],
+      "http://ddialliance.org/Specification/XAS/units": [
+        {
+          "@value": "Å"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "The known d-spacing of the monochromator under operating conditions."
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Mono.d_spacing"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Element.reference",
+      "http://ddialliance.org/Specification/XAS/format": [
+        {
+          "@value": "atomic symbol (string)"
+        }
+      ],
+      "http://ddialliance.org/Specification/XAS/units": [
+        {
+          "@value": "none"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "The absorption edge of the reference spectrum. This is a recommended parameter for use in an XDI file containing a reference spectrum."
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Element.reference"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Scan",
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "Tags related to the parameters of the scan"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Scan"
+        }
+      ]
+    },
+    {
+      "@id": "https://ddi-cdi.org/label/Scan",
+      "http://www.w3.org/2004/02/skos/core#broader": [
+        {
+          "@id": "https://ddi-cdi.org/label/edge_energy"
+        },
+        {
+          "@id": "https://ddi-cdi.org/label/start_time__2008-04-10T21_58"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Scan"
+        }
+      ],
+      "https://ddi-cdi.org/label/edge_energy": [
+        {
+          "@id": "_:Ne8a3f0f937784f9eb43ccb7d3824283f"
+        }
+      ],
+      "https://ddi-cdi.org/label/start_time__2008-04-10T21_58": [
+        {
+          "@id": "_:N3a6f3cdaf90f4ad2a97845dce98f984d"
+        }
+      ]
+    },
+    {
+      "@id": "_:Ne8a3f0f937784f9eb43ccb7d3824283f",
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "12658.0"
+        }
+      ]
+    },
+    {
+      "@id": "_:N3a6f3cdaf90f4ad2a97845dce98f984d",
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "2008-04-10T21:58:50"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Sample.id",
+      "http://ddialliance.org/Specification/XAS/format": [
+        {
+          "@value": "free-format string"
+        }
+      ],
+      "http://ddialliance.org/Specification/XAS/units": [
+        {
+          "@value": "none"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "A number or string uniquely identifying the measured sample. This is intended for interoperation with a database or laboratory management software. It could be, for example, a bar code number."
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Sample.id"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Detector.iN",
+      "http://ddialliance.org/Specification/XAS/format": [
+        {
+          "@value": "free-format string"
+        }
+      ],
+      "http://ddialliance.org/Specification/XAS/units": [
+        {
+          "@value": "none"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "A description of how the incident flux was measured"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Detector.i0"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Facility",
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "Tags related to the synchrotron or other facility at which the measurement was made"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Facility"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Sample",
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "Tags related to the details of sample preparation and measurement"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Sample"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Beamline.collimation",
+      "http://ddialliance.org/Specification/XAS/format": [
+        {
+          "@value": "free-format string"
+        }
+      ],
+      "http://ddialliance.org/Specification/XAS/units": [
+        {
+          "@value": "none"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "A concise statement of how beam collimation is provided"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Beamline.collimation"
+        }
+      ]
+    },
+    {
+      "@id": "https://ddi-cdi.org/label/Facility",
+      "http://www.w3.org/2004/02/skos/core#broader": [
+        {
+          "@id": "https://ddi-cdi.org/label/name"
+        },
+        {
+          "@id": "https://ddi-cdi.org/label/energy"
+        },
+        {
+          "@id": "https://ddi-cdi.org/label/xray_source"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Facility"
+        }
+      ],
+      "https://ddi-cdi.org/label/energy": [
+        {
+          "@id": "_:N297fb52f2f424195aa035c7433238965"
+        }
+      ],
+      "https://ddi-cdi.org/label/name": [
+        {
+          "@id": "_:N734eec0e6f4d488faa0743c3ecb8b6c0"
+        }
+      ],
+      "https://ddi-cdi.org/label/xray_source": [
+        {
+          "@id": "_:Nf26d1e8c0a31433c8108c333d3eb37d8"
+        }
+      ]
+    },
+    {
+      "@id": "_:N734eec0e6f4d488faa0743c3ecb8b6c0",
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "APS"
+        }
+      ]
+    },
+    {
+      "@id": "_:N297fb52f2f424195aa035c7433238965",
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "7.00 GeV"
+        }
+      ]
+    },
+    {
+      "@id": "_:Nf26d1e8c0a31433c8108c333d3eb37d8",
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "APS bending magnet"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Column.1",
+      "http://ddialliance.org/Specification/XAS/format": [
+        {
+          "@value": "word + units"
+        }
+      ],
+      "http://ddialliance.org/Specification/XAS/units": [
+        {
+          "@value": "eV"
+        },
+        {
+          "@value": "keV"
+        },
+        {
+          "@value": "pixel"
+        },
+        {
+          "@value": "angle in degrees"
+        },
+        {
+          "@value": "angle in radians"
+        },
+        {
+          "@value": "steps"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "A description of the abscissa array for the measured data."
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Column.1"
+        }
+      ]
+    },
+    {
+      "@id": "https://ddi-cdi.org/label/Element",
+      "http://www.w3.org/2004/02/skos/core#broader": [
+        {
+          "@id": "https://ddi-cdi.org/label/edge"
+        },
+        {
+          "@id": "https://ddi-cdi.org/label/symbol"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Element"
+        }
+      ],
+      "https://ddi-cdi.org/label/edge": [
+        {
+          "@id": "_:Nf13960d504cc4741b2d8766a9192a6ea"
+        }
+      ],
+      "https://ddi-cdi.org/label/symbol": [
+        {
+          "@id": "_:N90c3015a7f254f0095c6775091bc6462"
+        }
+      ]
+    },
+    {
+      "@id": "_:Nf13960d504cc4741b2d8766a9192a6ea",
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "K"
+        }
+      ]
+    },
+    {
+      "@id": "_:N90c3015a7f254f0095c6775091bc6462",
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "Se"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Element.ref_edge",
+      "http://ddialliance.org/Specification/XAS/format": [
+        {
+          "@value": "edge label (string)"
+        }
+      ],
+      "http://ddialliance.org/Specification/XAS/units": [
+        {
+          "@value": "none"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": " The measured edge of the reference spectrum. This is a recommended parameter for use in an XDI file containing a reference spectrum."
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Element.ref_edge"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Scan.end_time",
+      "http://ddialliance.org/Specification/XAS/format": [
+        {
+          "@value": "http://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations"
+        }
+      ],
+      "http://ddialliance.org/Specification/XAS/units": [
+        {
+          "@value": "time"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "The ending time of the scan."
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Scan.end_time"
+        }
+      ]
+    },
+    {
+      "@id": "https://ddi-cdi.org/label/Sample",
+      "http://www.w3.org/2004/02/skos/core#broader": [
+        {
+          "@id": "https://ddi-cdi.org/label/name"
+        },
+        {
+          "@id": "https://ddi-cdi.org/label/prep"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Sample"
+        }
+      ],
+      "https://ddi-cdi.org/label/name": [
+        {
+          "@id": "_:N3eadbcc4efd04af88ec7bc7c94e322e2"
+        }
+      ],
+      "https://ddi-cdi.org/label/prep": [
+        {
+          "@id": "_:Ndc7102c33546453daac461eef5b62d67"
+        }
+      ]
+    },
+    {
+      "@id": "_:N3eadbcc4efd04af88ec7bc7c94e322e2",
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "Na2SeO4"
+        }
+      ]
+    },
+    {
+      "@id": "_:Ndc7102c33546453daac461eef5b62d67",
+      "http://www.w3.org/1999/02/22-rdf-syntax-ns#List": [
+        {
+          "@value": "12508.00"
+        },
+        {
+          "@value": ""
+        },
+        {
+          "@value": "2.000000"
+        },
+        {
+          "@value": "121961.4"
+        },
+        {
+          "@value": "559275.4"
+        },
+        {
+          "@value": "12513.00"
+        },
+        {
+          "@value": "120910.4"
+        },
+        {
+          "@value": "554974.4"
+        },
+        {
+          "@value": "12518.00"
+        },
+        {
+          "@value": "120177.4"
+        },
+        {
+          "@value": "551648.4"
+        },
+        {
+          "@value": "12523.00"
+        },
+        {
+          "@value": "119369.4"
+        },
+        {
+          "@value": "548592.4"
+        },
+        {
+          "@value": "12528.00"
+        },
+        {
+          "@value": "119664.4"
+        },
+        {
+          "@value": "550408.4"
+        },
+        {
+          "@value": "12533.00"
+        },
+        {
+          "@value": "120001.4"
+        },
+        {
+          "@value": "552350.4"
+        },
+        {
+          "@value": "12538.00"
+        },
+        {
+          "@value": "119744.4"
+        },
+        {
+          "@value": "551587.4"
+        },
+        {
+          "@value": "12543.00"
+        },
+        {
+          "@value": "119305.4"
+        },
+        {
+          "@value": "549955.4"
+        },
+        {
+          "@value": "12548.00"
+        },
+        {
+          "@value": "119301.4"
+        },
+        {
+          "@value": "550314.4"
+        },
+        {
+          "@value": "12553.00"
+        },
+        {
+          "@value": "119458.4"
+        },
+        {
+          "@value": "551479.4"
+        },
+        {
+          "@value": "12558.00"
+        },
+        {
+          "@value": "119437.4"
+        },
+        {
+          "@value": "551783.4"
+        },
+        {
+          "@value": "12563.00"
+        },
+        {
+          "@value": "119341.4"
+        },
+        {
+          "@value": "551697.4"
+        },
+        {
+          "@value": "12568.00"
+        },
+        {
+          "@value": "119495.4"
+        },
+        {
+          "@value": "552761.4"
+        },
+        {
+          "@value": "12573.00"
+        },
+        {
+          "@value": "119571.4"
+        },
+        {
+          "@value": "553541.4"
+        },
+        {
+          "@value": "12578.00"
+        },
+        {
+          "@value": "119526.4"
+        },
+        {
+          "@value": "553803.4"
+        },
+        {
+          "@value": "12583.00"
+        },
+        {
+          "@value": "119274.4"
+        },
+        {
+          "@value": "553011.4"
+        },
+        {
+          "@value": "12588.00"
+        },
+        {
+          "@value": "119078.4"
+        },
+        {
+          "@value": "552556.4"
+        },
+        {
+          "@value": "12593.00"
+        },
+        {
+          "@value": "119769.4"
+        },
+        {
+          "@value": "556051.4"
+        },
+        {
+          "@value": "12598.00"
+        },
+        {
+          "@value": "119531.4"
+        },
+        {
+          "@value": "555338.4"
+        },
+        {
+          "@value": "12603.00"
+        },
+        {
+          "@value": "119311.4"
+        },
+        {
+          "@value": "554659.4"
+        },
+        {
+          "@value": "12608.00"
+        },
+        {
+          "@value": "119477.4"
+        },
+        {
+          "@value": "555713.4"
+        },
+        {
+          "@value": "12613.00"
+        },
+        {
+          "@value": "119556.4"
+        },
+        {
+          "@value": "556547.4"
+        },
+        {
+          "@value": "12618.00"
+        },
+        {
+          "@value": "119474.4"
+        },
+        {
+          "@value": "556465.4"
+        },
+        {
+          "@value": "12623.00"
+        },
+        {
+          "@value": "119291.4"
+        },
+        {
+          "@value": "555855.4"
+        },
+        {
+          "@value": "12628.00"
+        },
+        {
+          "@value": "119360.4"
+        },
+        {
+          "@value": "556406.4"
+        },
+        {
+          "@value": "12633.00"
+        },
+        {
+          "@value": "119512.4"
+        },
+        {
+          "@value": "557247.4"
+        },
+        {
+          "@value": "12638.00"
+        },
+        {
+          "@value": "119345.4"
+        },
+        {
+          "@value": "556522.4"
+        },
+        {
+          "@value": "12643.00"
+        },
+        {
+          "@value": "119106.4"
+        },
+        {
+          "@value": "555033.4"
+        },
+        {
+          "@value": "12648.00"
+        },
+        {
+          "@value": "119222.4"
+        },
+        {
+          "@value": "554728.4"
+        },
+        {
+          "@value": "12648.25"
+        },
+        {
+          "@value": "119434.4"
+        },
+        {
+          "@value": "555577.4"
+        },
+        {
+          "@value": "12648.50"
+        },
+        {
+          "@value": "119601.4"
+        },
+        {
+          "@value": "556274.4"
+        },
+        {
+          "@value": "12648.75"
+        },
+        {
+          "@value": "119813.4"
+        },
+        {
+          "@value": "557246.4"
+        },
+        {
+          "@value": "12649.00"
+        },
+        {
+          "@value": "119833.4"
+        },
+        {
+          "@value": "557267.4"
+        },
+        {
+          "@value": "12649.25"
+        },
+        {
+          "@value": "119840.4"
+        },
+        {
+          "@value": "557311.4"
+        },
+        {
+          "@value": "12649.50"
+        },
+        {
+          "@value": "119809.4"
+        },
+        {
+          "@value": "556985.4"
+        },
+        {
+          "@value": "12649.75"
+        },
+        {
+          "@value": "119747.4"
+        },
+        {
+          "@value": "556555.4"
+        },
+        {
+          "@value": "12650.00"
+        },
+        {
+          "@value": "119683.4"
+        },
+        {
+          "@value": "556276.4"
+        },
+        {
+          "@value": "12650.25"
+        },
+        {
+          "@value": "119663.4"
+        },
+        {
+          "@value": "556048.4"
+        },
+        {
+          "@value": "12650.50"
+        },
+        {
+          "@value": "119686.4"
+        },
+        {
+          "@value": "555929.4"
+        },
+        {
+          "@value": "12650.75"
+        },
+        {
+          "@value": "119786.4"
+        },
+        {
+          "@value": "556389.4"
+        },
+        {
+          "@value": "12651.00"
+        },
+        {
+          "@value": "119720.4"
+        },
+        {
+          "@value": "555980.4"
+        },
+        {
+          "@value": "12651.25"
+        },
+        {
+          "@value": "119805.4"
+        },
+        {
+          "@value": "556131.4"
+        },
+        {
+          "@value": "12651.50"
+        },
+        {
+          "@value": "119695.4"
+        },
+        {
+          "@value": "555505.4"
+        },
+        {
+          "@value": "12651.75"
+        },
+        {
+          "@value": "555292.4"
+        },
+        {
+          "@value": "12652.00"
+        },
+        {
+          "@value": "119708.4"
+        },
+        {
+          "@value": "555234.4"
+        },
+        {
+          "@value": "12652.25"
+        },
+        {
+          "@value": "119671.4"
+        },
+        {
+          "@value": "555042.4"
+        },
+        {
+          "@value": "12652.50"
+        },
+        {
+          "@value": "119570.4"
+        },
+        {
+          "@value": "554261.4"
+        },
+        {
+          "@value": "12652.75"
+        },
+        {
+          "@value": "119674.4"
+        },
+        {
+          "@value": "554538.4"
+        },
+        {
+          "@value": "12653.00"
+        },
+        {
+          "@value": "553748.4"
+        },
+        {
+          "@value": "12653.25"
+        },
+        {
+          "@value": "119541.4"
+        },
+        {
+          "@value": "553577.4"
+        },
+        {
+          "@value": "12653.50"
+        },
+        {
+          "@value": "119538.4"
+        },
+        {
+          "@value": "553328.4"
+        },
+        {
+          "@value": "12653.75"
+        },
+        {
+          "@value": "119336.4"
+        },
+        {
+          "@value": "552020.4"
+        },
+        {
+          "@value": "12654.00"
+        },
+        {
+          "@value": "119409.4"
+        },
+        {
+          "@value": "552164.4"
+        },
+        {
+          "@value": "12654.25"
+        },
+        {
+          "@value": "119389.4"
+        },
+        {
+          "@value": "551684.4"
+        },
+        {
+          "@value": "12654.50"
+        },
+        {
+          "@value": "120168.4"
+        },
+        {
+          "@value": "554932.4"
+        },
+        {
+          "@value": "12654.75"
+        },
+        {
+          "@value": "120296.4"
+        },
+        {
+          "@value": "555266.4"
+        },
+        {
+          "@value": "12655.00"
+        },
+        {
+          "@value": "120381.4"
+        },
+        {
+          "@value": "555279.4"
+        },
+        {
+          "@value": "12655.25"
+        },
+        {
+          "@value": "120364.4"
+        },
+        {
+          "@value": "555035.4"
+        },
+        {
+          "@value": "12655.50"
+        },
+        {
+          "@value": "120275.4"
+        },
+        {
+          "@value": "553979.4"
+        },
+        {
+          "@value": "12655.75"
+        },
+        {
+          "@value": "120193.4"
+        },
+        {
+          "@value": "553069.4"
+        },
+        {
+          "@value": "12656.00"
+        },
+        {
+          "@value": "120152.4"
+        },
+        {
+          "@value": "552467.4"
+        },
+        {
+          "@value": "12656.25"
+        },
+        {
+          "@value": "120131.4"
+        },
+        {
+          "@value": "551689.4"
+        },
+        {
+          "@value": "12656.50"
+        },
+        {
+          "@value": "120146.4"
+        },
+        {
+          "@value": "551227.4"
+        },
+        {
+          "@value": "12656.75"
+        },
+        {
+          "@value": "120086.4"
+        },
+        {
+          "@value": "550098.4"
+        },
+        {
+          "@value": "12657.00"
+        },
+        {
+          "@value": "120063.4"
+        },
+        {
+          "@value": "549520.4"
+        },
+        {
+          "@value": "12657.25"
+        },
+        {
+          "@value": "120143.4"
+        },
+        {
+          "@value": "548906.4"
+        },
+        {
+          "@value": "12657.50"
+        },
+        {
+          "@value": "120134.4"
+        },
+        {
+          "@value": "548118.4"
+        },
+        {
+          "@value": "12657.75"
+        },
+        {
+          "@value": "120105.4"
+        },
+        {
+          "@value": "546952.4"
+        },
+        {
+          "@value": "12658.00"
+        },
+        {
+          "@value": "120102.4"
+        },
+        {
+          "@value": "545781.4"
+        },
+        {
+          "@value": "12658.25"
+        },
+        {
+          "@value": "120010.4"
+        },
+        {
+          "@value": "544520.4"
+        },
+        {
+          "@value": "12658.50"
+        },
+        {
+          "@value": "120064.4"
+        },
+        {
+          "@value": "543424.4"
+        },
+        {
+          "@value": "12658.75"
+        },
+        {
+          "@value": "120043.4"
+        },
+        {
+          "@value": "542142.4"
+        },
+        {
+          "@value": "12659.00"
+        },
+        {
+          "@value": "119979.4"
+        },
+        {
+          "@value": "540336.4"
+        },
+        {
+          "@value": "12659.25"
+        },
+        {
+          "@value": "120036.4"
+        },
+        {
+          "@value": "538582.4"
+        },
+        {
+          "@value": "12659.50"
+        },
+        {
+          "@value": "119929.4"
+        },
+        {
+          "@value": "536521.4"
+        },
+        {
+          "@value": "12659.75"
+        },
+        {
+          "@value": "119863.4"
+        },
+        {
+          "@value": "533836.4"
+        },
+        {
+          "@value": "12660.00"
+        },
+        {
+          "@value": "532408.4"
+        },
+        {
+          "@value": "12660.25"
+        },
+        {
+          "@value": "119935.4"
+        },
+        {
+          "@value": "528918.4"
+        },
+        {
+          "@value": "12660.50"
+        },
+        {
+          "@value": "119977.4"
+        },
+        {
+          "@value": "526326.4"
+        },
+        {
+          "@value": "12660.75"
+        },
+        {
+          "@value": "119923.4"
+        },
+        {
+          "@value": "521651.4"
+        },
+        {
+          "@value": "12661.00"
+        },
+        {
+          "@value": "119931.4"
+        },
+        {
+          "@value": "516260.4"
+        },
+        {
+          "@value": "12661.25"
+        },
+        {
+          "@value": "119991.4"
+        },
+        {
+          "@value": "511760.4"
+        },
+        {
+          "@value": "12661.50"
+        },
+        {
+          "@value": "119934.4"
+        },
+        {
+          "@value": "503959.4"
+        },
+        {
+          "@value": "12661.75"
+        },
+        {
+          "@value": "119868.4"
+        },
+        {
+          "@value": "497017.4"
+        },
+        {
+          "@value": "12662.00"
+        },
+        {
+          "@value": "119937.4"
+        },
+        {
+          "@value": "487186.4"
+        },
+        {
+          "@value": "12662.25"
+        },
+        {
+          "@value": "119851.4"
+        },
+        {
+          "@value": "478238.4"
+        },
+        {
+          "@value": "12662.50"
+        },
+        {
+          "@value": "119853.4"
+        },
+        {
+          "@value": "465064.4"
+        },
+        {
+          "@value": "12662.75"
+        },
+        {
+          "@value": "119819.4"
+        },
+        {
+          "@value": "448437.4"
+        },
+        {
+          "@value": "12663.00"
+        },
+        {
+          "@value": "119862.4"
+        },
+        {
+          "@value": "435173.4"
+        },
+        {
+          "@value": "12663.25"
+        },
+        {
+          "@value": "119912.4"
+        },
+        {
+          "@value": "414199.4"
+        },
+        {
+          "@value": "12663.50"
+        },
+        {
+          "@value": "119856.4"
+        },
+        {
+          "@value": "397297.4"
+        },
+        {
+          "@value": "12663.75"
+        },
+        {
+          "@value": "119807.4"
+        },
+        {
+          "@value": "372088.4"
+        },
+        {
+          "@value": "12664.00"
+        },
+        {
+          "@value": "119927.4"
+        },
+        {
+          "@value": "346593.4"
+        },
+        {
+          "@value": "12664.25"
+        },
+        {
+          "@value": "119875.4"
+        },
+        {
+          "@value": "328561.4"
+        },
+        {
+          "@value": "12664.50"
+        },
+        {
+          "@value": "119785.4"
+        },
+        {
+          "@value": "305883.4"
+        },
+        {
+          "@value": "12664.75"
+        },
+        {
+          "@value": "119735.4"
+        },
+        {
+          "@value": "292449.4"
+        },
+        {
+          "@value": "12665.00"
+        },
+        {
+          "@value": "119736.4"
+        },
+        {
+          "@value": "280648.4"
+        },
+        {
+          "@value": "12665.25"
+        },
+        {
+          "@value": "119789.4"
+        },
+        {
+          "@value": "277049.4"
+        },
+        {
+          "@value": "12665.50"
+        },
+        {
+          "@value": "279649.4"
+        },
+        {
+          "@value": "12665.75"
+        },
+        {
+          "@value": "119753.4"
+        },
+        {
+          "@value": "289728.4"
+        },
+        {
+          "@value": "12666.00"
+        },
+        {
+          "@value": "119755.4"
+        },
+        {
+          "@value": "301240.4"
+        },
+        {
+          "@value": "12666.25"
+        },
+        {
+          "@value": "119656.4"
+        },
+        {
+          "@value": "321226.4"
+        },
+        {
+          "@value": "12666.50"
+        },
+        {
+          "@value": "119619.4"
+        },
+        {
+          "@value": "337714.4"
+        },
+        {
+          "@value": "12666.75"
+        },
+        {
+          "@value": "119681.4"
+        },
+        {
+          "@value": "360302.4"
+        },
+        {
+          "@value": "12667.00"
+        },
+        {
+          "@value": "119653.4"
+        },
+        {
+          "@value": "375962.4"
+        },
+        {
+          "@value": "12667.25"
+        },
+        {
+          "@value": "395947.4"
+        },
+        {
+          "@value": "12667.50"
+        },
+        {
+          "@value": "119550.4"
+        },
+        {
+          "@value": "411316.4"
+        },
+        {
+          "@value": "12667.75"
+        },
+        {
+          "@value": "119924.4"
+        },
+        {
+          "@value": "422547.4"
+        },
+        {
+          "@value": "12668.00"
+        },
+        {
+          "@value": "120294.4"
+        },
+        {
+          "@value": "435053.4"
+        },
+        {
+          "@value": "12668.25"
+        },
+        {
+          "@value": "120172.4"
+        },
+        {
+          "@value": "440569.4"
+        },
+        {
+          "@value": "12668.50"
+        },
+        {
+          "@value": "120180.4"
+        },
+        {
+          "@value": "447095.4"
+        },
+        {
+          "@value": "12668.75"
+        },
+        {
+          "@value": "120153.4"
+        },
+        {
+          "@value": "450869.4"
+        },
+        {
+          "@value": "12669.00"
+        },
+        {
+          "@value": "120107.4"
+        },
+        {
+          "@value": "455186.4"
+        },
+        {
+          "@value": "12669.25"
+        },
+        {
+          "@value": "120181.4"
+        },
+        {
+          "@value": "459053.4"
+        },
+        {
+          "@value": "12669.50"
+        },
+        {
+          "@value": "120190.4"
+        },
+        {
+          "@value": "461307.4"
+        },
+        {
+          "@value": "12669.75"
+        },
+        {
+          "@value": "120065.4"
+        },
+        {
+          "@value": "463525.4"
+        },
+        {
+          "@value": "12670.00"
+        },
+        {
+          "@value": "120136.4"
+        },
+        {
+          "@value": "465471.4"
+        },
+        {
+          "@value": "12670.25"
+        },
+        {
+          "@value": "120088.4"
+        },
+        {
+          "@value": "466827.4"
+        },
+        {
+          "@value": "12670.50"
+        },
+        {
+          "@value": "119995.4"
+        },
+        {
+          "@value": "467561.4"
+        },
+        {
+          "@value": "12670.75"
+        },
+        {
+          "@value": "120154.4"
+        },
+        {
+          "@value": "468832.4"
+        },
+        {
+          "@value": "12671.00"
+        },
+        {
+          "@value": "120047.4"
+        },
+        {
+          "@value": "468654.4"
+        },
+        {
+          "@value": "12671.25"
+        },
+        {
+          "@value": "120090.4"
+        },
+        {
+          "@value": "468768.4"
+        },
+        {
+          "@value": "12671.50"
+        },
+        {
+          "@value": "120019.4"
+        },
+        {
+          "@value": "467975.4"
+        },
+        {
+          "@value": "12671.75"
+        },
+        {
+          "@value": "120021.4"
+        },
+        {
+          "@value": "467349.4"
+        },
+        {
+          "@value": "12672.00"
+        },
+        {
+          "@value": "120138.4"
+        },
+        {
+          "@value": "467021.4"
+        },
+        {
+          "@value": "12672.25"
+        },
+        {
+          "@value": "120077.4"
+        },
+        {
+          "@value": "466078.4"
+        },
+        {
+          "@value": "12672.50"
+        },
+        {
+          "@value": "119970.4"
+        },
+        {
+          "@value": "464762.4"
+        },
+        {
+          "@value": "12672.75"
+        },
+        {
+          "@value": "119968.4"
+        },
+        {
+          "@value": "463926.4"
+        },
+        {
+          "@value": "12673.00"
+        },
+        {
+          "@value": "119920.4"
+        },
+        {
+          "@value": "463123.4"
+        },
+        {
+          "@value": "12673.25"
+        },
+        {
+          "@value": "120040.4"
+        },
+        {
+          "@value": "463116.4"
+        },
+        {
+          "@value": "12673.50"
+        },
+        {
+          "@value": "120053.4"
+        },
+        {
+          "@value": "463018.4"
+        },
+        {
+          "@value": "12673.75"
+        },
+        {
+          "@value": "120060.4"
+        },
+        {
+          "@value": "463159.4"
+        },
+        {
+          "@value": "12674.00"
+        },
+        {
+          "@value": "120100.4"
+        },
+        {
+          "@value": "463502.4"
+        },
+        {
+          "@value": "12674.25"
+        },
+        {
+          "@value": "119930.4"
+        },
+        {
+          "@value": "463702.4"
+        },
+        {
+          "@value": "12674.50"
+        },
+        {
+          "@value": "119848.4"
+        },
+        {
+          "@value": "464488.4"
+        },
+        {
+          "@value": "12674.75"
+        },
+        {
+          "@value": "119999.4"
+        },
+        {
+          "@value": "465987.4"
+        },
+        {
+          "@value": "12675.00"
+        },
+        {
+          "@value": "120015.4"
+        },
+        {
+          "@value": "467672.4"
+        },
+        {
+          "@value": "12675.25"
+        },
+        {
+          "@value": "120079.4"
+        },
+        {
+          "@value": "469143.4"
+        },
+        {
+          "@value": "12675.50"
+        },
+        {
+          "@value": "120039.4"
+        },
+        {
+          "@value": "470294.4"
+        },
+        {
+          "@value": "12675.75"
+        },
+        {
+          "@value": "119880.4"
+        },
+        {
+          "@value": "470738.4"
+        },
+        {
+          "@value": "12676.00"
+        },
+        {
+          "@value": "119969.4"
+        },
+        {
+          "@value": "472046.4"
+        },
+        {
+          "@value": "12676.25"
+        },
+        {
+          "@value": "119888.4"
+        },
+        {
+          "@value": "472590.4"
+        },
+        {
+          "@value": "12676.50"
+        },
+        {
+          "@value": "119997.4"
+        },
+        {
+          "@value": "473333.4"
+        },
+        {
+          "@value": "12676.75"
+        },
+        {
+          "@value": "119897.4"
+        },
+        {
+          "@value": "473172.4"
+        },
+        {
+          "@value": "12677.00"
+        },
+        {
+          "@value": "472847.4"
+        },
+        {
+          "@value": "12677.25"
+        },
+        {
+          "@value": "119933.4"
+        },
+        {
+          "@value": "472873.4"
+        },
+        {
+          "@value": "12677.50"
+        },
+        {
+          "@value": "119889.4"
+        },
+        {
+          "@value": "472233.4"
+        },
+        {
+          "@value": "12677.75"
+        },
+        {
+          "@value": "119915.4"
+        },
+        {
+          "@value": "471371.4"
+        },
+        {
+          "@value": "12678.00"
+        },
+        {
+          "@value": "470061.4"
+        },
+        {
+          "@value": "12678.25"
+        },
+        {
+          "@value": "119900.4"
+        },
+        {
+          "@value": "468566.4"
+        },
+        {
+          "@value": "12678.50"
+        },
+        {
+          "@value": "119910.4"
+        },
+        {
+          "@value": "466542.4"
+        },
+        {
+          "@value": "12678.75"
+        },
+        {
+          "@value": "464585.4"
+        },
+        {
+          "@value": "12679.00"
+        },
+        {
+          "@value": "119749.4"
+        },
+        {
+          "@value": "461752.4"
+        },
+        {
+          "@value": "12679.25"
+        },
+        {
+          "@value": "119798.4"
+        },
+        {
+          "@value": "459957.4"
+        },
+        {
+          "@value": "12679.50"
+        },
+        {
+          "@value": "119778.4"
+        },
+        {
+          "@value": "457423.4"
+        },
+        {
+          "@value": "12679.75"
+        },
+        {
+          "@value": "119712.4"
+        },
+        {
+          "@value": "455730.4"
+        },
+        {
+          "@value": "12680.00"
+        },
+        {
+          "@value": "119727.4"
+        },
+        {
+          "@value": "453842.4"
+        },
+        {
+          "@value": "12680.25"
+        },
+        {
+          "@value": "119791.4"
+        },
+        {
+          "@value": "452609.4"
+        },
+        {
+          "@value": "12680.50"
+        },
+        {
+          "@value": "119810.4"
+        },
+        {
+          "@value": "452074.4"
+        },
+        {
+          "@value": "12680.75"
+        },
+        {
+          "@value": "119794.4"
+        },
+        {
+          "@value": "451529.4"
+        },
+        {
+          "@value": "12681.00"
+        },
+        {
+          "@value": "451194.4"
+        },
+        {
+          "@value": "12681.25"
+        },
+        {
+          "@value": "120368.4"
+        },
+        {
+          "@value": "453800.4"
+        },
+        {
+          "@value": "12681.50"
+        },
+        {
+          "@value": "120234.4"
+        },
+        {
+          "@value": "453660.4"
+        },
+        {
+          "@value": "12681.75"
+        },
+        {
+          "@value": "120346.4"
+        },
+        {
+          "@value": "454639.4"
+        },
+        {
+          "@value": "12682.00"
+        },
+        {
+          "@value": "120433.4"
+        },
+        {
+          "@value": "455704.4"
+        },
+        {
+          "@value": "12682.25"
+        },
+        {
+          "@value": "120386.4"
+        },
+        {
+          "@value": "456142.4"
+        },
+        {
+          "@value": "12682.50"
+        },
+        {
+          "@value": "120301.4"
+        },
+        {
+          "@value": "456786.4"
+        },
+        {
+          "@value": "12682.75"
+        },
+        {
+          "@value": "456954.4"
+        },
+        {
+          "@value": "12683.00"
+        },
+        {
+          "@value": "120111.4"
+        },
+        {
+          "@value": "457773.4"
+        },
+        {
+          "@value": "12683.25"
+        },
+        {
+          "@value": "120263.4"
+        },
+        {
+          "@value": "459116.4"
+        },
+        {
+          "@value": "12683.50"
+        },
+        {
+          "@value": "120252.4"
+        },
+        {
+          "@value": "460083.4"
+        },
+        {
+          "@value": "12683.75"
+        },
+        {
+          "@value": "120279.4"
+        },
+        {
+          "@value": "461331.4"
+        },
+        {
+          "@value": "12684.00"
+        },
+        {
+          "@value": "120327.4"
+        },
+        {
+          "@value": "462279.4"
+        },
+        {
+          "@value": "12684.25"
+        },
+        {
+          "@value": "120312.4"
+        },
+        {
+          "@value": "463266.4"
+        },
+        {
+          "@value": "12684.50"
+        },
+        {
+          "@value": "120278.4"
+        },
+        {
+          "@value": "464012.4"
+        },
+        {
+          "@value": "12684.75"
+        },
+        {
+          "@value": "120187.4"
+        },
+        {
+          "@value": "464554.4"
+        },
+        {
+          "@value": "12685.00"
+        },
+        {
+          "@value": "120110.4"
+        },
+        {
+          "@value": "464980.4"
+        },
+        {
+          "@value": "12685.25"
+        },
+        {
+          "@value": "466394.4"
+        },
+        {
+          "@value": "12685.50"
+        },
+        {
+          "@value": "120231.4"
+        },
+        {
+          "@value": "466913.4"
+        },
+        {
+          "@value": "12685.75"
+        },
+        {
+          "@value": "120196.4"
+        },
+        {
+          "@value": "467386.4"
+        },
+        {
+          "@value": "12686.00"
+        },
+        {
+          "@value": "120116.4"
+        },
+        {
+          "@value": "467735.4"
+        },
+        {
+          "@value": "12686.25"
+        },
+        {
+          "@value": "468207.4"
+        },
+        {
+          "@value": "12686.50"
+        },
+        {
+          "@value": "120216.4"
+        },
+        {
+          "@value": "469218.4"
+        },
+        {
+          "@value": "12686.75"
+        },
+        {
+          "@value": "120130.4"
+        },
+        {
+          "@value": "469353.4"
+        },
+        {
+          "@value": "12687.00"
+        },
+        {
+          "@value": "120167.4"
+        },
+        {
+          "@value": "469983.4"
+        },
+        {
+          "@value": "12687.25"
+        },
+        {
+          "@value": "120194.4"
+        },
+        {
+          "@value": "470513.4"
+        },
+        {
+          "@value": "12687.50"
+        },
+        {
+          "@value": "120124.4"
+        },
+        {
+          "@value": "470831.4"
+        },
+        {
+          "@value": "12687.75"
+        },
+        {
+          "@value": "120157.4"
+        },
+        {
+          "@value": "471562.4"
+        },
+        {
+          "@value": "12688.00"
+        },
+        {
+          "@value": "472362.4"
+        },
+        {
+          "@value": "12688.86"
+        },
+        {
+          "@value": "120009.4"
+        },
+        {
+          "@value": "473957.4"
+        },
+        {
+          "@value": "12689.73"
+        },
+        {
+          "@value": "120004.4"
+        },
+        {
+          "@value": "476539.4"
+        },
+        {
+          "@value": "12690.62"
+        },
+        {
+          "@value": "119989.4"
+        },
+        {
+          "@value": "478883.4"
+        },
+        {
+          "@value": "12691.52"
+        },
+        {
+          "@value": "120012.4"
+        },
+        {
+          "@value": "481550.4"
+        },
+        {
+          "@value": "12692.43"
+        },
+        {
+          "@value": "120029.4"
+        },
+        {
+          "@value": "484210.4"
+        },
+        {
+          "@value": "12693.35"
+        },
+        {
+          "@value": "119985.4"
+        },
+        {
+          "@value": "486272.4"
+        },
+        {
+          "@value": "12694.28"
+        },
+        {
+          "@value": "119867.4"
+        },
+        {
+          "@value": "487772.4"
+        },
+        {
+          "@value": "12695.23"
+        },
+        {
+          "@value": "119820.4"
+        },
+        {
+          "@value": "489192.4"
+        },
+        {
+          "@value": "12696.19"
+        },
+        {
+          "@value": "490409.4"
+        },
+        {
+          "@value": "12697.16"
+        },
+        {
+          "@value": "119632.4"
+        },
+        {
+          "@value": "491207.4"
+        },
+        {
+          "@value": "12698.14"
+        },
+        {
+          "@value": "120051.4"
+        },
+        {
+          "@value": "494253.4"
+        },
+        {
+          "@value": "12699.13"
+        },
+        {
+          "@value": "120034.4"
+        },
+        {
+          "@value": "495638.4"
+        },
+        {
+          "@value": "12700.14"
+        },
+        {
+          "@value": "120018.4"
+        },
+        {
+          "@value": "497011.4"
+        },
+        {
+          "@value": "12701.16"
+        },
+        {
+          "@value": "497765.4"
+        },
+        {
+          "@value": "12702.19"
+        },
+        {
+          "@value": "498616.4"
+        },
+        {
+          "@value": "12703.24"
+        },
+        {
+          "@value": "119864.4"
+        },
+        {
+          "@value": "499618.4"
+        },
+        {
+          "@value": "12704.29"
+        },
+        {
+          "@value": "119839.4"
+        },
+        {
+          "@value": "499969.4"
+        },
+        {
+          "@value": "12705.36"
+        },
+        {
+          "@value": "119895.4"
+        },
+        {
+          "@value": "500056.4"
+        },
+        {
+          "@value": "12706.44"
+        },
+        {
+          "@value": "119795.4"
+        },
+        {
+          "@value": "498838.4"
+        },
+        {
+          "@value": "12707.53"
+        },
+        {
+          "@value": "497451.4"
+        },
+        {
+          "@value": "12708.64"
+        },
+        {
+          "@value": "119792.4"
+        },
+        {
+          "@value": "495216.4"
+        },
+        {
+          "@value": "12709.75"
+        },
+        {
+          "@value": "119717.4"
+        },
+        {
+          "@value": "492884.4"
+        },
+        {
+          "@value": "12710.88"
+        },
+        {
+          "@value": "491157.4"
+        },
+        {
+          "@value": "12712.02"
+        },
+        {
+          "@value": "119832.4"
+        },
+        {
+          "@value": "489694.4"
+        },
+        {
+          "@value": "12713.18"
+        },
+        {
+          "@value": "489095.4"
+        },
+        {
+          "@value": "12714.34"
+        },
+        {
+          "@value": "119953.4"
+        },
+        {
+          "@value": "488814.4"
+        },
+        {
+          "@value": "12715.52"
+        },
+        {
+          "@value": "119745.4"
+        },
+        {
+          "@value": "487542.4"
+        },
+        {
+          "@value": "12716.71"
+        },
+        {
+          "@value": "119728.4"
+        },
+        {
+          "@value": "487093.4"
+        },
+        {
+          "@value": "12717.91"
+        },
+        {
+          "@value": "119822.4"
+        },
+        {
+          "@value": "487271.4"
+        },
+        {
+          "@value": "12719.13"
+        },
+        {
+          "@value": "119788.4"
+        },
+        {
+          "@value": "486772.4"
+        },
+        {
+          "@value": "12720.35"
+        },
+        {
+          "@value": "119765.4"
+        },
+        {
+          "@value": "486374.4"
+        },
+        {
+          "@value": "12721.59"
+        },
+        {
+          "@value": "119838.4"
+        },
+        {
+          "@value": "486046.4"
+        },
+        {
+          "@value": "12722.84"
+        },
+        {
+          "@value": "484476.4"
+        },
+        {
+          "@value": "12724.10"
+        },
+        {
+          "@value": "119787.4"
+        },
+        {
+          "@value": "483741.4"
+        },
+        {
+          "@value": "12725.38"
+        },
+        {
+          "@value": "119815.4"
+        },
+        {
+          "@value": "483013.4"
+        },
+        {
+          "@value": "12726.67"
+        },
+        {
+          "@value": "119784.4"
+        },
+        {
+          "@value": "482686.4"
+        },
+        {
+          "@value": "12727.96"
+        },
+        {
+          "@value": "119802.4"
+        },
+        {
+          "@value": "482909.4"
+        },
+        {
+          "@value": "12729.28"
+        },
+        {
+          "@value": "482646.4"
+        },
+        {
+          "@value": "12730.60"
+        },
+        {
+          "@value": "482319.4"
+        },
+        {
+          "@value": "12731.94"
+        },
+        {
+          "@value": "119699.4"
+        },
+        {
+          "@value": "482452.4"
+        },
+        {
+          "@value": "12733.28"
+        },
+        {
+          "@value": "119611.4"
+        },
+        {
+          "@value": "481495.4"
+        },
+        {
+          "@value": "12734.64"
+        },
+        {
+          "@value": "119491.4"
+        },
+        {
+          "@value": "480162.4"
+        },
+        {
+          "@value": "12736.02"
+        },
+        {
+          "@value": "119450.4"
+        },
+        {
+          "@value": "479077.4"
+        },
+        {
+          "@value": "12737.40"
+        },
+        {
+          "@value": "119507.4"
+        },
+        {
+          "@value": "478214.4"
+        },
+        {
+          "@value": "12738.80"
+        },
+        {
+          "@value": "119483.4"
+        },
+        {
+          "@value": "477224.4"
+        },
+        {
+          "@value": "12740.21"
+        },
+        {
+          "@value": "119086.4"
+        },
+        {
+          "@value": "474644.4"
+        },
+        {
+          "@value": "12741.63"
+        },
+        {
+          "@value": "119902.4"
+        },
+        {
+          "@value": "476987.4"
+        },
+        {
+          "@value": "12743.06"
+        },
+        {
+          "@value": "119650.4"
+        },
+        {
+          "@value": "475519.4"
+        },
+        {
+          "@value": "12744.51"
+        },
+        {
+          "@value": "119509.4"
+        },
+        {
+          "@value": "474961.4"
+        },
+        {
+          "@value": "12745.96"
+        },
+        {
+          "@value": "119537.4"
+        },
+        {
+          "@value": "475339.4"
+        },
+        {
+          "@value": "12747.43"
+        },
+        {
+          "@value": "119572.4"
+        },
+        {
+          "@value": "475769.4"
+        },
+        {
+          "@value": "12748.92"
+        },
+        {
+          "@value": "119536.4"
+        },
+        {
+          "@value": "475919.4"
+        },
+        {
+          "@value": "12750.41"
+        },
+        {
+          "@value": "475865.4"
+        },
+        {
+          "@value": "12751.92"
+        },
+        {
+          "@value": "119368.4"
+        },
+        {
+          "@value": "475822.4"
+        },
+        {
+          "@value": "12753.44"
+        },
+        {
+          "@value": "119325.4"
+        },
+        {
+          "@value": "476029.4"
+        },
+        {
+          "@value": "12754.97"
+        },
+        {
+          "@value": "119494.4"
+        },
+        {
+          "@value": "477206.4"
+        },
+        {
+          "@value": "12756.51"
+        },
+        {
+          "@value": "119520.4"
+        },
+        {
+          "@value": "477742.4"
+        },
+        {
+          "@value": "12758.06"
+        },
+        {
+          "@value": "119496.4"
+        },
+        {
+          "@value": "478114.4"
+        },
+        {
+          "@value": "12759.63"
+        },
+        {
+          "@value": "119349.4"
+        },
+        {
+          "@value": "477923.4"
+        },
+        {
+          "@value": "12761.21"
+        },
+        {
+          "@value": "119321.4"
+        },
+        {
+          "@value": "478311.4"
+        },
+        {
+          "@value": "12762.80"
+        },
+        {
+          "@value": "119390.4"
+        },
+        {
+          "@value": "479181.4"
+        },
+        {
+          "@value": "12764.41"
+        },
+        {
+          "@value": "119567.4"
+        },
+        {
+          "@value": "480345.4"
+        },
+        {
+          "@value": "12766.02"
+        },
+        {
+          "@value": "479938.4"
+        },
+        {
+          "@value": "12767.65"
+        },
+        {
+          "@value": "119300.4"
+        },
+        {
+          "@value": "480153.4"
+        },
+        {
+          "@value": "12769.29"
+        },
+        {
+          "@value": "119260.4"
+        },
+        {
+          "@value": "480426.4"
+        },
+        {
+          "@value": "12770.94"
+        },
+        {
+          "@value": "119168.4"
+        },
+        {
+          "@value": "480346.4"
+        },
+        {
+          "@value": "12772.61"
+        },
+        {
+          "@value": "118617.4"
+        },
+        {
+          "@value": "478529.4"
+        },
+        {
+          "@value": "12774.29"
+        },
+        {
+          "@value": "119528.4"
+        },
+        {
+          "@value": "482349.4"
+        },
+        {
+          "@value": "12775.97"
+        },
+        {
+          "@value": "482609.4"
+        },
+        {
+          "@value": "12777.68"
+        },
+        {
+          "@value": "482080.4"
+        },
+        {
+          "@value": "12779.39"
+        },
+        {
+          "@value": "119233.4"
+        },
+        {
+          "@value": "482570.4"
+        },
+        {
+          "@value": "12781.11"
+        },
+        {
+          "@value": "119386.4"
+        },
+        {
+          "@value": "483943.4"
+        },
+        {
+          "@value": "12782.85"
+        },
+        {
+          "@value": "119408.4"
+        },
+        {
+          "@value": "484980.4"
+        },
+        {
+          "@value": "12784.60"
+        },
+        {
+          "@value": "119371.4"
+        },
+        {
+          "@value": "485764.4"
+        },
+        {
+          "@value": "12786.36"
+        },
+        {
+          "@value": "119264.4"
+        },
+        {
+          "@value": "486137.4"
+        },
+        {
+          "@value": "12788.14"
+        },
+        {
+          "@value": "119188.4"
+        },
+        {
+          "@value": "486652.4"
+        },
+        {
+          "@value": "12789.92"
+        },
+        {
+          "@value": "119145.4"
+        },
+        {
+          "@value": "487131.4"
+        },
+        {
+          "@value": "12791.72"
+        },
+        {
+          "@value": "119178.4"
+        },
+        {
+          "@value": "487815.4"
+        },
+        {
+          "@value": "12793.54"
+        },
+        {
+          "@value": "119504.4"
+        },
+        {
+          "@value": "489760.4"
+        },
+        {
+          "@value": "12795.36"
+        },
+        {
+          "@value": "491960.4"
+        },
+        {
+          "@value": "12797.19"
+        },
+        {
+          "@value": "492060.4"
+        },
+        {
+          "@value": "12799.04"
+        },
+        {
+          "@value": "491679.4"
+        },
+        {
+          "@value": "12800.90"
+        },
+        {
+          "@value": "119508.4"
+        },
+        {
+          "@value": "491107.4"
+        },
+        {
+          "@value": "12802.77"
+        },
+        {
+          "@value": "118901.4"
+        },
+        {
+          "@value": "488887.4"
+        },
+        {
+          "@value": "12804.66"
+        },
+        {
+          "@value": "120224.4"
+        },
+        {
+          "@value": "494553.4"
+        },
+        {
+          "@value": "12806.55"
+        },
+        {
+          "@value": "120099.4"
+        },
+        {
+          "@value": "494099.4"
+        },
+        {
+          "@value": "12808.46"
+        },
+        {
+          "@value": "119828.4"
+        },
+        {
+          "@value": "493035.4"
+        },
+        {
+          "@value": "12810.38"
+        },
+        {
+          "@value": "492913.4"
+        },
+        {
+          "@value": "12812.31"
+        },
+        {
+          "@value": "119631.4"
+        },
+        {
+          "@value": "491966.4"
+        },
+        {
+          "@value": "12814.26"
+        },
+        {
+          "@value": "119545.4"
+        },
+        {
+          "@value": "491621.4"
+        },
+        {
+          "@value": "12816.21"
+        },
+        {
+          "@value": "119672.4"
+        },
+        {
+          "@value": "492024.4"
+        },
+        {
+          "@value": "12818.18"
+        },
+        {
+          "@value": "492115.4"
+        },
+        {
+          "@value": "12820.17"
+        },
+        {
+          "@value": "119714.4"
+        },
+        {
+          "@value": "491889.4"
+        },
+        {
+          "@value": "12822.16"
+        },
+        {
+          "@value": "119676.4"
+        },
+        {
+          "@value": "491699.4"
+        },
+        {
+          "@value": "12824.17"
+        },
+        {
+          "@value": "119610.4"
+        },
+        {
+          "@value": "491193.4"
+        },
+        {
+          "@value": "12826.18"
+        },
+        {
+          "@value": "119763.4"
+        },
+        {
+          "@value": "491669.4"
+        },
+        {
+          "@value": "12828.21"
+        },
+        {
+          "@value": "119625.4"
+        },
+        {
+          "@value": "491199.4"
+        },
+        {
+          "@value": "12830.25"
+        },
+        {
+          "@value": "119648.4"
+        },
+        {
+          "@value": "491256.4"
+        },
+        {
+          "@value": "12832.31"
+        },
+        {
+          "@value": "119721.4"
+        },
+        {
+          "@value": "491637.4"
+        },
+        {
+          "@value": "12834.38"
+        },
+        {
+          "@value": "491426.4"
+        },
+        {
+          "@value": "12836.46"
+        },
+        {
+          "@value": "491148.4"
+        },
+        {
+          "@value": "12838.55"
+        },
+        {
+          "@value": "119306.4"
+        },
+        {
+          "@value": "489720.4"
+        },
+        {
+          "@value": "12840.65"
+        },
+        {
+          "@value": "489058.4"
+        },
+        {
+          "@value": "12842.76"
+        },
+        {
+          "@value": "119865.4"
+        },
+        {
+          "@value": "491803.4"
+        },
+        {
+          "@value": "12844.89"
+        },
+        {
+          "@value": "491211.4"
+        },
+        {
+          "@value": "12847.03"
+        },
+        {
+          "@value": "119667.4"
+        },
+        {
+          "@value": "490848.4"
+        },
+        {
+          "@value": "12849.18"
+        },
+        {
+          "@value": "119620.4"
+        },
+        {
+          "@value": "490867.4"
+        },
+        {
+          "@value": "12851.35"
+        },
+        {
+          "@value": "119546.4"
+        },
+        {
+          "@value": "490611.4"
+        },
+        {
+          "@value": "12853.52"
+        },
+        {
+          "@value": "119383.4"
+        },
+        {
+          "@value": "489892.4"
+        },
+        {
+          "@value": "12855.71"
+        },
+        {
+          "@value": "118768.4"
+        },
+        {
+          "@value": "487432.4"
+        },
+        {
+          "@value": "12857.91"
+        },
+        {
+          "@value": "491613.4"
+        },
+        {
+          "@value": "12860.13"
+        },
+        {
+          "@value": "119710.4"
+        },
+        {
+          "@value": "491303.4"
+        },
+        {
+          "@value": "12862.35"
+        },
+        {
+          "@value": "119634.4"
+        },
+        {
+          "@value": "491039.4"
+        },
+        {
+          "@value": "12864.59"
+        },
+        {
+          "@value": "491047.4"
+        },
+        {
+          "@value": "12866.84"
+        },
+        {
+          "@value": "119400.4"
+        },
+        {
+          "@value": "490664.4"
+        },
+        {
+          "@value": "12869.10"
+        },
+        {
+          "@value": "118753.4"
+        },
+        {
+          "@value": "488126.4"
+        },
+        {
+          "@value": "12871.37"
+        },
+        {
+          "@value": "492276.4"
+        },
+        {
+          "@value": "12873.66"
+        },
+        {
+          "@value": "12875.96"
+        },
+        {
+          "@value": "119251.4"
+        },
+        {
+          "@value": "490689.4"
+        },
+        {
+          "@value": "12878.27"
+        },
+        {
+          "@value": "119441.4"
+        },
+        {
+          "@value": "491592.4"
+        },
+        {
+          "@value": "12880.59"
+        },
+        {
+          "@value": "119402.4"
+        },
+        {
+          "@value": "491729.4"
+        },
+        {
+          "@value": "12882.92"
+        },
+        {
+          "@value": "119440.4"
+        },
+        {
+          "@value": "492094.4"
+        },
+        {
+          "@value": "12885.27"
+        },
+        {
+          "@value": "119382.4"
+        },
+        {
+          "@value": "492144.4"
+        },
+        {
+          "@value": "12887.63"
+        },
+        {
+          "@value": "119277.4"
+        },
+        {
+          "@value": "491985.4"
+        },
+        {
+          "@value": "12890.00"
+        },
+        {
+          "@value": "119265.4"
+        },
+        {
+          "@value": "492148.4"
+        },
+        {
+          "@value": "12892.38"
+        },
+        {
+          "@value": "119293.4"
+        },
+        {
+          "@value": "492498.4"
+        },
+        {
+          "@value": "12894.78"
+        },
+        {
+          "@value": "119213.4"
+        },
+        {
+          "@value": "492377.4"
+        },
+        {
+          "@value": "12897.19"
+        },
+        {
+          "@value": "119316.4"
+        },
+        {
+          "@value": "493192.4"
+        },
+        {
+          "@value": "12899.61"
+        },
+        {
+          "@value": "119249.4"
+        },
+        {
+          "@value": "493292.4"
+        },
+        {
+          "@value": "12902.04"
+        },
+        {
+          "@value": "119205.4"
+        },
+        {
+          "@value": "493617.4"
+        },
+        {
+          "@value": "12904.48"
+        },
+        {
+          "@value": "494398.4"
+        },
+        {
+          "@value": "12906.94"
+        },
+        {
+          "@value": "119334.4"
+        },
+        {
+          "@value": "495059.4"
+        },
+        {
+          "@value": "12909.41"
+        },
+        {
+          "@value": "119960.4"
+        },
+        {
+          "@value": "498213.4"
+        },
+        {
+          "@value": "12911.89"
+        },
+        {
+          "@value": "119949.4"
+        },
+        {
+          "@value": "498781.4"
+        },
+        {
+          "@value": "12914.38"
+        },
+        {
+          "@value": "498807.4"
+        },
+        {
+          "@value": "12916.88"
+        },
+        {
+          "@value": "499324.4"
+        },
+        {
+          "@value": "12919.40"
+        },
+        {
+          "@value": "119891.4"
+        },
+        {
+          "@value": "499472.4"
+        },
+        {
+          "@value": "12921.93"
+        },
+        {
+          "@value": "119779.4"
+        },
+        {
+          "@value": "499132.4"
+        },
+        {
+          "@value": "12924.47"
+        },
+        {
+          "@value": "119750.4"
+        },
+        {
+          "@value": "499501.4"
+        },
+        {
+          "@value": "12927.03"
+        },
+        {
+          "@value": "499680.4"
+        },
+        {
+          "@value": "12929.59"
+        },
+        {
+          "@value": "499961.4"
+        },
+        {
+          "@value": "12932.17"
+        },
+        {
+          "@value": "500515.4"
+        },
+        {
+          "@value": "12934.76"
+        },
+        {
+          "@value": "119685.4"
+        },
+        {
+          "@value": "500042.4"
+        },
+        {
+          "@value": "12937.36"
+        },
+        {
+          "@value": "119908.4"
+        },
+        {
+          "@value": "501102.4"
+        },
+        {
+          "@value": "12939.98"
+        },
+        {
+          "@value": "119730.4"
+        },
+        {
+          "@value": "500581.4"
+        },
+        {
+          "@value": "12942.61"
+        },
+        {
+          "@value": "119569.4"
+        },
+        {
+          "@value": "500062.4"
+        },
+        {
+          "@value": "12945.24"
+        },
+        {
+          "@value": "501745.4"
+        },
+        {
+          "@value": "12947.90"
+        },
+        {
+          "@value": "119817.4"
+        },
+        {
+          "@value": "501797.4"
+        },
+        {
+          "@value": "12950.56"
+        },
+        {
+          "@value": "119703.4"
+        },
+        {
+          "@value": "501474.4"
+        },
+        {
+          "@value": "12953.23"
+        },
+        {
+          "@value": "501646.4"
+        },
+        {
+          "@value": "12955.92"
+        },
+        {
+          "@value": "119568.4"
+        },
+        {
+          "@value": "501451.4"
+        },
+        {
+          "@value": "12958.62"
+        },
+        {
+          "@value": "119762.4"
+        },
+        {
+          "@value": "502388.4"
+        },
+        {
+          "@value": "12961.33"
+        },
+        {
+          "@value": "119680.4"
+        },
+        {
+          "@value": "502202.4"
+        },
+        {
+          "@value": "12964.06"
+        },
+        {
+          "@value": "12966.79"
+        },
+        {
+          "@value": "501991.4"
+        },
+        {
+          "@value": "12969.54"
+        },
+        {
+          "@value": "119716.4"
+        },
+        {
+          "@value": "503096.4"
+        },
+        {
+          "@value": "12972.30"
+        },
+        {
+          "@value": "119655.4"
+        },
+        {
+          "@value": "503009.4"
+        },
+        {
+          "@value": "12975.08"
+        },
+        {
+          "@value": "119679.4"
+        },
+        {
+          "@value": "503200.4"
+        },
+        {
+          "@value": "12977.86"
+        },
+        {
+          "@value": "119621.4"
+        },
+        {
+          "@value": "503090.4"
+        },
+        {
+          "@value": "12980.66"
+        },
+        {
+          "@value": "119586.4"
+        },
+        {
+          "@value": "503058.4"
+        },
+        {
+          "@value": "12983.47"
+        },
+        {
+          "@value": "503554.4"
+        },
+        {
+          "@value": "12986.29"
+        },
+        {
+          "@value": "503609.4"
+        },
+        {
+          "@value": "12989.13"
+        },
+        {
+          "@value": "119628.4"
+        },
+        {
+          "@value": "503802.4"
+        },
+        {
+          "@value": "12991.97"
+        },
+        {
+          "@value": "119393.4"
+        },
+        {
+          "@value": "502926.4"
+        },
+        {
+          "@value": "12994.83"
+        },
+        {
+          "@value": "503736.4"
+        },
+        {
+          "@value": "12997.70"
+        },
+        {
+          "@value": "119584.4"
+        },
+        {
+          "@value": "503985.4"
+        },
+        {
+          "@value": "13000.58"
+        },
+        {
+          "@value": "119500.4"
+        },
+        {
+          "@value": "503750.4"
+        },
+        {
+          "@value": "13003.48"
+        },
+        {
+          "@value": "504336.4"
+        },
+        {
+          "@value": "13006.38"
+        },
+        {
+          "@value": "119448.4"
+        },
+        {
+          "@value": "503877.4"
+        },
+        {
+          "@value": "13009.30"
+        },
+        {
+          "@value": "504095.4"
+        },
+        {
+          "@value": "13012.23"
+        },
+        {
+          "@value": "119583.4"
+        },
+        {
+          "@value": "504893.4"
+        },
+        {
+          "@value": "13015.18"
+        },
+        {
+          "@value": "119466.4"
+        },
+        {
+          "@value": "504671.4"
+        },
+        {
+          "@value": "13018.13"
+        },
+        {
+          "@value": "119162.4"
+        },
+        {
+          "@value": "503604.4"
+        },
+        {
+          "@value": "13021.10"
+        },
+        {
+          "@value": "505855.4"
+        },
+        {
+          "@value": "13024.08"
+        },
+        {
+          "@value": "119565.4"
+        },
+        {
+          "@value": "505777.4"
+        },
+        {
+          "@value": "13027.07"
+        },
+        {
+          "@value": "119597.4"
+        },
+        {
+          "@value": "506141.4"
+        },
+        {
+          "@value": "13030.08"
+        },
+        {
+          "@value": "119490.4"
+        },
+        {
+          "@value": "505930.4"
+        },
+        {
+          "@value": "13033.09"
+        },
+        {
+          "@value": "119379.4"
+        },
+        {
+          "@value": "505766.4"
+        },
+        {
+          "@value": "13036.12"
+        },
+        {
+          "@value": "119456.4"
+        },
+        {
+          "@value": "506487.4"
+        },
+        {
+          "@value": "13039.16"
+        },
+        {
+          "@value": "119517.4"
+        },
+        {
+          "@value": "506884.4"
+        },
+        {
+          "@value": "13042.22"
+        },
+        {
+          "@value": "119414.4"
+        },
+        {
+          "@value": "506737.4"
+        },
+        {
+          "@value": "13045.28"
+        },
+        {
+          "@value": "506896.4"
+        },
+        {
+          "@value": "13048.36"
+        },
+        {
+          "@value": "119285.4"
+        },
+        {
+          "@value": "506728.4"
+        },
+        {
+          "@value": "13051.45"
+        },
+        {
+          "@value": "119457.4"
+        },
+        {
+          "@value": "507698.4"
+        },
+        {
+          "@value": "13054.55"
+        },
+        {
+          "@value": "119451.4"
+        },
+        {
+          "@value": "508049.4"
+        },
+        {
+          "@value": "13057.67"
+        },
+        {
+          "@value": "119761.4"
+        },
+        {
+          "@value": "509783.4"
+        },
+        {
+          "@value": "13060.79"
+        },
+        {
+          "@value": "119919.4"
+        },
+        {
+          "@value": "510828.4"
+        },
+        {
+          "@value": "13063.93"
+        },
+        {
+          "@value": "119852.4"
+        },
+        {
+          "@value": "510630.4"
+        },
+        {
+          "@value": "13067.08"
+        },
+        {
+          "@value": "119741.4"
+        },
+        {
+          "@value": "510521.4"
+        },
+        {
+          "@value": "13070.24"
+        },
+        {
+          "@value": "119898.4"
+        },
+        {
+          "@value": "511691.4"
+        },
+        {
+          "@value": "13073.42"
+        },
+        {
+          "@value": "119806.4"
+        },
+        {
+          "@value": "511593.4"
+        },
+        {
+          "@value": "13076.60"
+        },
+        {
+          "@value": "119901.4"
+        },
+        {
+          "@value": "512353.4"
+        },
+        {
+          "@value": "13079.80"
+        },
+        {
+          "@value": "119732.4"
+        },
+        {
+          "@value": "512066.4"
+        },
+        {
+          "@value": "13083.01"
+        },
+        {
+          "@value": "119739.4"
+        },
+        {
+          "@value": "512371.4"
+        },
+        {
+          "@value": "13086.24"
+        },
+        {
+          "@value": "119961.4"
+        },
+        {
+          "@value": "513558.4"
+        },
+        {
+          "@value": "13089.47"
+        },
+        {
+          "@value": "119849.4"
+        },
+        {
+          "@value": "513543.4"
+        },
+        {
+          "@value": "13092.72"
+        },
+        {
+          "@value": "513788.4"
+        },
+        {
+          "@value": "13095.98"
+        },
+        {
+          "@value": "119801.4"
+        },
+        {
+          "@value": "513932.4"
+        },
+        {
+          "@value": "13099.25"
+        },
+        {
+          "@value": "119723.4"
+        },
+        {
+          "@value": "513921.4"
+        },
+        {
+          "@value": "13102.54"
+        },
+        {
+          "@value": "119692.4"
+        },
+        {
+          "@value": "514105.4"
+        },
+        {
+          "@value": "13105.84"
+        },
+        {
+          "@value": "514386.4"
+        },
+        {
+          "@value": "13109.14"
+        },
+        {
+          "@value": "515024.4"
+        },
+        {
+          "@value": "13112.47"
+        },
+        {
+          "@value": "515337.4"
+        },
+        {
+          "@value": "13115.80"
+        },
+        {
+          "@value": "515511.4"
+        },
+        {
+          "@value": "13119.14"
+        },
+        {
+          "@value": "515778.4"
+        },
+        {
+          "@value": "13122.50"
+        },
+        {
+          "@value": "119651.4"
+        },
+        {
+          "@value": "515528.4"
+        },
+        {
+          "@value": "13125.87"
+        },
+        {
+          "@value": "119612.4"
+        },
+        {
+          "@value": "515793.4"
+        },
+        {
+          "@value": "13129.25"
+        },
+        {
+          "@value": "516465.4"
+        },
+        {
+          "@value": "13132.65"
+        },
+        {
+          "@value": "516755.4"
+        },
+        {
+          "@value": "13136.05"
+        },
+        {
+          "@value": "119759.4"
+        },
+        {
+          "@value": "517234.4"
+        },
+        {
+          "@value": "13139.47"
+        },
+        {
+          "@value": "119704.4"
+        },
+        {
+          "@value": "517314.4"
+        },
+        {
+          "@value": "13142.90"
+        },
+        {
+          "@value": "517888.4"
+        },
+        {
+          "@value": "13146.35"
+        },
+        {
+          "@value": "119700.4"
+        },
+        {
+          "@value": "517702.4"
+        },
+        {
+          "@value": "13149.80"
+        },
+        {
+          "@value": "119626.4"
+        },
+        {
+          "@value": "517690.4"
+        },
+        {
+          "@value": "13153.27"
+        },
+        {
+          "@value": "119658.4"
+        },
+        {
+          "@value": "518205.4"
+        },
+        {
+          "@value": "13156.75"
+        },
+        {
+          "@value": "119666.4"
+        },
+        {
+          "@value": "518339.4"
+        },
+        {
+          "@value": "13160.24"
+        },
+        {
+          "@value": "119461.4"
+        },
+        {
+          "@value": "517825.4"
+        },
+        {
+          "@value": "13163.74"
+        },
+        {
+          "@value": "119573.4"
+        },
+        {
+          "@value": "518580.4"
+        },
+        {
+          "@value": "13167.26"
+        },
+        {
+          "@value": "119506.4"
+        },
+        {
+          "@value": "518550.4"
+        },
+        {
+          "@value": "13170.79"
+        },
+        {
+          "@value": "119548.4"
+        },
+        {
+          "@value": "518975.4"
+        },
+        {
+          "@value": "13174.33"
+        },
+        {
+          "@value": "119576.4"
+        },
+        {
+          "@value": "519277.4"
+        },
+        {
+          "@value": "13177.88"
+        },
+        {
+          "@value": "119429.4"
+        },
+        {
+          "@value": "518963.4"
+        },
+        {
+          "@value": "13181.44"
+        },
+        {
+          "@value": "119499.4"
+        },
+        {
+          "@value": "519540.4"
+        },
+        {
+          "@value": "13185.02"
+        },
+        {
+          "@value": "119532.4"
+        },
+        {
+          "@value": "519952.4"
+        },
+        {
+          "@value": "13188.61"
+        },
+        {
+          "@value": "119484.4"
+        },
+        {
+          "@value": "520029.4"
+        },
+        {
+          "@value": "13192.21"
+        },
+        {
+          "@value": "119629.4"
+        },
+        {
+          "@value": "520909.4"
+        },
+        {
+          "@value": "13195.82"
+        },
+        {
+          "@value": "119425.4"
+        },
+        {
+          "@value": "520338.4"
+        },
+        {
+          "@value": "13199.45"
+        },
+        {
+          "@value": "520426.4"
+        },
+        {
+          "@value": "13203.09"
+        },
+        {
+          "@value": "119346.4"
+        },
+        {
+          "@value": "520480.4"
+        },
+        {
+          "@value": "13206.74"
+        },
+        {
+          "@value": "119462.4"
+        },
+        {
+          "@value": "521284.4"
+        },
+        {
+          "@value": "13210.40"
+        },
+        {
+          "@value": "521749.4"
+        },
+        {
+          "@value": "13214.07"
+        },
+        {
+          "@value": "119446.4"
+        },
+        {
+          "@value": "521758.4"
+        },
+        {
+          "@value": "13217.76"
+        },
+        {
+          "@value": "118856.4"
+        },
+        {
+          "@value": "519580.4"
+        },
+        {
+          "@value": "13221.46"
+        },
+        {
+          "@value": "119770.4"
+        },
+        {
+          "@value": "523823.4"
+        },
+        {
+          "@value": "13225.17"
+        },
+        {
+          "@value": "119476.4"
+        },
+        {
+          "@value": "522947.4"
+        },
+        {
+          "@value": "13228.89"
+        },
+        {
+          "@value": "119286.4"
+        },
+        {
+          "@value": "522498.4"
+        },
+        {
+          "@value": "13232.63"
+        },
+        {
+          "@value": "522915.4"
+        },
+        {
+          "@value": "13236.37"
+        },
+        {
+          "@value": "119387.4"
+        },
+        {
+          "@value": "523523.4"
+        },
+        {
+          "@value": "13240.13"
+        },
+        {
+          "@value": "524694.4"
+        },
+        {
+          "@value": "13243.91"
+        },
+        {
+          "@value": "526481.4"
+        },
+        {
+          "@value": "13247.69"
+        },
+        {
+          "@value": "526111.4"
+        },
+        {
+          "@value": "13251.49"
+        },
+        {
+          "@value": "119738.4"
+        },
+        {
+          "@value": "526314.4"
+        },
+        {
+          "@value": "13255.29"
+        },
+        {
+          "@value": "527099.4"
+        },
+        {
+          "@value": "13259.11"
+        },
+        {
+          "@value": "527711.4"
+        },
+        {
+          "@value": "13262.95"
+        },
+        {
+          "@value": "119816.4"
+        },
+        {
+          "@value": "527618.4"
+        },
+        {
+          "@value": "13266.79"
+        },
+        {
+          "@value": "119416.4"
+        },
+        {
+          "@value": "526221.4"
+        },
+        {
+          "@value": "13270.65"
+        },
+        {
+          "@value": "118166.4"
+        },
+        {
+          "@value": "520933.4"
+        },
+        {
+          "@value": "13274.52"
+        },
+        {
+          "@value": "117566.4"
+        },
+        {
+          "@value": "518805.4"
+        },
+        {
+          "@value": "13278.40"
+        },
+        {
+          "@value": "119235.4"
+        },
+        {
+          "@value": "526405.4"
+        },
+        {
+          "@value": "13282.29"
+        },
+        {
+          "@value": "119533.4"
+        },
+        {
+          "@value": "528035.4"
+        },
+        {
+          "@value": "13286.20"
+        },
+        {
+          "@value": "119194.4"
+        },
+        {
+          "@value": "526933.4"
+        },
+        {
+          "@value": "13290.11"
+        },
+        {
+          "@value": "119690.4"
+        },
+        {
+          "@value": "529517.4"
+        },
+        {
+          "@value": "13294.04"
+        },
+        {
+          "@value": "530688.4"
+        },
+        {
+          "@value": "13297.99"
+        },
+        {
+          "@value": "119737.4"
+        },
+        {
+          "@value": "530394.4"
+        },
+        {
+          "@value": "13301.94"
+        },
+        {
+          "@value": "119743.4"
+        },
+        {
+          "@value": "530850.4"
+        },
+        {
+          "@value": "13305.91"
+        },
+        {
+          "@value": "120097.4"
+        },
+        {
+          "@value": "532501.4"
+        },
+        {
+          "@value": "13309.89"
+        },
+        {
+          "@value": "120074.4"
+        },
+        {
+          "@value": "532908.4"
+        },
+        {
+          "@value": "13313.88"
+        },
+        {
+          "@value": "120083.4"
+        },
+        {
+          "@value": "533378.4"
+        },
+        {
+          "@value": "13317.88"
+        },
+        {
+          "@value": "120042.4"
+        },
+        {
+          "@value": "533642.4"
+        },
+        {
+          "@value": "13321.90"
+        },
+        {
+          "@value": "532855.4"
+        },
+        {
+          "@value": "13325.92"
+        },
+        {
+          "@value": "119694.4"
+        },
+        {
+          "@value": "532717.4"
+        },
+        {
+          "@value": "13329.96"
+        },
+        {
+          "@value": "119657.4"
+        },
+        {
+          "@value": "532854.4"
+        },
+        {
+          "@value": "13334.01"
+        },
+        {
+          "@value": "534066.4"
+        },
+        {
+          "@value": "13338.08"
+        },
+        {
+          "@value": "119899.4"
+        },
+        {
+          "@value": "534486.4"
+        },
+        {
+          "@value": "13342.15"
+        },
+        {
+          "@value": "535208.4"
+        },
+        {
+          "@value": "13346.24"
+        },
+        {
+          "@value": "120061.4"
+        },
+        {
+          "@value": "535961.4"
+        },
+        {
+          "@value": "13350.34"
+        },
+        {
+          "@value": "536184.4"
+        },
+        {
+          "@value": "13354.46"
+        },
+        {
+          "@value": "535675.4"
+        },
+        {
+          "@value": "13358.58"
+        },
+        {
+          "@value": "119768.4"
+        },
+        {
+          "@value": "535623.4"
+        },
+        {
+          "@value": "13362.72"
+        },
+        {
+          "@value": "534942.4"
+        },
+        {
+          "@value": "13366.87"
+        },
+        {
+          "@value": "535579.4"
+        },
+        {
+          "@value": "13371.03"
+        },
+        {
+          "@value": "535885.4"
+        },
+        {
+          "@value": "13375.20"
+        },
+        {
+          "@value": "119682.4"
+        },
+        {
+          "@value": "536567.4"
+        },
+        {
+          "@value": "13379.39"
+        },
+        {
+          "@value": "119751.4"
+        },
+        {
+          "@value": "537140.4"
+        },
+        {
+          "@value": "13383.58"
+        },
+        {
+          "@value": "537766.4"
+        },
+        {
+          "@value": "13387.79"
+        },
+        {
+          "@value": "537761.4"
+        },
+        {
+          "@value": "13392.02"
+        },
+        {
+          "@value": "119776.4"
+        },
+        {
+          "@value": "538121.4"
+        },
+        {
+          "@value": "13396.25"
+        },
+        {
+          "@value": "119877.4"
+        },
+        {
+          "@value": "538894.4"
+        },
+        {
+          "@value": "13400.50"
+        },
+        {
+          "@value": "538546.4"
+        },
+        {
+          "@value": "13404.76"
+        },
+        {
+          "@value": "119580.4"
+        },
+        {
+          "@value": "538285.4"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "powder on tape, 6 layers"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Sample.prep",
+      "http://ddialliance.org/Specification/XAS/format": [
+        {
+          "@value": "free-format string"
+        }
+      ],
+      "http://ddialliance.org/Specification/XAS/units": [
+        {
+          "@value": "none"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "A string summarizing the method of sample preparation"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Sample.prep"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Facility.xray_source",
+      "http://ddialliance.org/Specification/XAS/format": [
+        {
+          "@value": "string"
+        }
+      ],
+      "http://ddialliance.org/Specification/XAS/units": [
+        {
+          "@value": "none"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "A string identifying the source of the X-rays, such as 'bend magnet', 'undulator', or 'rotating copper anode'."
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Facility.xray_source"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Detector.ir",
+      "http://ddialliance.org/Specification/XAS/format": [
+        {
+          "@value": "free-format string"
+        }
+      ],
+      "http://ddialliance.org/Specification/XAS/units": [
+        {
+          "@value": "none"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "A description of how the reference flux was measured"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Detector.ir"
+        }
+      ]
+    },
+    {
+      "@id": "https://ddi-cdi.org/label/Beamline",
+      "http://www.w3.org/2004/02/skos/core#broader": [
+        {
+          "@id": "https://ddi-cdi.org/label/name"
+        },
+        {
+          "@id": "https://ddi-cdi.org/label/collimation"
+        },
+        {
+          "@id": "https://ddi-cdi.org/label/focusing"
+        },
+        {
+          "@id": "https://ddi-cdi.org/label/harmonic_rejection"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Beamline"
+        }
+      ],
+      "https://ddi-cdi.org/label/collimation": [
+        {
+          "@id": "_:Ndee587303e9044eeab1315e0ef49b58c"
+        }
+      ],
+      "https://ddi-cdi.org/label/focusing": [
+        {
+          "@id": "_:N268ddad4c9664366973c10460ea85b6d"
+        }
+      ],
+      "https://ddi-cdi.org/label/harmonic_rejection": [
+        {
+          "@id": "_:N8486bbd557da42a7b2501405fcee8cbb"
+        }
+      ],
+      "https://ddi-cdi.org/label/name": [
+        {
+          "@id": "_:Ne53d4582f4fd437f92b1cfa37f071abe"
+        }
+      ]
+    },
+    {
+      "@id": "_:Ne53d4582f4fd437f92b1cfa37f071abe",
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "13-BM-D"
+        }
+      ]
+    },
+    {
+      "@id": "_:Ndee587303e9044eeab1315e0ef49b58c",
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "none"
+        }
+      ]
+    },
+    {
+      "@id": "_:N268ddad4c9664366973c10460ea85b6d",
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "no"
+        }
+      ]
+    },
+    {
+      "@id": "_:N8486bbd557da42a7b2501405fcee8cbb",
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "Rh-coated mirror, detuned "
+        }
+      ]
+    },
+    {
+      "@id": "https://ddi-cdi.org/label/Column",
+      "http://www.w3.org/2004/02/skos/core#broader": [
+        {
+          "@id": "https://ddi-cdi.org/label/1"
+        },
+        {
+          "@id": "https://ddi-cdi.org/label/2"
+        },
+        {
+          "@id": "https://ddi-cdi.org/label/3"
+        },
+        {
+          "@id": "https://ddi-cdi.org/label/4"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Column"
+        }
+      ],
+      "https://ddi-cdi.org/label/1": [
+        {
+          "@id": "_:N0eca878294a84c429021e6ce557cc48d"
+        }
+      ],
+      "https://ddi-cdi.org/label/2": [
+        {
+          "@id": "_:Na6d7941e56c546498eaf6d01c08fb3bd"
+        }
+      ],
+      "https://ddi-cdi.org/label/3": [
+        {
+          "@id": "_:N086aae03842e4e4eaf6ed84acac170c0"
+        }
+      ],
+      "https://ddi-cdi.org/label/4": [
+        {
+          "@id": "_:N1f32884af52b46e1932cf67154915a18"
+        }
+      ]
+    },
+    {
+      "@id": "_:N0eca878294a84c429021e6ce557cc48d",
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "energy eV"
+        }
+      ]
+    },
+    {
+      "@id": "_:Na6d7941e56c546498eaf6d01c08fb3bd",
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "time"
+        }
+      ]
+    },
+    {
+      "@id": "_:N086aae03842e4e4eaf6ed84acac170c0",
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "i0"
+        }
+      ]
+    },
+    {
+      "@id": "_:N1f32884af52b46e1932cf67154915a18",
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "itrans"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Scan.start_time",
+      "http://ddialliance.org/Specification/XAS/format": [
+        {
+          "@value": "http://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations"
+        }
+      ],
+      "http://ddialliance.org/Specification/XAS/units": [
+        {
+          "@value": "time"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "The beginning time of the scan. This is recommended for use with XDI."
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Scan.start_time"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Sample.stoichiometry",
+      "http://ddialliance.org/Specification/XAS/format": [
+        {
+          "@value": "http://www.iucr.org/__data/iucr/cifdic_html/1/cif_core.dic/Cchemical_formula.html"
+        }
+      ],
+      "http://ddialliance.org/Specification/XAS/units": [
+        {
+          "@value": "none"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "The stoichiometric formula of the measured sample"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Sample.stoichiometry"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Column.N",
+      "http://ddialliance.org/Specification/XAS/format": [
+        {
+          "@value": "word + units"
+        }
+      ],
+      "http://ddialliance.org/Specification/XAS/units": [
+        {
+          "@value": "as needed"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "A description of the Nth column (where N is an integer) of the measured data. This is recommended for use in an XDI file."
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Column.N"
+        }
+      ]
+    },
+    {
+      "@id": "https://ddi-cdi.org/label/Detector",
+      "http://www.w3.org/2004/02/skos/core#broader": [
+        {
+          "@id": "https://ddi-cdi.org/label/I0"
+        },
+        {
+          "@id": "https://ddi-cdi.org/label/I1"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Detector"
+        }
+      ],
+      "https://ddi-cdi.org/label/I0": [
+        {
+          "@id": "_:N342327cdc7a949cbb87e9717760ae075"
+        }
+      ],
+      "https://ddi-cdi.org/label/I1": [
+        {
+          "@id": "_:N62f8cc4d5b96496e8bc3c56a3f0cccd9"
+        }
+      ]
+    },
+    {
+      "@id": "_:N342327cdc7a949cbb87e9717760ae075",
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "10cm  N2"
+        }
+      ]
+    },
+    {
+      "@id": "_:N62f8cc4d5b96496e8bc3c56a3f0cccd9",
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "10cm  N2 (?)"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Element",
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "Tags related to the absorbing atom"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Element"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Beamline.name",
+      "http://ddialliance.org/Specification/XAS/format": [
+        {
+          "@value": "free-format string"
+        }
+      ],
+      "http://ddialliance.org/Specification/XAS/units": [
+        {
+          "@value": "none"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "The name by which the beamline is known. For a beamline with a facility designation and a common name, the designation is preferred."
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Beamline.name"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Mono.name",
+      "http://ddialliance.org/Specification/XAS/format": [
+        {
+          "@value": "free-format string"
+        }
+      ],
+      "http://ddialliance.org/Specification/XAS/units": [
+        {
+          "@value": "none"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "A string identifying the material and diffracting plane or grating spacing of the monochromator"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Mono.name"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Detector.if",
+      "http://ddialliance.org/Specification/XAS/format": [
+        {
+          "@value": "free-format string"
+        }
+      ],
+      "http://ddialliance.org/Specification/XAS/units": [
+        {
+          "@value": "none"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "A description of how the fluorescence flux was measured"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Detector.if"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Facility.current",
+      "http://ddialliance.org/Specification/XAS/format": [
+        {
+          "@value": "float + units"
+        }
+      ],
+      "http://ddialliance.org/Specification/XAS/units": [
+        {
+          "@value": "mA"
+        },
+        {
+          "@value": "A"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "The amount of stored current in the storage ring at the beginning of the scan."
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Facility.current"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Column",
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "Tags used for identifying the data columns and their units"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Column"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Sample.name",
+      "http://ddialliance.org/Specification/XAS/format": [
+        {
+          "@value": "free-format string"
+        }
+      ],
+      "http://ddialliance.org/Specification/XAS/units": [
+        {
+          "@value": "none"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "A string identifying the measured sample"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Sample.name"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Facility.energy",
+      "http://ddialliance.org/Specification/XAS/format": [
+        {
+          "@value": "float + units"
+        }
+      ],
+      "http://ddialliance.org/Specification/XAS/units": [
+        {
+          "@value": "GeV"
+        },
+        {
+          "@value": "MeV"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "The energy of the stored current in the storage ring."
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Facility.energy"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Sample.experimenters",
+      "http://ddialliance.org/Specification/XAS/format": [
+        {
+          "@value": "free-format string"
+        }
+      ],
+      "http://ddialliance.org/Specification/XAS/units": [
+        {
+          "@value": "none"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "The names of the experimenters present for the measurement"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Sample.experimenters"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Element.edge",
+      "http://ddialliance.org/Specification/XAS/format": [
+        {
+          "@value": "edge label (string)"
+        }
+      ],
+      "http://ddialliance.org/Specification/XAS/units": [
+        {
+          "@value": "none"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "The measured absorption edge. One of the standard edge labels (e.g., K, L3, M5)."
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Element.edge"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Sample.temperature",
+      "http://ddialliance.org/Specification/XAS/format": [
+        {
+          "@value": "float + units"
+        }
+      ],
+      "http://ddialliance.org/Specification/XAS/units": [
+        {
+          "@value": "degrees K, degrees C"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "The temperature at which the sample was measured"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Sample.temperature"
+        }
+      ]
+    },
+    {
+      "@id": "https://doi.org/10.5072/FK2/ZTZH3N",
+      "@type": [
+        "http://schema.org/Dataset"
+      ],
+      "http://schema.org/author": [
+        {
+          "@id": "_:N73e6cd50f83e4678aac9591b8964b710"
+        }
+      ],
+      "http://schema.org/creator": [
+        {
+          "@id": "_:Ndcb1f145fb894d5186e0cf6f9badb71d"
+        }
+      ],
+      "http://schema.org/dateModified": [
+        {
+          "@type": "http://schema.org/Date",
+          "@value": "2025-11-19"
+        }
+      ],
+      "http://schema.org/datePublished": [
+        {
+          "@type": "http://schema.org/Date",
+          "@value": "2025-11-19"
+        }
+      ],
+      "http://schema.org/description": [
+        {
+          "@value": "Test V1.0 se_na2so4_rt.xdi"
+        }
+      ],
+      "http://schema.org/distribution": [
+        {
+          "@id": "_:N2a1a509f8ad9401e989e20619c0f3524"
+        }
+      ],
+      "http://schema.org/identifier": [
+        {
+          "@value": "https://doi.org/10.5072/FK2/ZTZH3N"
+        }
+      ],
+      "http://schema.org/includedInDataCatalog": [
+        {
+          "@id": "_:N5bff49d1d3dd4c11967060b08fc7ef7b"
+        }
+      ],
+      "http://schema.org/keywords": [
+        {
+          "@value": "Earth and Environmental Sciences"
+        }
+      ],
+      "http://schema.org/license": [
+        {
+          "@id": "http://creativecommons.org/publicdomain/zero/1.0"
+        }
+      ],
+      "http://schema.org/name": [
+        {
+          "@value": "XAS - CDI - version 1.0: se_na2so4_rt.xdi"
+        }
+      ],
+      "http://schema.org/provider": [
+        {
+          "@id": "_:Na292767a0a9f4cc18dcb9434eec4bd66"
+        }
+      ],
+      "http://schema.org/publisher": [
+        {
+          "@id": "_:N1bb493e637a443f98af21867184c60e0"
+        }
+      ],
+      "http://schema.org/version": [
+        {
+          "@value": "1"
+        }
+      ]
+    },
+    {
+      "@id": "_:N2a1a509f8ad9401e989e20619c0f3524",
+      "@type": [
+        "http://schema.org/DataDownload"
+      ],
+      "http://schema.org/contentSize": [
+        {
+          "@type": "http://www.w3.org/2001/XMLSchema#integer",
+          "@value": 29783
+        }
+      ],
+      "http://schema.org/contentUrl": [
+        {
+          "@id": "https://dataverse.dev.codata.org/api/access/datafile/34"
+        }
+      ],
+      "http://schema.org/encodingFormat": [
+        {
+          "@value": "application/octet-stream"
+        }
+      ],
+      "http://schema.org/name": [
+        {
+          "@value": "se_na2so4_rt.xdi"
+        }
+      ]
+    },
+    {
+      "@id": "_:N1bb493e637a443f98af21867184c60e0",
+      "@type": [
+        "http://schema.org/Organization"
+      ],
+      "http://schema.org/name": [
+        {
+          "@value": "Root"
+        }
+      ]
+    },
+    {
+      "@id": "_:Ndcb1f145fb894d5186e0cf6f9badb71d",
+      "@type": [
+        "http://schema.org/Person"
+      ],
+      "http://schema.org/familyName": [
+        {
+          "@value": "Lungley"
+        }
+      ],
+      "http://schema.org/givenName": [
+        {
+          "@value": "Deirdre"
+        }
+      ],
+      "http://schema.org/name": [
+        {
+          "@value": "Lungley, Deirdre"
+        }
+      ]
+    },
+    {
+      "@id": "_:N73e6cd50f83e4678aac9591b8964b710",
+      "@type": [
+        "http://schema.org/Person"
+      ],
+      "http://schema.org/familyName": [
+        {
+          "@value": "Lungley"
+        }
+      ],
+      "http://schema.org/givenName": [
+        {
+          "@value": "Deirdre"
+        }
+      ],
+      "http://schema.org/name": [
+        {
+          "@value": "Lungley, Deirdre"
+        }
+      ]
+    },
+    {
+      "@id": "_:Na292767a0a9f4cc18dcb9434eec4bd66",
+      "@type": [
+        "http://schema.org/Organization"
+      ],
+      "http://schema.org/name": [
+        {
+          "@value": "Root"
+        }
+      ]
+    },
+    {
+      "@id": "_:N5bff49d1d3dd4c11967060b08fc7ef7b",
+      "@type": [
+        "http://schema.org/DataCatalog"
+      ],
+      "http://schema.org/name": [
+        {
+          "@value": "Root"
+        }
+      ],
+      "http://schema.org/url": [
+        {
+          "@id": "https://dataverse.dev.codata.org"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Detector",
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "Tags related to the details of the photon detection system"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Detector"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Beamline.harmonic_rejection",
+      "http://ddialliance.org/Specification/XAS/format": [
+        {
+          "@value": "free-format string"
+        }
+      ],
+      "http://ddialliance.org/Specification/XAS/units": [
+        {
+          "@value": "none"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "A concise statement about how harmonic rejection is accomplished"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Beamline.harmonic_rejection"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Detector.it",
+      "http://ddialliance.org/Specification/XAS/format": [
+        {
+          "@value": "free-format string"
+        }
+      ],
+      "http://ddialliance.org/Specification/XAS/units": [
+        {
+          "@value": "none"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "A description of how the tranmission flux was measured"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Detector.it"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Beamline",
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "Tags related to the structure of the beamline and its photon delivery system"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Beamline"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Element.symbol",
+      "http://ddialliance.org/Specification/XAS/format": [
+        {
+          "@value": "atomic symbol (string)"
+        }
+      ],
+      "http://ddialliance.org/Specification/XAS/units": [
+        {
+          "@value": "none"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "The measured absorption edge. One of the 118 standard atomic symbols."
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Element.symbol"
+        }
+      ]
+    },
+    {
+      "@id": "https://ddi-cdi.org/label/Mono",
+      "http://www.w3.org/2004/02/skos/core#broader": [
+        {
+          "@id": "https://ddi-cdi.org/label/name"
+        },
+        {
+          "@id": "https://ddi-cdi.org/label/d_spacing"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Mono"
+        }
+      ],
+      "https://ddi-cdi.org/label/d_spacing": [
+        {
+          "@id": "_:Nf3f03a17b92346f79931aaca8ee3f69b"
+        }
+      ],
+      "https://ddi-cdi.org/label/name": [
+        {
+          "@id": "_:Ne1fc9f1cd12a4b09bd2f3787e839b9c5"
+        }
+      ]
+    },
+    {
+      "@id": "_:Ne1fc9f1cd12a4b09bd2f3787e839b9c5",
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "Si 111"
+        }
+      ]
+    },
+    {
+      "@id": "_:Nf3f03a17b92346f79931aaca8ee3f69b",
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "3.13550"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Scan.edge_energy",
+      "http://ddialliance.org/Specification/XAS/format": [
+        {
+          "@value": "float + units"
+        }
+      ],
+      "http://ddialliance.org/Specification/XAS/units": [
+        {
+          "@value": " eV, keV, inverse U+00C5"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "The absorption edge as used in the data acquisition software."
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Scan.edge_energy"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Facility.name",
+      "http://ddialliance.org/Specification/XAS/format": [
+        {
+          "@value": "string"
+        }
+      ],
+      "http://ddialliance.org/Specification/XAS/units": [
+        {
+          "@value": "none"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "The name of synchrotron or other X-ray facility. This is recommended for use in all XDI files."
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Facility.name"
+        }
+      ]
+    },
+    {
+      "@id": "http://ddialliance.org/Specification/XAS/Mono",
+      "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+          "@value": "Tags related to the monochromator"
+        }
+      ],
+      "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+          "@value": "Mono"
+        }
+      ]
+    }
+  ]
+}
