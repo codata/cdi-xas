@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  api:
+    build: .
+    container_name: ${CONTAINER}
+    environment:
+      - CDIFSERVICE=${CDIFSERVICE}/ollama
+      - OLLAMASERVICE=http://10.147.18.253:8093
+      - SPARQLMUSE=${SPARQLMUSE}
+      - CESSDAURL=${CESSDAURL}
+      - TIMEOUT=${TIMEOUT}
+      - DEFAULTMODEL=${DEFAULTMODEL}
+      - DEFAULTPROMPT=${DEFAULTPROMPT}
+    ports:
+      - "${PORT}:80"
+    volumes:
+      - ./api:/app/api 
