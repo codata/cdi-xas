@@ -94,6 +94,8 @@ def fetch_remote_ollama(term: str):
 
 def run_ollama(term: str, model):
     base_url = os.environ.get("OLLAMASERVICE", "http://10.147.18.82:8093")
+    if not 'http' in base_url:
+        base_url = "http://172.27.39.69:11434"
     url = base_url + f"/api/generate"
     headers = {"accept": "application/json", "content-type": "application/json"}
     prompt = f"create description of variable (definition, units of measurements, properties, attributes) and provide result in json: {term}"
