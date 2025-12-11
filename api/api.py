@@ -75,6 +75,8 @@ def fetch_skosmos(term: str, context: str):
 
 def fetch_remote_ollama(term: str):
     base_url = os.environ.get("CDIFSERVICE", "https://cdif-4-xas.dev.codata.org/ollama")
+    if not 'ollama' in base_url:
+        base_url+='/ollama'
     headers = {"accept": "application/json"}
     params = {"term": term}
     try:
