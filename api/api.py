@@ -17,6 +17,9 @@ import os
 import os
 import json
 import pandas as pd
+import tempfile
+import io
+from xlsx2csv import Xlsx2csv
 app = FastAPI()
 
 # Ensure repo root is importable to access top-level modules
@@ -531,6 +534,79 @@ async def receive_dvn(request: Request, file: Optional[UploadFile] = File(None))
 @app.get("/ollama")
 async def receive_ollama(term: str, model: Optional[str] = os.environ.get("DEFAULTMODEL", "gpt-oss:latest")):
     return run_ollama(term, model)
+
+@app.get("/markitdown")
+def markitdown(
+    url: str = Query(..., description="URL of the Excel file to convert to CSV"),
+    sheet: Optional[str] = Query(None, description="Optional sheet name or index (0-based) to convert. If not specified, converts the first sheet.")
+):
+    """
+    Download an Excel file from a URL and convert it to CSV format using xlsx2csv.
+    Returns the CSV content as plain text.
+    
+    Args:
+        url: URL of the Excel file (.xlsx or .xls) to download and convert
+        sheet: Optional sheet name or index (0-based). If not specified, converts the first sheet.
+    
+    Returns:
+        CSV content as plain text response
+    """
+    try:
+        # Download the file from URL
+        response = requests.get(url, timeout=30)
+        response.raise_for_status()
+        
+        # Determine file extension from URL or Content-Type header
+        content_type = response.headers.get('Content-Type', '').lower()
+        if '.xls' in url.lower() or 'spreadsheet' in content_type or 'excel' in content_type:
+            suffix = '.xlsx' if '.xlsx' in url.lower() or 'openxml' in content_type else '.xls'
+        else:
+            suffix = '.xlsx'  # Default to .xlsx
+        
+        # Create a temporary file to store the downloaded Excel file
+        with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp_file:
+            tmp_file.write(response.content)
+            tmp_path = tmp_file.name
+        
+        try:
+            # Convert Excel to CSV using xlsx2csv
+            output_buffer = io.StringIO()
+            converter = Xlsx2csv(tmp_path, outputencoding="utf-8")
+            
+            # If sheet is specified, convert only that sheet
+            if sheet is not None:
+                # Try to convert by sheet index first (if it's a number)
+                try:
+                    sheet_index = int(sheet)
+                    converter.convert(output_buffer, sheetid=sheet_index)
+                except ValueError:
+                    # sheet is a name, not an index
+                    converter.convert(output_buffer, sheetname=sheet)
+            else:
+                # Convert first sheet by default
+                converter.convert(output_buffer)
+            
+            csv_content = output_buffer.getvalue()
+            
+            # Return CSV content as plain text
+            return PlainTextResponse(content=csv_content, media_type="text/csv")
+        finally:
+            # Clean up temporary file
+            try:
+                os.unlink(tmp_path)
+            except Exception:
+                pass
+                
+    except requests.RequestException as e:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Failed to download file from URL '{url}': {str(e)}"
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to convert Excel file to CSV: {str(e)}"
+        )
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8012) 
