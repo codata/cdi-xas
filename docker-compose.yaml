@@ -4,8 +4,8 @@ services:
     build: .
     container_name: ${CONTAINER}
     environment:
-      - CDIFSERVICE=${MAINCDIFSERVICE}/ollama
-      - OLLAMASERVICE=${MAINOLLAMASERVICE}
+      - CDIFSERVICE=${CDIFSERVICE}/ollama
+      - OLLAMASERVICE=${OLLAMASERVICE}
       - SPARQLMUSE=${SPARQLMUSE}
       - CESSDAURL=${CESSDAURL}
       - TIMEOUT=${TIMEOUT}
