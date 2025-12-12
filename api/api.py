@@ -19,6 +19,8 @@ import json
 import pandas as pd
 import tempfile
 import io
+import csv
+from collections import Counter
 from xlsx2csv import Xlsx2csv
 app = FastAPI()
 
@@ -540,18 +542,22 @@ async def receive_ollama(term: str, model: Optional[str] = os.environ.get("DEFAU
 @app.get("/markitdown")
 def markitdown(
     url: str = Query(..., description="URL of the Excel file to convert to CSV"),
-    sheet: Optional[str] = Query(None, description="Optional sheet name or index (0-based) to convert. If not specified, converts the first sheet.")
+    sheet: Optional[str] = Query(None, description="Optional sheet name or index (0-based) to convert. If not specified, converts the first sheet."),
+    analyze: Optional[bool] = Query(False, description="If True, returns JSON with row analysis and CSV content. If False, returns only CSV.")
 ):
     """
     Download an Excel file from a URL and convert it to CSV format using xlsx2csv.
-    Returns the CSV content as plain text.
+    Optionally analyzes rows by delimiter-separated column count.
     
     Args:
         url: URL of the Excel file (.xlsx or .xls) to download and convert
         sheet: Optional sheet name or index (0-based). If not specified, converts the first sheet.
+        analyze: If True, returns JSON with row analysis grouping rows by column count.
+                 If False, returns only CSV content as plain text.
     
     Returns:
-        CSV content as plain text response
+        If analyze=False: CSV content as plain text response
+        If analyze=True: JSON with CSV content and row analysis
     """
     try:
         # Download the file from URL
@@ -590,8 +596,60 @@ def markitdown(
             
             csv_content = output_buffer.getvalue()
             
-            # Return CSV content as plain text
-            return PlainTextResponse(content=csv_content, media_type="text/csv")
+            # If analyze is False, return CSV content as plain text
+            if not analyze:
+                return PlainTextResponse(content=csv_content, media_type="text/csv")
+            
+            # Analyze rows by delimiter-separated column count
+            output_buffer.seek(0)  # Reset buffer position
+            csv_reader = csv.reader(output_buffer)
+            rows = list(csv_reader)
+            
+            # Count columns in each row
+            row_column_counts = [len(row) for row in rows]
+            
+            # Find the most common column count (this represents data rows)
+            if row_column_counts:
+                column_count_counter = Counter(row_column_counts)
+                most_common_count = column_count_counter.most_common(1)[0][0]
+            else:
+                most_common_count = 0
+            
+            # Group rows into two categories:
+            # 1. Rows with the same size as data rows (most common count)
+            # 2. Rows with different size
+            same_size_rows = []
+            different_size_rows = []
+            
+            for idx, row in enumerate(rows):
+                row_info = {
+                    "row_index": idx,
+                    "column_count": len(row),
+                    "columns": row
+                }
+                if len(row) == most_common_count:
+                    same_size_rows.append(row_info)
+                else:
+                    different_size_rows.append(row_info)
+            
+            # Prepare analysis result
+            analysis = {
+                "total_rows": len(rows),
+                "most_common_column_count": most_common_count,
+                "column_count_distribution": dict(column_count_counter),
+                "same_size_rows": {
+                    "count": len(same_size_rows),
+                    "rows": same_size_rows
+                },
+                "different_size_rows": {
+                    "count": len(different_size_rows),
+                    "rows": different_size_rows
+                },
+                "csv_content": csv_content
+            }
+            
+            return JSONResponse(content=analysis)
+            
         finally:
             # Clean up temporary file
             try:
