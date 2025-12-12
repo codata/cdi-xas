@@ -613,6 +613,7 @@ def markitdown(
                 column_count_counter = Counter(row_column_counts)
                 most_common_count = column_count_counter.most_common(1)[0][0]
             else:
+                column_count_counter = Counter()  # Initialize empty Counter for empty CSV
                 most_common_count = 0
             
             # Group rows into two categories:
